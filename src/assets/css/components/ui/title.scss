@@ -1,0 +1,14 @@
+@import '../../../css/colors.scss';
+
+.section-title {
+    margin-bottom: 1.5rem;
+    h4 {
+        color: $primary-color;
+        // font-family: Inter;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 33.6px;
+        letter-spacing: -0.24px;
+        text-transform: capitalize;
+    }
+}

@@ -1,0 +1,130 @@
+@font-face {
+  font-family: "InterTight";
+  src: url("../fonts/InterTight/InterTight-Regular.ttf");
+  font-weight: 400;
+  font-style: 400;
+}
+@font-face {
+  font-family: "InterTight";
+  src: url("../fonts/InterTight/InterTight-Medium.ttf");
+  font-weight: 500;
+  font-style: 500;
+}
+@font-face {
+  font-family: "InterTight";
+  src: url("../fonts/InterTight/InterTight-Bold.ttf");
+  font-weight: 600;
+  font-style: 600;
+}
+@font-face {
+  font-family: "InterTight";
+  src: url("../fonts/InterTight/InterTight-SemiBold.ttf");
+  font-weight: 700;
+  font-style: 700;
+}
+@font-face {
+  font-family: "Tajawal-Medium";
+  src: url("../fonts/ar-font/Tajawal-Medium.ttf");
+  font-weight: 500;
+  font-style: Bold;
+}
+@font-face {
+  font-family: "Tajawal-Bold";
+  src: url("../fonts/ar-font/Tajawal-Bold.ttf");
+  font-weight: 700;
+  font-style: Bold;
+}
+.select-option {
+  color: #151538;
+  font-weight: 600;
+  box-shadow: none;
+  border-radius: 12px;
+  border: 1px solid #dee2e6;
+  font-size: 0.875rem;
+  position: relative;
+  height: 58px;
+  padding-top: 0.3125rem;
+  padding-bottom: 0.625rem;
+  margin-bottom: 0.5rem;
+}
+.select-option .dropdown-menu {
+  max-width: 101%;
+  background-color: #fff;
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+  border: solid 1px #dee2e6;
+  border-top: 0;
+  top: -6px;
+  position: relative;
+  margin: 0px -1px;
+}
+.select-option .dropdown-menu .table thead tr th {
+  background-color: #151538 !important;
+  color: white;
+}
+.select-option .dropdown-menu .table thead tr th:first-child {
+  border-top-left-radius: 0px;
+}
+.select-option .dropdown-menu .table thead tr th:last-child {
+  border-top-right-radius: 0px;
+}
+.select-option .dropdown-menu .search-select {
+  position: relative;
+  margin-left: 24px;
+  margin-right: 24px;
+  margin-bottom: 20px;
+}
+.select-option .dropdown-menu .search-select i.search-icon {
+  position: absolute;
+  top: 25%;
+  right: 16px;
+  display: block;
+  background-image: url(../images/search-icon.svg);
+  height: 24px;
+  width: 24px;
+}
+.select-option .dropdown-menu .search-select input {
+  height: 46px;
+}
+.select-option td {
+  cursor: pointer;
+}
+.select-option #selectedlabel {
+  color: #676793;
+  font-size: 14px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  height: 100%;
+  padding: 0.4375rem 0.75rem;
+  overflow: hidden;
+  text-align: start;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  pointer-events: none;
+  transform-origin: 0 0;
+}
+.select-option #selectedOption {
+  color: #151538;
+  padding: 0rem 2.25rem 0.375rem 0.75rem !important;
+  display: block;
+  width: 100%;
+}
+.select-option .dropdown-toggle::after {
+  display: inline-block;
+  background: url(../images/select-down.svg) !important;
+  background-size: 24px 24px !important;
+  border: none;
+  height: 24px;
+  width: 24px;
+  position: absolute;
+  right: 16px;
+  top: 30%;
+}
+
+#createNewCustomer {
+  cursor: pointer;
+}/*# sourceMappingURL=searchDropDown.css.map */

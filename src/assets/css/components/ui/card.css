@@ -1,0 +1,79 @@
+@font-face {
+  font-family: "InterTight";
+  src: url("../fonts/InterTight/InterTight-Regular.ttf");
+  font-weight: 400;
+  font-style: 400;
+}
+@font-face {
+  font-family: "InterTight";
+  src: url("../fonts/InterTight/InterTight-Medium.ttf");
+  font-weight: 500;
+  font-style: 500;
+}
+@font-face {
+  font-family: "InterTight";
+  src: url("../fonts/InterTight/InterTight-Bold.ttf");
+  font-weight: 600;
+  font-style: 600;
+}
+@font-face {
+  font-family: "InterTight";
+  src: url("../fonts/InterTight/InterTight-SemiBold.ttf");
+  font-weight: 700;
+  font-style: 700;
+}
+@font-face {
+  font-family: "Tajawal-Medium";
+  src: url("../fonts/ar-font/Tajawal-Medium.ttf");
+  font-weight: 500;
+  font-style: Bold;
+}
+@font-face {
+  font-family: "Tajawal-Bold";
+  src: url("../fonts/ar-font/Tajawal-Bold.ttf");
+  font-weight: 700;
+  font-style: Bold;
+}
+section {
+  border-radius: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #fff;
+  padding: 1.5rem !important;
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  margin-bottom: 1.5rem;
+}
+.section-title h4 {
+  color: #151538;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 33.6px;
+  letter-spacing: -0.24px;
+  text-transform: capitalize;
+}
+
+.section-create-new a {
+  color: #4027CD !important;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  padding: 8px;
+}
+.section-create-new a svg {
+  margin-right: 4px;
+}
+
+.card-side-comp-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.card-side-comp-container .card-side-comp-content {
+  flex: 1;
+}
+.card-side-comp-container .card-side-comp {
+  cursor: pointer !important;
+}/*# sourceMappingURL=card.css.map */

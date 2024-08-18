@@ -1,0 +1,52 @@
+.price-summary {
+  display: inline-block;
+  background-color: $primary;
+  border-radius: 12px;
+
+  .price-summary-container {
+    display: flex;
+  }
+
+  .total-before-vat,
+  .vat,
+  .total {
+    display: flex;
+    flex-direction: column;
+    padding: 17px 15px;
+  }
+
+  .total-before-vat-label,
+  .vat-label,
+  .total-label {
+    color: #f9f9f9;
+    font:
+      500 16px/169% InterTight,
+      sans-serif;
+    letter-spacing: 0.5px !important;
+    margin-right: 60px;
+  }
+
+  .total-before-vat-value {
+    color: #fff;
+    margin-top: 12px;
+    font:
+      700 17px/156% InterTight,
+      sans-serif;
+  }
+
+  .vat-value {
+    color: #fff;
+    margin-top: 12px;
+    font:
+      700 17px/156% InterTight,
+      sans-serif;
+  }
+
+  .total-value {
+    color: #fff;
+    margin-top: 12px;
+    font:
+      700 24px/112.5% InterTight,
+      sans-serif;
+  }
+}

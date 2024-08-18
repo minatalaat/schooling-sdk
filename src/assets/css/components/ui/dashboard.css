@@ -1,0 +1,132 @@
+@font-face {
+  font-family: "InterTight";
+  src: url("../fonts/InterTight/InterTight-Regular.ttf");
+  font-weight: 400;
+  font-style: 400;
+}
+@font-face {
+  font-family: "InterTight";
+  src: url("../fonts/InterTight/InterTight-Medium.ttf");
+  font-weight: 500;
+  font-style: 500;
+}
+@font-face {
+  font-family: "InterTight";
+  src: url("../fonts/InterTight/InterTight-Bold.ttf");
+  font-weight: 600;
+  font-style: 600;
+}
+@font-face {
+  font-family: "InterTight";
+  src: url("../fonts/InterTight/InterTight-SemiBold.ttf");
+  font-weight: 700;
+  font-style: 700;
+}
+@font-face {
+  font-family: "Tajawal-Medium";
+  src: url("../fonts/ar-font/Tajawal-Medium.ttf");
+  font-weight: 500;
+  font-style: Bold;
+}
+@font-face {
+  font-family: "Tajawal-Bold";
+  src: url("../fonts/ar-font/Tajawal-Bold.ttf");
+  font-weight: 700;
+  font-style: Bold;
+}
+.dashboard-title {
+  color: #151538 !important;
+  text-align: start;
+}
+
+.dashboard-chart-wrapper {
+  height: 50vh !important;
+}
+
+.dashboard-chart-wc-wrapper {
+  height: 40vh !important;
+}
+.dashboard-chart-wc-wrapper h4 {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.open-invoices-header {
+  width: 100% !important;
+  margin-top: 0px !important;
+}
+
+.p-0 {
+  padding: 0 0 !important;
+}
+
+.mr-3 {
+  margin-right: 3px !important;
+}
+
+.active-tab {
+  color: #fff !important;
+  background: rgb(81, 81, 134) !important;
+}
+
+.header-subtitle {
+  font-size: 16px !important;
+  line-height: 14px !important;
+  color: rgb(160, 160, 173) !important;
+}
+
+.header-title {
+  width: 100% !important;
+  margin-top: 0px !important;
+}
+
+.header-amount {
+  width: 100% !important;
+  margin-top: 0px !important;
+  font-size: 30px !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+  line-height: 30px !important;
+  letter-spacing: -0.6px !important;
+  color: #151538 !important;
+  margin-top: 15px !important;
+}
+
+.header-currency {
+  padding: 0 0 !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  margin-left: 8px !important;
+  color: #151538 !important;
+}
+
+.body-btn {
+  background: var(--purple-900, rgb(74, 29, 150)) !important;
+  font-size: 16px;
+  line-height: 19.36px;
+  gap: 4px;
+}
+
+.card-header-q h5 {
+  font-weight: 600;
+  color: #151538;
+  font-size: 22px;
+  letter-spacing: 0.15em;
+  text-transform: none;
+  float: left;
+}
+.card-header-q h5 span {
+  padding: 0 16px;
+  color: var(--Dark-Blue-100, #8181a0);
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 33.6px;
+  letter-spacing: 0 !important;
+  text-transform: capitalize;
+}/*# sourceMappingURL=dashboard.css.map */

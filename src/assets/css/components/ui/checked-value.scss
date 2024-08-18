@@ -1,0 +1,27 @@
+.checked-value {
+  padding: 8px;
+  gap: 4px;
+  border: 1px solid transparent;
+  border-radius: 43px;
+  background-color: #f9fafb;
+  //   background-color: green;
+
+  align-items: center;
+  p {
+    margin-bottom: 0px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .seprator {
+    width: 1px;
+    height: 100%;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    background-color: #e5e7eb;
+  }
+  button {
+    border: none !important;
+    background-color: #f9fafb;
+  }
+}

@@ -1,0 +1,207 @@
+.card-grid {
+  justify-content: center;
+  border-radius: 16px;
+  border: 1px solid rgba(222, 226, 230, 1);
+  display: flex;
+  flex-direction: column;
+  padding: 12px 16px;
+  margin-bottom: 24px;
+  flex-grow: 1;
+  &:hover {
+    box-shadow: 0px 4px 31px 0px rgba(0, 0, 0, 0.1);
+  }
+  .card-head {
+    justify-content: space-between;
+    border-radius: 16px;
+    display: flex;
+    gap: 8px;
+    @media (max-width: 991px) {
+      max-width: 100%;
+      flex-wrap: wrap;
+    }
+    .details {
+      display: flex;
+      flex-direction: column;
+      h2 {
+        color: $primary;
+        font-size: 16px;
+        font-weight: 400;
+      }
+      p {
+        color: var(--Dark-Blue-0, #a0a0ad);
+        margin-top: 4px;
+        font-size: 14px;
+        font-weight: 400;
+        margin-bottom: 0 !important;
+      }
+    }
+    .badge-status-Draft {
+      justify-content: center;
+      border-radius: 8px;
+      border: 1px solid rgba(222, 226, 230, 1);
+      background-color: #f4f4f5;
+      align-self: start;
+      color: #71717a;
+      white-space: nowrap;
+      text-align: center;
+      padding: 4px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .badge-status-Posted {
+      justify-content: center;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      background-color: #f0fdf4;
+      align-self: start;
+      color: #047857;
+      white-space: nowrap;
+      text-align: center;
+      padding: 4px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .badge-status-Overdue {
+      justify-content: center;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      background-color: #fff1f2;
+      align-self: start;
+      color: #e11d48;
+      white-space: nowrap;
+      text-align: center;
+      padding: 4px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .badge-status-Due {
+      justify-content: center;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      background-color: #fff7ed;
+      align-self: start;
+      color: #fb923c;
+      white-space: nowrap;
+      text-align: center;
+      padding: 4px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+  .card-body {
+    padding: 5px 0 !important;
+    .data-list {
+      justify-content: center;
+      display: flex;
+      margin-top: 8px;
+      gap: 8px;
+      font-size: 16px;
+      @media (max-width: 991px) {
+        flex-wrap: wrap;
+      }
+      h4 {
+        color: var(--Dark-Blue-100, #8181a0);
+        font-size: 1rem;
+        font-weight: 500;
+        flex: 1;
+      }
+      p {
+        color: var(--Dark-Blue-900, #151538);
+        text-align: right;
+        font-size: 1rem;
+        font-weight: 600;
+        flex: 1;
+      }
+    }
+  }
+  .card-actions {
+    // justify-content: center;
+    // display: flex;
+    gap: 10px;
+    font-size: 16px;
+    color: var(--Dark-Blue-900, #151538);
+    font-weight: 600;
+    white-space: nowrap;
+    text-align: center;
+    @media (max-width: 991px) {
+      flex-wrap: wrap;
+      white-space: initial;
+    }
+    .btn {
+      width: -webkit-fill-available;
+      @media (max-width: 991px) {
+        white-space: initial;
+        width: auto;
+        span {
+          display: none;
+        }
+      }
+      i {
+        aspect-ratio: 1;
+        object-fit: auto;
+        object-position: center;
+        width: 20px;
+      }
+      span {
+        font-family: Inter, sans-serif;
+      }
+      :hover {
+        svg {
+          stroke: $button-secondary !important;
+        }
+      }
+    }
+
+    li {
+      margin-bottom: 0 !important;
+    }
+
+    svg {
+      // stroke: $button-secondary !important;
+    }
+  }
+}
+.button-card-list {
+  padding: 0.875rem 1rem;
+  border-radius: 0.75rem;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: $primary !important;
+  background-color: $white !important;
+  border: 1px solid $white;
+  text-transform: capitalize;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  svg {
+    stroke: #151538;
+  }
+
+  path {
+    stroke: #151538;
+  }
+
+  i {
+    color: $primary;
+    padding: 0 4px;
+  }
+  &:hover {
+    color: $secondary !important;
+    background-color: $button-secondary !important;
+    i {
+      color: $primary;
+    }
+
+    svg {
+      stroke: $secondary !important;
+    }
+
+    path {
+      stroke: $secondary !important;
+    }
+  }
+}

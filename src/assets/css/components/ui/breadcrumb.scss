@@ -1,0 +1,33 @@
+.breadcrumb-dash {
+  --bs-breadcrumb-divider: url(../images/breadcrumb-icon.svg);
+  margin-top: 30px;
+  padding: 1rem 0rem;
+  padding-bottom: 0;
+  ol {
+    li.breadcrumb-item {
+      a,
+      li {
+        color: $primary-color;
+        font-size: 0.9453rem;
+        font-style: normal;
+        font-weight: 400;
+        letter-spacing: 0.7px;
+      }
+    }
+    li.active {
+      color: #9d9d9d;
+      font-size: 0.9219rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 27.2px;
+      letter-spacing: 0.7px;
+    }
+  }
+}
+
+html[dir='rtl'] {
+  .breadcrumb-item + .breadcrumb-item::before {
+    float: right;
+    transform: scaleX(-1);
+  }
+}

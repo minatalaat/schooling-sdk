@@ -1,0 +1,250 @@
+@font-face {
+  font-family: "InterTight";
+  src: url("../fonts/InterTight/InterTight-Regular.ttf");
+  font-weight: 400;
+  font-style: 400;
+}
+@font-face {
+  font-family: "InterTight";
+  src: url("../fonts/InterTight/InterTight-Medium.ttf");
+  font-weight: 500;
+  font-style: 500;
+}
+@font-face {
+  font-family: "InterTight";
+  src: url("../fonts/InterTight/InterTight-Bold.ttf");
+  font-weight: 600;
+  font-style: 600;
+}
+@font-face {
+  font-family: "InterTight";
+  src: url("../fonts/InterTight/InterTight-SemiBold.ttf");
+  font-weight: 700;
+  font-style: 700;
+}
+@font-face {
+  font-family: "Tajawal-Medium";
+  src: url("../fonts/ar-font/Tajawal-Medium.ttf");
+  font-weight: 500;
+  font-style: Bold;
+}
+@font-face {
+  font-family: "Tajawal-Bold";
+  src: url("../fonts/ar-font/Tajawal-Bold.ttf");
+  font-weight: 700;
+  font-style: Bold;
+}
+input,
+textarea {
+  color: #151538;
+  font-weight: 600 !important;
+  box-shadow: none !important;
+  border-radius: 12px !important;
+  border: 1px solid #dee2e6 !important;
+  background: #fff !important;
+  font-size: 0.875rem !important;
+  padding-top: 1.625rem;
+  padding-bottom: 0.625rem;
+}
+input:hover, input:focus,
+textarea:hover,
+textarea:focus {
+  box-shadow: none !important;
+}
+
+.toolTip-span {
+  color: #a0a0ad;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+input:disabled,
+select:disabled,
+textarea:disabled {
+  color: #a0a0ad !important;
+  padding-left: 10px !important;
+  font-weight: 600 !important;
+  box-shadow: none !important;
+  border-radius: 12px !important;
+  border: 1px solid #f4f4f5 !important;
+  background: #f9f8fb !important;
+  height: auto !important;
+  font-size: 0.875rem !important;
+}
+input:disabled:focus,
+select:disabled:focus,
+textarea:disabled:focus {
+  box-shadow: none !important;
+}
+
+input,
+select,
+textarea {
+  margin-bottom: 0.5rem !important;
+}
+
+label {
+  color: #676793;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  background-color: transparent !important;
+}
+
+.form-floating > .form-control:not(:-moz-placeholder-shown) ~ label {
+  color: #676793;
+}
+
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label {
+  color: #676793;
+}
+
+.form-floating > .form-control:not(:-moz-placeholder-shown) ~ label {
+  color: #676793;
+}
+
+.form-floating > .form-control-plaintext ~ label,
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label,
+.form-floating > .form-select ~ label {
+  color: #676793;
+}
+
+.form-floating > .form-control:disabled ~ label,
+.form-floating > :disabled ~ label {
+  color: #a0a0ad;
+}
+
+.form-floating > .form-control:disabled ~ label::after,
+.form-floating > :disabled ~ label::after {
+  background-color: transparent;
+}
+
+h6.input-label {
+  color: #151538;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 33.6px;
+  letter-spacing: -0.24px;
+  text-transform: capitalize;
+  margin-bottom: 1rem;
+}
+
+.form-floating span {
+  color: #a0a0ad;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 8px;
+  display: block;
+}
+
+.form-floating > .form-control:not(:-moz-placeholder-shown) ~ label::after {
+  background-color: transparent;
+}
+
+.form-floating > .form-control-plaintext ~ label::after,
+.form-floating > .form-control:focus ~ label::after,
+.form-floating > .form-control:not(:placeholder-shown) ~ label::after,
+.form-floating > .form-select ~ label::after {
+  background-color: transparent;
+}
+
+input[type=checkbox] {
+  height: 20px;
+  width: 20px;
+  padding: 0px;
+  border-radius: 6px !important;
+}
+
+input[type=checkbox]:checked {
+  background-color: #151538 !important;
+  background-image: url("../images/icons/check.svg") !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+}
+
+.file-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed #dcdcdc;
+  border-radius: 12px;
+  background-color: #fdfdfd;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 0.5rem !important;
+  width: 100%;
+  height: 150px;
+}
+.file-input label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.file-input label svg {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 10px;
+}
+.file-input label span {
+  color: #676793;
+  font-size: 16px;
+  font-weight: 700;
+}
+.file-input label .text2 {
+  color: #0984e3;
+}
+.file-input input {
+  display: none;
+}
+
+.file-input-image-wrapper {
+  width: 100%;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 0.5rem !important;
+}
+.file-input-image-wrapper img {
+  width: auto;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.file-input-image-wrapper .remove-image {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border-radius: 50%;
+  border: 0px;
+  font-size: 1.5rem;
+  margin: 10px;
+  cursor: pointer;
+  z-index: 1500;
+  opacity: 0;
+  transform: scale(0.5);
+  visibility: hidden;
+  transition: all 0.25s ease;
+  background: #ccd1d7;
+  box-shadow: 0px 5px 30px 0px rgba(0, 0, 0, 0.08);
+}
+.file-input-image-wrapper .remove-image img {
+  width: 100%;
+}/*# sourceMappingURL=inputsStyles.css.map */

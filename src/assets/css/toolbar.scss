@@ -1,0 +1,138 @@
+.filter {
+  border-radius: 15px;
+  border: 1px solid rgba(222, 226, 230, 1);
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 10px 24px;
+  margin-bottom: 30px;
+  @media (max-width: 880px) {
+    padding: 20px;
+  }
+  .actions {
+    display: flex;
+    width: 100%;
+    justify-content: start;
+    gap: 24px;
+    align-items: center;
+    @media (max-width: 880px) {
+      max-width: 100%;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      justify-content: space-between;
+    }
+    .button-actions {
+      display: flex;
+      gap: 24px;
+      justify-content: start;
+      @media (max-width: 991px) {
+        flex-wrap: wrap;
+      }
+      .list,
+      .grid {
+        width: 24px;
+        aspect-ratio: 1;
+        object-fit: contain;
+        object-position: center;
+      }
+    }
+    .search-input {
+      position: relative;
+      i.search-icon {
+        position: absolute;
+        top: 30%;
+        right: 16px;
+        display: block;
+        background-image: url(../images/search-icon.svg);
+        height: 24px;
+        width: 24px;
+      }
+      input {
+        height: 45px !important;
+        margin: auto 0;
+        border: none;
+        background: transparent;
+        width: auto;
+        max-width: 100%;
+        margin-bottom: 0 !important;
+      }
+      .search-icon {
+        width: 24px;
+        aspect-ratio: 1;
+        object-fit: contain;
+        object-position: center;
+      }
+    }
+  }
+  .table-controls {
+    display: flex;
+    gap: 20px;
+    justify-content: end;
+    align-items: center;
+    .table-icons {
+      display: flex;
+      gap: 24px;
+      justify-content: space-between;
+      margin: auto 0;
+      align-items: center;
+      .download,
+      .refresh,
+      .delete {
+        width: 24px;
+        height: 24px;
+        aspect-ratio: 1;
+        object-fit: contain;
+        object-position: center;
+        stroke: #151538;
+      }
+      .upload {
+        width: 24px;
+        height: 24px;
+        aspect-ratio: 1;
+        object-fit: contain;
+        object-position: center;
+        transform: rotate(180deg);
+      }
+    }
+    .row-select {
+      select {
+        color: $primary;
+        font-weight: 600 !important;
+        box-shadow: none !important;
+        border-radius: 12px !important;
+        border: 1px solid #dee2e6 !important;
+        height: auto !important;
+        font-size: 0.875rem !important;
+        --bs-form-select-bg-img: url(../images/select-down.svg) !important;
+        background-size: 24px 24px !important;
+        background-position: right 1rem center !important;
+        height: 45px !important;
+        margin-bottom: 0 !important;
+        cursor: pointer;
+        &:focus {
+          box-shadow: none !important;
+        }
+      }
+    }
+    @media (max-width: 991px) {
+      justify-content: space-between;
+    }
+  }
+}
+
+html[dir='rtl'] {
+  .filter {
+    .table-controls {
+      .row-select {
+        select {
+          background-position: left 1rem center !important;
+        }
+      }
+    }
+  }
+}
+
+.fix-toolbar-height {
+  height: 45px !important;
+}

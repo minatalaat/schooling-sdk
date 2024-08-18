@@ -1,0 +1,59 @@
+.form-footer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.form-footer .form-footer-actions-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.form-footer .form-note {
+  margin-top: 0 !important;
+}
+
+.new-btn {
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 12px;
+  padding: 0.8rem 1.3rem;
+  border: none;
+  outline: none;
+  gap: 5px;
+}
+.new-btn:hover {
+  opacity: 0.8;
+}
+.new-btn svg {
+  stroke-width: 2px;
+  width: 24px;
+  height: 24px;
+}
+.new-btn.new-btn-primary {
+  background-color: #6750e9;
+  color: white;
+}
+.new-btn.new-btn-primary svg {
+  stroke: white;
+}
+.new-btn.new-btn-secondary {
+  background-color: #e6e1fe;
+  color: #4027cd;
+}
+.new-btn.new-btn-secondary svg {
+  stroke: #4027cd;
+}
+.new-btn.new-btn-tertiary {
+  background-color: white;
+  color: #4027cd;
+}
+.new-btn.new-btn-tertiary svg {
+  stroke: #4027cd;
+}/*# sourceMappingURL=formFooter.css.map */

@@ -1,0 +1,45 @@
+select {
+    color: $primary-color !important;
+    font-weight: 600 !important;
+    box-shadow: none !important;
+    border-radius: 12px !important;
+    border: 1px solid #DEE2E6 !important;
+    height: auto !important;
+    font-size: .875rem !important;
+    background: url(../images/select-down.svg)no-repeat right !important;
+    // --bs-form-select-bg-img: url(../images/select-down.svg) !important;
+    background-size: 24px 24px !important;
+    background-position: right 1rem center !important;
+    cursor: pointer;
+
+    &:focus {
+        box-shadow: none !important;
+    }
+}
+
+select:disabled {
+    color: #A0A0AD;
+    font-weight: 600 !important;
+    box-shadow: none !important;
+    border-radius: 12px !important;
+    border: 1px solid #F4F4F5 !important;
+    height: auto !important;
+    font-size: .875rem !important;
+
+    &:focus {
+        box-shadow: none !important;
+    }
+}
+
+.light-dd-bg {
+    color: #fff !important;
+    // background: url(../images/select-down-light.svg)no-repeat right !important;
+    margin-bottom: 0px !important;
+    border: 1px solid #151538 !important;
+    width: 24px !important;
+    margin-left: 10px !important;
+}
+
+.optionColor {
+    color: #151538 !important;
+}

@@ -1,0 +1,17 @@
+input[type=date] {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+input[type=date]::-webkit-calendar-picker-indicator {
+  display: block;
+  background: url(../images/calendar-icon.svg) no-repeat right !important;
+  cursor: pointer;
+  position: absolute;
+  top: 25%;
+  right: 16px;
+  height: 24px;
+  width: 24px;
+  z-index: 55;
+}/*# sourceMappingURL=dateInput.css.map */

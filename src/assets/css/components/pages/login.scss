@@ -1,0 +1,224 @@
+.login-bg {
+  height: 100vh;
+  background: $primary url(../images/login/login-bg.svg);
+  background-position: right bottom;
+  background-repeat: no-repeat;
+  background-size: 50%;
+  display: block;
+  @media (max-width: 1200px) {
+    display: none;
+  }
+  .login-welcome {
+    padding: 100px;
+    .hero-title {
+      color: $secondary;
+      letter-spacing: -0.24px;
+      font-size: clamp(2.5rem, 4vw, 4.25rem);
+      font-weight: 500;
+    }
+    .hero-subtitle {
+      color: #fff;
+      margin-top: 24px;
+      width: 100%;
+      font-size: clamp(1.4375rem, 4vw, 1.125rem);
+    }
+  }
+}
+
+.login-card {
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 30px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  @media (max-width: 991px) {
+    background-color: #fff;
+    padding: 2.5rem;
+  }
+  .logo {
+    display: block;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .navbar {
+    width: 100%;
+  }
+
+  .copyright {
+    width: 100%;
+  }
+
+  .btn-showcase {
+    .btn {
+      line-height: 1;
+      padding: 10px 15px;
+      margin: 0;
+      + .btn {
+        margin-left: 5px;
+      }
+      svg {
+        height: 16px;
+        vertical-align: bottom;
+      }
+    }
+  }
+  .login-main {
+    width: 100%;
+    @media (max-width: 991px) {
+      width: 100%;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 37px rgba(8, 21, 66, 0.05);
+      margin: 0 auto;
+      background-color: #fff;
+    }
+    .theme-form {
+      h4 {
+        color: var(--Gray-900, #101828);
+        font-size: 2.375rem;
+        font-style: normal;
+        font-weight: 500;
+        letter-spacing: -0.76px;
+        margin-bottom: 2rem;
+        @media (max-width: 991px) {
+          font-size: 1.125rem;
+        }
+      }
+      label {
+        color: var(--Gray-700, #344054) !important;
+        font-size: 0.875rem;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px;
+        margin-bottom: 6;
+      }
+      input {
+        background-color: #f3f3ff;
+        transition: all 0.3s ease;
+        border-radius: 8px;
+        border: 1px solid var(--Gray-300, #d0d5dd);
+        background: var(--Base-White, #fff);
+        box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+        padding: 0.625rem 0.875rem;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500 !important;
+        line-height: 24px;
+        margin-bottom: 24px;
+        &::-webkit-input-placeholder {
+          color: #999999;
+        }
+        &:hover,
+        &:focus {
+          border: 1px solid #b9c1cc;
+          box-shadow: none !important;
+          transition: all 0.3s ease;
+        }
+      }
+      p {
+        margin-bottom: 2.5rem;
+        font-size: 1rem;
+        a {
+          color: $secondary;
+        }
+      }
+      .form-group {
+        margin-bottom: 10px;
+        position: relative;
+      }
+      .link {
+        position: absolute;
+        top: 10px;
+        right: 0;
+      }
+    }
+
+    .forgot-link {
+      cursor: pointer;
+    }
+  }
+}
+
+html[dir='rtl'] {
+  .login-bg {
+    background-position: right bottom;
+    transform: scaleX(-1);
+
+    .login-welcome {
+      transform: scaleX(-1);
+    }
+  }
+  .login-card {
+    .dropdown-toggle::after {
+      margin-right: 0.255em;
+    }
+  }
+}
+
+@media only screen and (max-width: 1199.98px) {
+  .login-card {
+    background: transparent;
+  }
+}
+
+@media only screen and (max-width: 575.98px) {
+  .login-card .login-main .theme-form .link {
+    position: relative;
+    top: unset;
+    right: unset;
+  }
+  .login-card {
+    padding: 40px 0;
+  }
+
+  .login-card .logo {
+    margin-bottom: 10px;
+  }
+  .login-card .login-main {
+    width: 100%;
+    padding: 20px;
+  }
+  .login-card .login-main .theme-form .form-group {
+    margin-bottom: 10px;
+  }
+  .login-card .login-main .theme-form p {
+    margin-bottom: 40px;
+  }
+  .login-card .btn-showcase .btn {
+    width: 100%;
+  }
+  .login-card .btn-showcase .btn + .btn {
+    margin-left: 0;
+    margin-top: 5px;
+  }
+}
+
+.button-wihte-transparint {
+  padding: 0.875rem 1rem;
+  border-radius: 0.75rem;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: $primary !important;
+  background-color: transparent !important;
+  border: 1px solid transparent;
+  letter-spacing: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  i {
+    color: $primary;
+    padding: 0 4px;
+  }
+  &:hover,
+  &:focus {
+    color: $secondary !important;
+    background-color: transparent !important;
+    i {
+      color: $primary;
+    }
+  }
+}

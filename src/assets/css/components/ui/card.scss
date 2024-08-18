@@ -1,0 +1,53 @@
+@import '../../colors.scss';
+section {
+  border-radius: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #fff;
+  padding: 1.5rem !important;
+  margin-bottom: 2rem;
+}
+.section-title {
+  margin-bottom: 1.5rem;
+  h4 {
+    color: $primary-color;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 33.6px;
+    letter-spacing: -0.24px;
+    text-transform: capitalize;
+  }
+
+  .card-tooltip {
+    background-color: #e6e1fe;
+    color: #4027cd;
+    font-size: 1rem;
+  }
+}
+
+.section-create-new {
+  a {
+    color: $secondary-color !important;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    padding: 8px;
+    svg {
+      margin-right: 4px;
+    }
+  }
+}
+
+.card-side-comp-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  .card-side-comp-content {
+    flex: 1;
+  }
+
+  .card-side-comp {
+    cursor: pointer !important;
+  }
+}

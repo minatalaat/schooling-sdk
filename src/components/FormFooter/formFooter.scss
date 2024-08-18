@@ -1,0 +1,80 @@
+.form-footer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+
+  .form-footer-actions-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  .form-footer-start-actions-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+
+  .form-note {
+    margin-top: 0 !important;
+  }
+}
+
+.new-btn {
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 12px;
+  padding: 0.8rem 1.3rem;
+  border: none;
+  outline: none;
+  gap: 5px;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  svg {
+    stroke-width: 2px;
+    width: 24px;
+    height: 24px;
+  }
+
+  &.new-btn-primary {
+    background-color: #6750e9;
+    color: white;
+
+    svg {
+      stroke: white;
+    }
+  }
+
+  &.new-btn-secondary {
+    background-color: #e6e1fe;
+    color: #4027cd;
+
+    svg {
+      stroke: #4027cd;
+    }
+  }
+
+  &.new-btn-tertiary {
+    background-color: white;
+    color: #4027cd;
+    svg {
+      stroke: #4027cd;
+    }
+  }
+  &.new-btn-danger {
+    background-color: #fee2e2;
+    color: #fc5555;
+    justify-content: end;
+  }
+}

@@ -1,0 +1,140 @@
+@import '../../colors.scss';
+
+.select-option {
+  color: $primary-color;
+  font-weight: 600;
+  box-shadow: none;
+  border-radius: 12px;
+  border: 1px solid #dee2e6;
+  font-size: 0.875rem;
+  position: relative;
+  height: 58px;
+  padding-top: 0.3125rem;
+  padding-bottom: 0.625rem;
+  margin-bottom: 0.5rem;
+
+  .dropdown-menu {
+    width: 100%;
+    background-color: #fff;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border: solid 1px #dee2e6;
+    border-top: 0;
+    top: -6px;
+    position: relative;
+    margin: 0px -1px;
+
+    .table thead tr th {
+      background-color: #151538 !important;
+      color: white;
+
+      &:first-child {
+        border-top-left-radius: 0px;
+      }
+
+      &:last-child {
+        border-top-right-radius: 0px;
+      }
+    }
+
+    .search-select {
+      position: relative;
+      margin-left: 24px;
+      margin-right: 24px;
+      margin-bottom: 20px;
+
+      i.search-icon {
+        position: absolute;
+        top: 25%;
+        right: 16px;
+        display: block;
+        background-image: url(../images/search-icon.svg);
+        height: 24px;
+        width: 24px;
+      }
+
+      input {
+        height: 46px;
+      }
+    }
+  }
+
+  td {
+    cursor: pointer;
+  }
+
+  #selectedlabel {
+    color: #676793;
+    font-size: 14px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0; //2
+    height: 100%;
+    padding: 0.4375rem 0.75rem;
+    overflow: hidden;
+    text-align: start;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    pointer-events: none;
+    transform-origin: 0 0;
+  }
+
+  #selectedOption {
+    color: $primary-color;
+    padding: 0rem 2.25rem 0.375rem 0.75rem !important;
+    display: block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .dropdown-toggle {
+    &::after {
+      display: inline-block;
+      background: url(../images/select-down.svg) !important;
+      background-size: 24px 24px !important;
+      border: none;
+      height: 24px;
+      width: 24px;
+      position: absolute;
+      right: 16px;
+      top: 30%;
+    }
+  }
+
+  .interactive-table-dropdown-toggle {
+    max-width: 8rem;
+  }
+}
+
+#createNewCustomer {
+  cursor: pointer;
+}
+
+html[dir='rtl'] {
+  .select-option {
+    #selectedlabel {
+      right: 0;
+    }
+
+    #selectedOption {
+      padding: 0rem 0.75rem 0.375rem 2.25rem !important;
+    }
+
+    .dropdown-toggle {
+      &::after {
+        left: 16px;
+        right: auto;
+      }
+    }
+  }
+
+  .form-floating > label {
+    right: 0 !important;
+    left: auto;
+  }
+}

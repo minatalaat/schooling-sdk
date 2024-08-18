@@ -1,0 +1,61 @@
+::file-selector-button {
+  display: none;
+}
+
+.dotted-border {
+  border: 3px dotted #dee2e6 !important;
+}
+
+.dotted-active-border {
+  border: 3px dotted #676793 !important;
+}
+
+.file-input-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  right: 16px;
+  top: 30%;
+  transform: translateY(-50%);
+  color: #888;
+  cursor: pointer;
+}
+
+.form-floating svg {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  cursor: pointer;
+}
+
+.file-input-validation {
+  border: 3px dotted #fa5858 !important;
+}
+
+.svg-validation {
+  top: 30px !important;
+}
+
+html[dir='rtl'] {
+  .file-input-hidden {
+    left: 16px;
+    right: unset;
+  }
+
+  .form-floating svg {
+    left: 16px;
+    right: unset;
+  }
+
+  .file-input-label {
+    transform: scale(0.85) translateY(-0.5rem) translateX(0.5rem) !important;
+    padding: 1rem 0rem !important;
+  }
+}

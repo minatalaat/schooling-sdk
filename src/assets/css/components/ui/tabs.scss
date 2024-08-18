@@ -1,0 +1,38 @@
+@import '../../colors.scss';
+
+.tabs-group-active {
+    padding: 0.875rem 1rem;
+    border-radius: 0.75rem;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $white !important;
+    background-color: $primary-color !important;
+    border: 1px solid var(--outline, $primary-color);
+}
+
+.tabs-group {
+    padding: 0.875rem 1rem;
+    border-radius: 0.75rem;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    color: $grey !important;
+    background-color: $white !important;
+    border: 1px solid var(--outline, $bg-grey);
+    letter-spacing: 0 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+        color: $secondary !important;
+        background-color: $button-secondary !important;
+    }
+}
