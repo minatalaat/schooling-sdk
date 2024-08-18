@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16.7" height="16.7" viewBox="0 0 16.7 16.7">
+  <g id="apps" transform="translate(21.95 -5.25) rotate(90)">
+    <path id="Path_69" data-name="Path 69" d="M6.95,6h3.8a.95.95,0,0,1,.95.95v3.8a.95.95,0,0,1-.95.95H6.95A.95.95,0,0,1,6,10.75V6.95A.95.95,0,0,1,6.95,6Z" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path id="Path_70" data-name="Path 70" d="M6.95,21h3.8a.95.95,0,0,1,.95.95v3.8a.95.95,0,0,1-.95.95H6.95A.95.95,0,0,1,6,25.75v-3.8A.95.95,0,0,1,6.95,21Z" transform="translate(0 -5.5)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path id="Path_71" data-name="Path 71" d="M21.95,21h3.8a.95.95,0,0,1,.95.95v3.8a.95.95,0,0,1-.95.95h-3.8a.95.95,0,0,1-.95-.95v-3.8A.95.95,0,0,1,21.95,21Z" transform="translate(-5.5 -5.5)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path id="Path_72" data-name="Path 72" d="M21,10.5h5.7" transform="translate(-5.5 -1.65)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path id="Path_73" data-name="Path 73" d="M25.5,6v5.7" transform="translate(-7.15)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+  </g>
+</svg>

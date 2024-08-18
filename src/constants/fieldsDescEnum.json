@@ -1,0 +1,234 @@
+{
+  "saudiMobileNumber": {
+    "descEn": "+966-xx-xxx-xxxx",
+    "descAr": "+966-xx-xxx-xxxx"
+  },
+  "accountingConfig": {
+    "descEn": "Add Customer Accounts",
+    "descAr": "اضافة حسابات العميل"
+  },
+  "customerInPaymentMode": {
+    "descEn": "Payment Method for collecting from customer",
+    "descAr": "طريقة الدفع للتحصيل من العميل"
+  },
+  "customerOutPaymentMode": {
+    "descEn": "Payment Method for refunding back to customer",
+    "descAr": "طريقة الدفع لرد الأموال للعميل"
+  },
+  "customerPaymentCondition": {
+    "descEn": "Payment Term for customer",
+    "descAr": "شروط الدفع للعميل"
+  },
+  "supplierAccountingConfig": {
+    "descEn": "Add Vendor Accounts",
+    "descAr": "اضافة حسابات المورد"
+  },
+  "supplierInPaymentMode": {
+    "descEn": "Payment Method for collecting from vendor",
+    "descAr": "طريقة الدفع للتحصيل من المورد"
+  },
+  "supplierOutPaymentMode": {
+    "descEn": "Payment Method for paying to vendor",
+    "descAr": "طريقة الدفع للمورد"
+  },
+  "supplierPaymentCondition": {
+    "descEn": "Payment Term for vendor",
+    "descAr": "شروط الدفع للمورد"
+  },
+  "customerAccount": {
+    "descEn": "Account on which all customer transactions will be reflected on it",
+    "descAr": "الحساب الذي ستنعكس عليه جميع معاملات العميل"
+  },
+  "supplierAccount": {
+    "descEn": "Account on which all vendor transactions will be reflected on it",
+    "descAr": "الحساب الذي ستنعكس عليه جميع معاملات المورد"
+  },
+  "revenueAccount": {
+    "descEn": "Account on which any revenue from customer will reflected on it",
+    "descAr": "الحساب الذي سينعكس عليه الارباح من العميل"
+  },
+  "costAccount": {
+    "descEn": "Account on which any cost from customer will reflected on it",
+    "descAr": "الحساب الذي سينعكس عليه النفقات من العميل"
+  },
+  "supplierRevenueAccount": {
+    "descEn": "Account on which any revenue from customer will reflected on it",
+    "descAr": "الحساب الذي سينعكس عليه الارباح من المورد"
+  },
+  "supplierCostAccount": {
+    "descEn": "Account on which any cost from customer will reflected on it",
+    "descAr": "الحساب الذي سينعكس عليه النفقات من المورد"
+  },
+  "printingSettings": {
+    "descEn": "Documents themes",
+    "descAr": "شكل المستندات المصدرة"
+  },
+  "customerInvoiceAccount": {
+    "descEn": "Invoice revenues will be reflected on this account",
+    "descAr": "ستنعكس إيرادات الفواتير على هذا الحساب"
+  },
+  "customerInvoicePaymentMode": {
+    "descEn": "Payment Method for collecting invoices from customer",
+    "descAr": "طريقة الدفع لتحصيل الفواتير من العميل"
+  },
+  "customerInvoicePaymentCondition": {
+    "descEn": "Payment term for collecting invoices from customer",
+    "descAr": "شرط الدفع لتحصيل الفواتير من العميل"
+  },
+  "invoiceContent": {
+    "descEn": "Products to be added",
+    "descAr": "المنتجات التى سوف تضاف"
+  },
+  "sellableProduct": {
+    "descEn": "product to sell",
+    "descAr": "منتج للبيع"
+  },
+  "purchasableProduct": {
+    "descEn": "product to buy",
+    "descAr": "منتج للشراء"
+  },
+  "sellingPrice": {
+    "descEn": "selling price of product/service",
+    "descAr": "سعر بيع المنتج/الخدمة"
+  },
+  "purchasingPrice": {
+    "descEn": "purchasing price of product/service",
+    "descAr": "سعر شراء المنتج/الخدمة"
+  },
+  "sellingTax": {
+    "descEn": "selling Vat to be added on product price",
+    "descAr": "ضريبة القيمة المضافة علي سعر بيع المنتج/الخدمة"
+  },
+  "purchasingTax": {
+    "descEn": "purchasing Vat to be added on product price",
+    "descAr": "ضريبة القيمة المضافة علي سعر شراء المنتج/الخدمة"
+  },
+  "analyticDistributionLines": {
+    "descEn": "analytic Distribution Lines to distribute amount across different cost centers",
+    "descAr": "خطوط التوزيع التحليلية لتوزيع المبلغ عبر مراكز التكلفة المختلفة"
+  },
+  "analyticJournal": {
+    "descEn": "Analytic Journal",
+    "descAr": "قيد تحليلى "
+  },
+  "dimension": {
+    "descEn": "Distribution dimension",
+    "descAr": "محور التوزيع"
+  },
+  "analyticAccount": {
+    "descEn": "Distribution Account",
+    "descAr": "حساب التوزيع"
+  },
+  "supplierInvoiceAccount": {
+    "descEn": "Invoice costs will be reflected on this account",
+    "descAr": "ستنعكس  نفقات الفواتير على هذا الحساب"
+  },
+  "customerRefundPaymentMode": {
+    "descEn": "Payment Method for returing refunded amount to customer",
+    "descAr": "طريقة الدفع لإعادة المبلغ المسترد للعميل"
+  },
+  "customerRefundPaymentCondition": {
+    "descEn": "Payment term for returing refunded amount to customer",
+    "descAr": "شرط الدفع لإعادة المبلغ  المسترد العميل"
+  },
+  "supplierInvoicePaymentMode": {
+    "descEn": "Payment Method for paying  invoices to vendor",
+    "descAr": "طريقة الدفع لدفع الفواتير للمورد"
+  },
+  "supplierInvoicePaymentCondition": {
+    "descEn": "Payment term for paying  invoices to vendor",
+    "descAr": "شرط الدفع لدفع الفواتير للمورد"
+  },
+  "supplierRefundPaymentMode": {
+    "descEn": "Payment Method for collecting refunded amount from vendor",
+    "descAr": "طريقة الدفع لتحصيل المبلغ المسترد من المورد"
+  },
+  "supplierRefundPaymentCondition": {
+    "descEn": "Payment term for collecting refunded amount from vendor",
+    "descAr": "شرط الدفع لتحصيل المبلغ المسترد من المورد"
+  },
+  "accountType": {
+    "descEn": "Type of account ex(income,charge)",
+    "descAr": " نوع الحساب (income,charge) "
+  },
+  "commonPosition": {
+    "descEn": "common postion(debit,credit)",
+    "descAr": "الموقف المشترك(debit,credit) "
+  },
+  "reconcilable": {
+    "descEn": "can be reconciled",
+    "descAr": "قابل للتسوية"
+  },
+  "parentAccount": {
+    "descEn": "parent account once selected, account will be activited",
+    "descAr": "  الحساب الرئيسى بمجرد اختياره سيتم تنشيط الحساب"
+  },
+  "fiscalYearStart": {
+    "descEn": "starting date of fiscal year",
+    "descAr": "تاريخ بدء السنة المالية"
+  },
+  "fiscalYearEnd": {
+    "descEn": "ending date of fiscal year",
+    "descAr": "تاريخ انتهاء السنة المالية"
+  },
+  "fiscalYearReportedBalanceDate": {
+    "descEn": "The balance report date for the fiscal year",
+    "descAr": "تاريخ اعلان الرصيد للسنة الماليه"
+  },
+  "fiscalYearPeriods": {
+    "descEn": "distrbution of fiscal year amoung periods",
+    "descAr": "توزيع السنة المالية على فترات"
+  },
+  "fiscalYearPlAccount": {
+    "descEn": "P/L Account",
+    "descAr": "حسابات P/L"
+  },
+  "fiscalYearPeriodEndAccount": {
+    "descEn": "Period End Closing Account",
+    "descAr": "حساب غلق نهاية الفترة"
+  },
+  "fiscalYearRetainedEarningAccount": {
+    "descEn": "Retained Earning Account",
+    "descAr": "حساب الأرباح المحتجزة"
+  },
+  "taxType": {
+    "descEn": "Tax type (collection,debit)",
+    "descAr": "نوع الضريبة (collection,debit)"
+  },
+  "paymentModeType": {
+    "descEn": "Payment Type (Bank Transfer,Cheque)",
+    "descAr": "نوع طريقة الدفع (Bank Transfer,Cheque)"
+  },
+  "inOut": {
+    "descEn": "Payment mode for collection(in) or paying(out)",
+    "descAr": "طريقة الدفع للتحصيل (in) أو الدفع (out)"
+  },
+  "paymentModeAccountingConfig": {
+    "descEn": "Payment mode Accounting Configuration (BankDetails, Journal Type(sales,purchase) and account",
+    "descAr": "ضبط المحاسبة (التفاصيل البنكية و نوع الدفترة و الحساب)"
+  },
+  "bankDetails": {
+    "descEn": "Company Linked bank accounts relative to financial accounts",
+    "descAr": "الحسابات المصرفية المرتبطة بالشركة والمتعلقة بالحسابات المالية"
+  },
+  "paymentConditionType": {
+    "descEn": "payment Condition type (Net, N days + EOF month)",
+    "descAr": "نوع شرط الدفع (Net, N days + EOF month)"
+  },
+  "paymentConditionPeriod": {
+    "descEn": "Payment condition duration by days or months",
+    "descAr": "مدة شرط الدفع بالأيام أو الأشهر"
+  },
+  "paymentConditionPeriodType": {
+    "descEn": "duration (days or months)",
+    "descAr": "المدة (أيام أو شهور)"
+  },
+  "connectedAccountsToolTip": {
+    "descEn": "This page gives you an overview of all the accounts you have connected.You can click on the manage button to find out more. You can disconnect the account at any time if you change your mind",
+    "descAr": "المدة (أيام أو شهور)"
+  },
+  "paymentRegisBankDetails": {
+    "descEn": "You can specify bank details for payment registration if you are using payment method requires Bank Details",
+    "descAr": "يمكنك تحديد التفاصيل البنكية لتسجيل الدفع إذا كنت تستخدم طريقة دفع تتطلب التفاصيل البنكية."
+  }
+}

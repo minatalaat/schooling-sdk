@@ -1,0 +1,36 @@
+{
+  "Data": {
+    "Balance": [
+      {
+        "AccountId": "618843849",
+        "CreditDebitIndicator": "Credit",
+        "Type": "ClosingAvailable",
+        "DateTime": "2022-11-15T13:44:33.763Z",
+        "Amount": {
+          "Amount": "57800.57",
+          "Currency": "SAR"
+        },
+        "CreditLine": [
+          {
+            "Included": true,
+            "Type": "Available",
+            "Amount": {
+              "Amount": "57800.57",
+              "Currency": "SAR"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "Links": {
+    "Self": "https://apim-apic.apimgmt.ejada.com/vas-aisp/v1/profiles/415254646009484868/balances?page=3",
+    "First": "https://apim-apic.apimgmt.ejada.com/vas-aisp/v1/profiles/415254646009484868/balances",
+    "Prev": "https://apim-apic.apimgmt.ejada.com/vas-aisp/v1/profiles/415254646009484868/balances?page=2",
+    "Next": "https://apim-apic.apimgmt.ejada.com/vas-aisp/v1/profiles/415254646009484868/balances?page=4",
+    "Last": "https://apim-apic.apimgmt.ejada.com/vas-aisp/v1/profiles/415254646009484868/balances?page=20"
+  },
+  "Meta": {
+    "TotalPages": 20
+  }
+}

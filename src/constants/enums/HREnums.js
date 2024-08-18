@@ -1,0 +1,18 @@
+export const EXECUTIVE_STATUS_ENUMS = {
+  1: 'LBL_EXECUTIVE',
+  2: 'LBL_NON_EXECUTIVE',
+};
+
+export const AMENDMENT_TYPE_ENUMS = {
+  // 0: '',
+  1: 'LBL_EXTENSION_AMENDMENT',
+  2: 'LBL_MISCELLANEOUS_AMENDMENT',
+  3: 'LBL_EXT_MISC_AMENDMENT',
+};
+
+export const CONTRACT_STATUS_ENUMS = {
+  0: '',
+  1: 'LBL_IN_TRIAL',
+  2: 'LBL_ACTIVE',
+  3: 'LBL_CLOSED',
+};

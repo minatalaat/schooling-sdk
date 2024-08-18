@@ -1,0 +1,3 @@
+{
+  "ignores": ["@types/react", "@types/react-dom", "@svgr/webpack", "material-icons"]
+}

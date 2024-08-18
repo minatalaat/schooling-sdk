@@ -1,0 +1,20 @@
+// export const STOCK_COUNT_TYPE_ENUM = {
+//   1: 'LBL_YEARLY',
+//   2: 'LBL_CYCLE_COUNTING',
+// };
+// export const STOCK_COUNT_TYPE_REV_ENUM = {
+//   LBL_YEARLY: 1,
+//   LBL_CYCLE_COUNTING: 2,
+// };
+export const FIXED_ASSET_STATUS_ENUM = {
+  1: 'LBL_DRAFT',
+  2: 'LBL_VALIDATED',
+  3: 'LBL_DEPRECIATED',
+  4: 'LBL_TRANSFERED',
+};
+export const FIXED_ASSET_STATUS_REV_ENUM = {
+  LBL_DRAFT: 1,
+  LBL_VALIDATED: 2,
+  LBL_DEPRECIATED: 3,
+  LBL_TRANSFERED: 4,
+};

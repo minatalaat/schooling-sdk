@@ -1,0 +1,40 @@
+{
+  "Data": {
+    "Account": [
+      {
+        "AccountId": "618843849",
+        "Status": "Enabled",
+        "StatusUpdateDateTime": "2017-04-05T10:43:07Z",
+        "Currency": "SAR",
+        "AccountType": "Personal",
+        "AccountSubType": "CurrentAccount",
+        "Description": "Personal current account",
+        "Nickname": "Main Account",
+        "OpeningDate": "2017-04-05T10:43:07Z",
+        "MaturityDate": "2017-04-05T10:43:07Z",
+        "Account": [
+          {
+            "SchemeName": "KSAOB.IBAN",
+            "Identification": "80200110203345",
+            "Name": "Mr Kevin",
+            "SecondaryIdentification": "76432"
+          }
+        ],
+        "Servicer": {
+          "SchemeName": "KSAOB.BICFI",
+          "Identification": "RJHISARI"
+        }
+      }
+    ]
+  },
+  "Links": {
+    "Self": "https://apim-apic.apimgmt.ejada.com/vas-aisp/v1/profiles/415254646009484868/accounts?page=3",
+    "First": "https://apim-apic.apimgmt.ejada.com/vas-aisp/v1/profiles/415254646009484868/accounts",
+    "Prev": "https://apim-apic.apimgmt.ejada.com/vas-aisp/v1/profiles/415254646009484868/accounts?page=2",
+    "Next": "https://apim-apic.apimgmt.ejada.com/vas-aisp/v1/profiles/415254646009484868/accounts?page=4",
+    "Last": "https://apim-apic.apimgmt.ejada.com/vas-aisp/v1/profiles/415254646009484868/accounts?page=20"
+  },
+  "Meta": {
+    "TotalPages": 20
+  }
+}

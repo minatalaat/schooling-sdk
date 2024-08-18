@@ -1,0 +1,68 @@
+.steps-bar {
+  .prog-line-default {
+    width: 100%;
+    display: block;
+    border-top: solid 2px #cfcfcf;
+    position: relative;
+    top: 29px;
+    z-index: 1;
+  }
+
+  .steps-indicator {
+    width: 100%;
+    display: flex;
+    margin: 16px 0;
+    position: relative;
+    z-index: 2;
+
+    li {
+      width: 100%;
+
+      a {
+        background-color: #ffffff;
+        border: solid 2px #cfcfcf;
+        border-radius: 100px;
+        color: #767676;
+        padding: 10px 15px;
+        pointer-events: none;
+      }
+
+      &:first-child {
+        float: left;
+      }
+
+      &:last-child {
+        float: right;
+        width: auto;
+      }
+
+      .prog-line {
+        border-top: solid 2px #6787e2;
+        display: block;
+        width: 100%;
+        margin-top: -10px;
+      }
+    }
+
+    li.center {
+      margin: 0 auto;
+      float: none;
+    }
+
+    li.done {
+      a {
+        background-color: $primary-color !important;
+        border: solid 2px $primary-color !important;
+        color: #fff;
+      }
+    }
+
+    li.cancelled {
+      a {
+        background-color: $red !important;
+        border: solid 2px $red !important;
+        color: #fff;
+      }
+    }
+  }
+}

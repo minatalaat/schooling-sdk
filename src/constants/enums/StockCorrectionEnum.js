@@ -1,0 +1,8 @@
+export const STOCK_CORRECTION_STATUS = {
+  1: 'LBL_DRAFT',
+  2: 'LBL_VALIDATED',
+};
+export const STOCK_CORRECTION_STATUS_REV_ENUM = {
+  LBL_DRAFT: 1,
+  LBL_VALIDATED: 2,
+};

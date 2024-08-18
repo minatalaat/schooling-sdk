@@ -1,0 +1,47 @@
+{
+  "Data": {
+    "Beneficiary": [
+      {
+        "AccountId": "618843849",
+        "BeneficiaryId": "537942378521859884869",
+        "BeneficiaryType": "Trusted",
+        "Reference": "AL-Hilal Club",
+        "SupplementaryData": {
+          "additionalProp1": {}
+        },
+        "CreditorAgent": {
+          "SchemeName": "BICFI",
+          "Identification": "2152646459884869",
+          "Name": "Al-Fahd Group",
+          "PostalAddress": {
+            "AddressType": "Business",
+            "ShortAddress": "KLTWDSAE",
+            "BuildingNumber": "6135",
+            "StreetName": "Al-Bahr Al-Ahmar",
+            "SecondaryNumber": "6497",
+            "District": "Al-Wady",
+            "PostalCode": "14313",
+            "City": "Riyadh",
+            "Country": "WY"
+          }
+        },
+        "CreditorAccount": {
+          "SchemeName": "BICFI",
+          "Identification": "2152646459884869",
+          "Name": "Al-Fahd Group",
+          "SecondaryIdentification": "8162647416874869"
+        }
+      }
+    ]
+  },
+  "Links": {
+    "Self": "https://apim-apic.apimgmt.ejada.com/vas-aisp/v1/profiles/415254646009484868/beneficiaries?page=3",
+    "First": "https://apim-apic.apimgmt.ejada.com/vas-aisp/v1/profiles/415254646009484868/beneficiaries",
+    "Prev": "https://apim-apic.apimgmt.ejada.com/vas-aisp/v1/profiles/415254646009484868/beneficiaries?page=2",
+    "Next": "https://apim-apic.apimgmt.ejada.com/vas-aisp/v1/profiles/415254646009484868/beneficiaries?page=4",
+    "Last": "https://apim-apic.apimgmt.ejada.com/vas-aisp/v1/profiles/415254646009484868/beneficiaries?page=20"
+  },
+  "Meta": {
+    "TotalPages": 20
+  }
+}

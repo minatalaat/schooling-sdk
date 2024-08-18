@@ -1,0 +1,18 @@
+export const TIMESHEET_FETCH_FIELDS = [
+  'keepProject',
+  'displayTaskColumnInPrinting',
+  'needValidation',
+  'consolidateTSLine',
+  'timesheetEditor',
+  'displayTimesheetLineNumber',
+  'invoicingTypeLogTimesSelect',
+  'enableTimer',
+  'defaultEndFormat',
+  'displayActivityColumnInPrinting',
+  'enableActivity',
+  'createLinesForHolidays',
+  'editModeTSTimer',
+  'createLinesForLeaves',
+  'timesheetReminderTemplate',
+  'isAlertManufOrderFinish',
+];

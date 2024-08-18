@@ -1,0 +1,17 @@
+export const VALID_FLOAT = /^(?=.+)(?:[1-9]\d*|0)(?:\.\d+)?$/;
+export const SA_IBAN = /^SA\d{4}[0-9A-Z]{18}$/;
+export const ONLY_FOUR_DIGITS = /\b\d{4}\b/;
+export const CODE_REGEX = /^[0-9]+$/;
+export const VALID_TAX_NUMBER_REGEX = /\b\d{15}\b/;
+export const NO_WHITE_SPACES = /^\S*$/;
+export const VALID_TEXT_WITH_SPECIAL_CHARS = /^[\u0621-\u064A\u0660-\u0669a-zA-Z0-9\s_.&@!#$*\-()%[\]',?]*$/;
+export const VALID_TEXT_WITH_SPECIAL_CHARS_WITHOUT_SPACES = /^[\u0621-\u064A\u0660-\u0669a-zA-Z0-9_.&@!\-#$*()%[\]',?]*$/;
+export const VALID_PASSWORD_WITH_SPECIAL_CHARS = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[_&@])[A-Za-z0-9_&@]{8,}$/;
+export const NO_SPECIAL_CHARACTERS = /^[._&@!#$*()%[\]',?]*$/;
+export const VALID_SAUDI_MOBILE_NUMBER = /^(00966|966|\+966|05|5)(5|0|3|6|4|9|1|8|7)([0-9]{8})$/;
+export const VALID_POSTAL_CODE = /\b\d{5}\b/;
+export const ONLY_SIX_DIGITS = /\b\d{6}\b/;
+export const VALID_SAUDI_SWIFT_CODE = /^[A-Z]{4}[-]{0,1}SA[-]{0,1}[A-Z0-9]{2}([-]{0,1}[A-Z0-9]{3})?$/;
+export const VALID_CODABAR_FORMAT = /^[0-9]*$/;
+export const NOT_MORE_THAN_FOUR_DIGITS = /^\d{0,4}$/;
+export const NUMBERS_ONLY = /^\d+$/;

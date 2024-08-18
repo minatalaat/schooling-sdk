@@ -1,0 +1,364 @@
+{
+  "Data": {
+    "FinancialInstitution": [
+      {
+        "FinancialInstitutionId": "RJHISARI",
+        "FinancialInstitutionName": {
+          "NameEn": "Alrajhi Bank",
+          "NameAr": "بنك الراجحي"
+        },
+        "DataGroups": [
+          {
+            "DataGroupId": "AccountDetails",
+            "DescriptionEn": "Your Account Details",
+            "Permissions": [
+              {
+                "ResourceId": "accounts",
+                "ResourceDescriptionEn": "Accounts",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadAccountsBasic",
+                "PermissionDescriptionEn": "Read Accounts Basic",
+                "PermissionDescriptionAr": "Desc"
+              },
+              {
+                "ResourceId": "accounts",
+                "ResourceDescriptionEn": "Accounts",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadAccountsDetail",
+                "PermissionDescriptionEn": "Read Accounts Detail",
+                "PermissionDescriptionAr": "Desc"
+              },
+              {
+                "ResourceId": "balances",
+                "ResourceDescriptionEn": "Balances",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadBalances",
+                "PermissionDescriptionEn": "Read Balances",
+                "PermissionDescriptionAr": "Desc"
+              },
+              {
+                "ResourceId": "balances",
+                "ResourceDescriptionEn": "Balances",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadPAN",
+                "PermissionDescriptionEn": "Read PAN",
+                "PermissionDescriptionAr": "Desc"
+              }
+            ]
+          },
+          {
+            "DataGroupId": "RegularPayments",
+            "DescriptionEn": "Your Regular Payments",
+            "Permissions": [
+              {
+                "ResourceId": "beneficiaries",
+                "ResourceDescriptionEn": "Beneficiaries",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadBeneficiariesBasic",
+                "PermissionDescriptionEn": "Read Beneficiaries Basic",
+                "PermissionDescriptionAr": "Desc"
+              },
+              {
+                "ResourceId": "beneficiaries",
+                "ResourceDescriptionEn": "Beneficiaries",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadBeneficiariesDetail",
+                "PermissionDescriptionEn": "Read Beneficiaries Detail",
+                "PermissionDescriptionAr": "Desc"
+              },
+              {
+                "ResourceId": "standing-orders",
+                "ResourceDescriptionEn": "Standing Orders",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadStandingOrdersBasic",
+                "PermissionDescriptionEn": "Read Standing Orders Basic",
+                "PermissionDescriptionAr": "Desc"
+              },
+              {
+                "ResourceId": "standing-orders",
+                "ResourceDescriptionEn": "Standing Orders",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadStandingOrdersDetail",
+                "PermissionDescriptionEn": "Read Standing Orders Detail",
+                "PermissionDescriptionAr": "Desc"
+              },
+              {
+                "ResourceId": "direct-debits",
+                "ResourceDescriptionEn": "Direct Debits",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadDirectDebits",
+                "PermissionDescriptionEn": "Read Direct Debits",
+                "PermissionDescriptionAr": "Desc"
+              },
+              {
+                "ResourceId": "scheduled-payments",
+                "ResourceDescriptionEn": "Scheduled Payments",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadScheduledPaymentsBasic",
+                "PermissionDescriptionEn": "Read Scheduled Payments Basic",
+                "PermissionDescriptionAr": "Desc"
+              },
+              {
+                "ResourceId": "scheduled-payments",
+                "ResourceDescriptionEn": "Scheduled Payments",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadScheduledPaymentsDetail",
+                "PermissionDescriptionEn": "Read Scheduled Payments Detail",
+                "PermissionDescriptionAr": "Desc"
+              }
+            ]
+          },
+          {
+            "DataGroupId": "AccountTransactions",
+            "DescriptionEn": "Your Account Transactions",
+            "Permissions": [
+              {
+                "ResourceId": "transactions",
+                "ResourceDescriptionEn": "Transactions",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadTransactionsCredits",
+                "PermissionDescriptionEn": "Read Transactions Credits",
+                "PermissionDescriptionAr": "Desc"
+              },
+              {
+                "ResourceId": "transactions",
+                "ResourceDescriptionEn": "Transactions",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadTransactionsDebits",
+                "PermissionDescriptionEn": "Read Transactions Debits",
+                "PermissionDescriptionAr": "Desc"
+              },
+              {
+                "ResourceId": "transactions",
+                "ResourceDescriptionEn": "Transactions",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadTransactionsBasic",
+                "PermissionDescriptionEn": "Read Transactions Basic",
+                "PermissionDescriptionAr": "Desc"
+              },
+              {
+                "ResourceId": "transactions",
+                "ResourceDescriptionEn": "Transactions",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadTransactionsDetail",
+                "PermissionDescriptionEn": "Read Transactions Detail",
+                "PermissionDescriptionAr": "Desc"
+              }
+            ]
+          },
+          {
+            "DataGroupId": "PartyDetails",
+            "DescriptionEn": "Contact and party details",
+            "Permissions": [
+              {
+                "ResourceId": "parties",
+                "ResourceDescriptionEn": "Parties",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadPartyPSU",
+                "PermissionDescriptionEn": "Read Party PSU",
+                "PermissionDescriptionAr": "Desc"
+              },
+              {
+                "ResourceId": "parties",
+                "ResourceDescriptionEn": "Parties",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadPartyPSUIdentity",
+                "PermissionDescriptionEn": "Read Party PSU Identity",
+                "PermissionDescriptionAr": "Desc"
+              },
+              {
+                "ResourceId": "parties",
+                "ResourceDescriptionEn": "Parties",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadParty",
+                "PermissionDescriptionEn": "Read Party",
+                "PermissionDescriptionAr": "Desc"
+              }
+            ]
+          }
+        ],
+        "SecurityProfiles": ["Decoupled", "Redirection"],
+        "IsActive": "true"
+      },
+      {
+        "FinancialInstitutionId": "RYBASAR",
+        "FinancialInstitutionName": {
+          "NameEn": "AlRyid Bank",
+          "NameAr": "بنك الرياض"
+        },
+        "DataGroups": [
+          {
+            "DataGroupId": "AccountDetails",
+            "DescriptionEn": "Your Account Details",
+            "Permissions": [
+              {
+                "ResourceId": "accounts",
+                "ResourceDescriptionEn": "Accounts",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadAccountsBasic",
+                "PermissionDescriptionEn": "Read Accounts Basic",
+                "PermissionDescriptionAr": "Desc"
+              },
+              {
+                "ResourceId": "accounts",
+                "ResourceDescriptionEn": "Accounts",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadAccountsDetail",
+                "PermissionDescriptionEn": "Read Accounts Detail",
+                "PermissionDescriptionAr": "Desc"
+              },
+              {
+                "ResourceId": "balances",
+                "ResourceDescriptionEn": "Balances",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadBalances",
+                "PermissionDescriptionEn": "Read Balances",
+                "PermissionDescriptionAr": "Desc"
+              },
+              {
+                "ResourceId": "balances",
+                "ResourceDescriptionEn": "Balances",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadPAN",
+                "PermissionDescriptionEn": "Read PAN",
+                "PermissionDescriptionAr": "Desc"
+              }
+            ]
+          },
+          {
+            "DataGroupId": "RegularPayments",
+            "DescriptionEn": "Your Regular Payments",
+            "Permissions": [
+              {
+                "ResourceId": "beneficiaries",
+                "ResourceDescriptionEn": "Beneficiaries",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadBeneficiariesBasic",
+                "PermissionDescriptionEn": "Read Beneficiaries Basic",
+                "PermissionDescriptionAr": "Desc"
+              },
+              {
+                "ResourceId": "beneficiaries",
+                "ResourceDescriptionEn": "Beneficiaries",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadBeneficiariesDetail",
+                "PermissionDescriptionEn": "Read Beneficiaries Detail",
+                "PermissionDescriptionAr": "Desc"
+              },
+              {
+                "ResourceId": "standing-orders",
+                "ResourceDescriptionEn": "Standing Orders",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadStandingOrdersBasic",
+                "PermissionDescriptionEn": "Read Standing Orders Basic",
+                "PermissionDescriptionAr": "Desc"
+              },
+              {
+                "ResourceId": "standing-orders",
+                "ResourceDescriptionEn": "Standing Orders",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadStandingOrdersDetail",
+                "PermissionDescriptionEn": "Read Standing Orders Detail",
+                "PermissionDescriptionAr": "Desc"
+              },
+              {
+                "ResourceId": "direct-debits",
+                "ResourceDescriptionEn": "Direct Debits",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadDirectDebits",
+                "PermissionDescriptionEn": "Read Direct Debits",
+                "PermissionDescriptionAr": "Desc"
+              },
+              {
+                "ResourceId": "scheduled-payments",
+                "ResourceDescriptionEn": "Scheduled Payments",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadScheduledPaymentsBasic",
+                "PermissionDescriptionEn": "Read Scheduled Payments Basic",
+                "PermissionDescriptionAr": "Desc"
+              },
+              {
+                "ResourceId": "scheduled-payments",
+                "ResourceDescriptionEn": "Scheduled Payments",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadScheduledPaymentsDetail",
+                "PermissionDescriptionEn": "Read Scheduled Payments Detail",
+                "PermissionDescriptionAr": "Desc"
+              }
+            ]
+          },
+          {
+            "DataGroupId": "AccountTransactions",
+            "DescriptionEn": "Your Account Transactions",
+            "Permissions": [
+              {
+                "ResourceId": "transactions",
+                "ResourceDescriptionEn": "Transactions",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadTransactionsCredits",
+                "PermissionDescriptionEn": "Read Transactions Credits",
+                "PermissionDescriptionAr": "Desc"
+              },
+              {
+                "ResourceId": "transactions",
+                "ResourceDescriptionEn": "Transactions",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadTransactionsDebits",
+                "PermissionDescriptionEn": "Read Transactions Debits",
+                "PermissionDescriptionAr": "Desc"
+              },
+              {
+                "ResourceId": "transactions",
+                "ResourceDescriptionEn": "Transactions",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadTransactionsBasic",
+                "PermissionDescriptionEn": "Read Transactions Basic",
+                "PermissionDescriptionAr": "Desc"
+              },
+              {
+                "ResourceId": "transactions",
+                "ResourceDescriptionEn": "Transactions",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadTransactionsDetail",
+                "PermissionDescriptionEn": "Read Transactions Detail",
+                "PermissionDescriptionAr": "Desc"
+              }
+            ]
+          },
+          {
+            "DataGroupId": "PartyDetails",
+            "DescriptionEn": "Contact and party details",
+            "Permissions": [
+              {
+                "ResourceId": "parties",
+                "ResourceDescriptionEn": "Parties",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadPartyPSU",
+                "PermissionDescriptionEn": "Read Party PSU",
+                "PermissionDescriptionAr": "Desc"
+              },
+              {
+                "ResourceId": "parties",
+                "ResourceDescriptionEn": "Parties",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadPartyPSUIdentity",
+                "PermissionDescriptionEn": "Read Party PSU Identity",
+                "PermissionDescriptionAr": "Desc"
+              },
+              {
+                "ResourceId": "parties",
+                "ResourceDescriptionEn": "Parties",
+                "ResourceDescriptionAr": "Desc",
+                "PermissionId": "ReadParty",
+                "PermissionDescriptionEn": "Read Party",
+                "PermissionDescriptionAr": "Desc"
+              }
+            ]
+          }
+        ],
+        "SecurityProfiles": ["Decoupled", "Redirection"],
+        "IsActive": "true"
+      }
+    ]
+  }
+}

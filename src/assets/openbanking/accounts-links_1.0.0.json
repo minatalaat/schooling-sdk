@@ -1,0 +1,34 @@
+{
+  "Data": {
+    "AccountsLinks": [
+      {
+        "AccountsLinkId": "string",
+        "PSUId": "string",
+        "UserLoginId": "string",
+        "FinancialInstitution": {
+          "FinancialInstitutionId": "string",
+          "NameEn": "string",
+          "NameAr": "string"
+        },
+        "CreationDateTime": "2022-11-15T13:42:14.316Z",
+        "Status": "Active",
+        "StatusUpdateDateTime": "2022-11-15T13:42:14.316Z",
+        "Accounts": ["string"],
+        "DataGroups": ["AccountDetails"],
+        "ExpirationDateTime": "2022-11-15T13:42:14.316Z",
+        "TransactionFromDateTime": "2022-11-15T13:42:14.316Z",
+        "TransactionToDateTime": "2022-11-15T13:42:14.316Z",
+        "AccountType": "Business",
+        "AccountSubType": "CurrentAccount",
+        "OnBehalfOf": {
+          "TradingName": "Acme Accounting Trading Name",
+          "LegalName": "Acme Accounting Legal Name",
+          "IdentifierType": "Other",
+          "Identifier": "abcd1234"
+        },
+        "Purpose": "Account Aggregation",
+        "SecurityProfile": "Redirection"
+      }
+    ]
+  }
+}
