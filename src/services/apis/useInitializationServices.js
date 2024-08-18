@@ -43,7 +43,6 @@ export const useInitializationServices = () => {
   const { updateConfigurationsService } = useFeatureConfigurationServices();
   const { getSubscriptionModelsService, updateSubscriptionInvoiceStatusService } = useSubscriptionServices();
 
-  const { generateTokenService } = useOBServices();
   const { getSupscriptionInfoService, updateTier, cancelUpdateTierRequest } = useUpgradeServices();
 
   let subInfo = null;
@@ -308,12 +307,6 @@ export const useInitializationServices = () => {
     const isTour = getItem('isTour') === 'true';
 
     await getUserFavoritesService();
-
-    if (featuresData?.features) {
-      if (isSubFeatureAvailable({ currentFeatures: featuresData?.features, featureCode: '6', subFeatureCode: '6.1' })) {
-        await generateTokenService({ onError: () => {} });
-      }
-    }
 
     dispatch(authActions.endLoading());
 
