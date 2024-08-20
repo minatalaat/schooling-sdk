@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import ConfirmationPopup from '../../../components/modals/ConfirmationPopup';
 import BackButton from '../../../components/ui/buttons/BackButton';
 import PrimaryButton from '../../../components/ui/buttons/PrimaryButton';
@@ -8,8 +8,21 @@ import CircleSkeleton from '../../../components/ui/skeletons/CircleSkeleton';
 import { useSchoolStudentServices } from '../../../services/apis/useSchoolStudentServices';
 import { useClassesServices } from '../../../services/apis/useClassesServices';
 import ClassesForm from './ClassesForm';
+import { useDispatch } from 'react-redux';
+import { useFeatures } from '../../../hooks/useFeatures';
+import FormFooter from '../../../components/FormFooter/FormFooter';
+import { confirmationPopupActions } from '../../../store/confirmationPopup';
+import FormAction from '../../../components/FormAction/FormAction';
 
 const ClassesManage = ({ addNew, enableEdit }) => {
+  const feature = 'SCHOOLING';
+  const subFeature = 'CLASSES';
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [isDelete, setIsDelete] = useState(false);
+  const { canView, canEdit, canDelete, getFeaturePath } = useFeatures(feature, subFeature);
+  const mode = addNew ? 'add' : enableEdit ? 'edit' : 'view';
+
   const { t } = useTranslation();
   const btnRef = useRef(null);
   const { fetchClassStudents } = useSchoolStudentServices();
@@ -43,6 +56,25 @@ const ClassesManage = ({ addNew, enableEdit }) => {
   }, [classId]);
   const location = useLocation();
   const editPage = location.pathname.includes('edit');
+
+  const viewHandler = () => {
+    navigate(getFeaturePath(subFeature, 'view', { classId }));
+  };
+
+  const editHandler = () => {
+    navigate(getFeaturePath(subFeature, 'edit', { classId }));
+  };
+
+  const deleteHandler = () => {
+    dispatch(
+      confirmationPopupActions.openPopup({
+        title: 'LBL_BEWARE_ABOUT_TO_DELETE',
+        message: data?.name ? data.name : `#${data?.id}`,
+        onConfirmHandler: () => setIsDelete(true),
+      })
+    );
+  };
+
   return (
     <>
       <div className="page-body">
@@ -54,10 +86,16 @@ const ClassesManage = ({ addNew, enableEdit }) => {
                 <h4>{addNew ? t('LBL_ADD_CLASS') : editPage ? t('LBL_EDIT_CLASS') : data?.name}</h4>
               </div>
 
-              <div className="reverse-page float-end">
+              {/* <div className="reverse-page float-end">
                 {(addNew || enableEdit) && <BackButton text={addNew ? 'LBL_CANCEL' : 'LBL_BACK'} />}
                 {(addNew || enableEdit) && <PrimaryButton onClick={() => btnRef.current.click()} disabled={false} />}
-              </div>
+              </div> */}
+                   <FormAction
+                feature={feature}
+                subFeature={subFeature}
+                viewHandler={canView && enableEdit ? viewHandler : null}
+                editHandler={canEdit && !enableEdit ? editHandler : null}
+              />
             </div>
           </div>
           <div className="row">
@@ -86,6 +124,10 @@ const ClassesManage = ({ addNew, enableEdit }) => {
               )} */}
             </div>
           </div>
+          <FormFooter mode={mode} feature={feature} subFeature={subFeature} deleteHandler={canDelete ? deleteHandler : null}>
+          {/* <BackButton text={addNew ? 'LBL_CANCEL' : 'LBL_BACK'} /> */}
+                {(addNew || enableEdit) && <PrimaryButton onClick={() => btnRef.current.click()} disabled={false} />}
+          </FormFooter>
         </div>
       </div>
     </>

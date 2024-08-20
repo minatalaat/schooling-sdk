@@ -1,38 +1,66 @@
 import { useTranslation } from 'react-i18next';
 
+// import SaveIcon from '../../../assets/svgs/SaveIcon';
+import CheckCircle from '../../../assets/svgs/CheckCircle';
+// import DollarIcon from '../../../assets/images/quickActionsIcons/SaleInvoiceSVG';
+import ReturncIcon from '../../../assets/svgs/ReturncIcon';
+import DeleteIcon from '../../../assets/svgs/DeleteIcon';
+import { AddIcon, EditIcon, SnapShotIcon, ViewIcon, ViewPDFIcon, CopyIcon } from '../actions/Actions';
+import { MODES } from '../../../constants/enums/FeaturesModes';
+
 export default function PrimaryButton({
   type,
-  className,
-  theme = 'blue',
+  theme = 'primary',
   text,
   disabled,
   onClick,
   btnOptions = {},
   children,
-  title,
   style,
   setIsOpen,
+  icon = '',
+  className = '',
+  mode,
 }) {
   const { t } = useTranslation();
+  const icons = {
+    // save: SaveIcon,
+    edit: EditIcon,
+    view: ViewIcon,
+    print: ViewPDFIcon,
+    snap: SnapShotIcon,
+    copy: CopyIcon,
+    check: CheckCircle,
+    // dollar: DollarIcon,
+    return: ReturncIcon,
+    delete: DeleteIcon,
+    add: AddIcon,
+  };
+
   const themes = {
-    blue: {
-      className: 'btn btn-save ',
+    primary: {
+      className: 'new-btn new-btn-primary',
+      text: 'LBL_SAVE',
+    },
+    secondary: {
+      className: 'new-btn new-btn-secondary',
+      text: 'LBL_SAVE',
+    },
+    tertiary: {
+      className: 'new-btn new-btn-tertiary',
+      text: 'LBL_CLOSE',
+    },
+    quaternary: {
+      className: 'new-btn new-btn-quaternary',
       text: 'LBL_SAVE',
     },
     green: {
       className: 'btn btn-import ',
       text: 'LBL_IMPORT',
     },
-    purple: {
-      className: 'btn add-btn ',
-      text: 'LBL_SAVE',
-    },
-    white: {
-      className: 'btn cancel-act ',
-      text: 'LBL_CLOSE',
-    },
+
     red: {
-      className: 'btn cancel-btn ',
+      className: 'btn cancel-btn',
       text: 'LBL_CANCEL',
     },
     borderedWhite: {
@@ -50,10 +78,13 @@ export default function PrimaryButton({
     purpleWithIcon: {
       className: 'btn addbtn-action ',
       text: 'LBL_ADD',
-      iconClassName: 'add-icon',
+      icon: 'add',
     },
     clickableIcon: {
-      className: 'clickable btn ',
+      className: 'clickable-icon btn p-0',
+    },
+    clickableIconDanger: {
+      className: 'clickable-icon-danger btn p-0',
     },
     whiteOutsideCard: {
       className: 'btn back ',
@@ -76,7 +107,7 @@ export default function PrimaryButton({
       text: 'LBL_CLOSE_OB',
     },
     dashboardChart: {
-      className: 'add-invoive-btn float-end btn',
+      className: 'btn button-primary float-end',
       text: 'NEW_INVOICE',
     },
     submitBlue: {
@@ -102,23 +133,45 @@ export default function PrimaryButton({
       className: 'btn btn-primary cancel-act',
       text: 'LBL_CONFIRM',
     },
+    purpleAddEnd: {
+      className: 'btn btn-add-tb float-end',
+      text: 'LBL_ADD',
+    },
+    formAction: {
+      className: 'new-btn btn-top-form-action',
+    },
+    export: {
+      className: 'btn border-0 bg-transparent',
+    },
+    cardActionEnd: {
+      className: 'new-btn new-btn-primary card-action-end',
+      text: 'LBL_SAVE',
+    },
+    formFooterDanger: {
+      className: 'new-btn new-btn-danger',
+      text: 'LBL_CANCEL',
+    },
   };
 
-  if (!text) text = themes[theme].text || '';
+  if (!text && mode === MODES.ADD) text = 'LBL_CREATE';
+  if (!text) text = themes[theme].text ?? '';
+
+  const DisplayedIcon = themes[theme].icon ? icons[themes[theme].icon] : (icons[icon] ?? null);
+
   return (
     <button
       type={type ? type : 'button'}
-      title={title} //add title fot tooltip
-      className={themes[theme]?.className + (className ?? '')}
+      className={`${themes[theme].className} ${className}`}
       onClick={onClick}
+      // onClick={onClick}
       disabled={disabled}
       {...btnOptions}
       style={style}
       onMouseEnter={setIsOpen ? () => setIsOpen(true) : () => {}}
     >
-      {themes[theme]?.iconClassName && <i className={themes[theme]?.iconClassName}></i>}
+      {DisplayedIcon && <DisplayedIcon />}
       {children}
-      {t(text)}
+      <span className="btn-text">{t(text)}</span>
     </button>
   );
 }

@@ -1,54 +1,69 @@
-// font family
+// English font family
 @font-face {
-  font-family: 'Tight-Regular';
-  src: url('../fonts/Inter_Tight/InterTight-Regular.ttf');
-  font-weight: normal;
-  font-style: normal;
+        font-family: "InterTight";
+        src: url("../fonts/InterTight/InterTight-Regular.ttf");
+        font-weight: 400;
+        font-style: 400;
 }
 
 @font-face {
-  font-family: 'Tight-Medium';
-  src: url('../fonts/Inter_Tight/InterTight-Medium.ttf');
-  font-weight: normal;
-  font-style: medium;
+        font-family: "InterTight";
+        src: url("../fonts/InterTight/InterTight-Medium.ttf");
+        font-weight: 500;
+        font-style: 500;
 }
 
 @font-face {
-  font-family: 'Tight-Bold';
-  src: url('../fonts/Inter_Tight/InterTight-Bold.ttf');
-  font-weight: Bold;
-  font-style: Bold;
+        font-family: "InterTight";
+        src: url("../fonts/InterTight/InterTight-Bold.ttf");
+        font-weight: 600;
+        font-style: 600;
 }
 
 @font-face {
-  font-family: 'Tight-SemiBold';
-  src: url('../fonts/Inter_Tight/InterTight-SemiBold.ttf');
-  font-weight: Bold;
-  font-style: Bold;
+        font-family: "InterTight";
+        src: url("../fonts/InterTight/InterTight-SemiBold.ttf");
+        font-weight: 700;
+        font-style: 700;
+}
+
+// Arabic font family
+@font-face {
+        font-family: "Tajawal";
+        src: url("../fonts/Tajawal/Tajawal-Light.ttf");
+        font-weight: 300;
+        font-style: 300;
 }
 
 @font-face {
-  font-family: 'Tajawal-Medium';
-  src: url('../fonts/ar-font/Tajawal-Medium.ttf');
-  font-weight: Bold;
-  font-style: Bold;
+        font-family: "Tajawal";
+        src: url("../fonts/Tajawal/Tajawal-Regular.ttf");
+        font-weight: 400;
+        font-style: 400;
 }
+
 @font-face {
-  font-family: 'Tajawal-Bold';
-  src: url('../fonts/ar-font/Tajawal-Bold.ttf');
-  font-weight: Bold;
-  font-style: Bold;
+        font-family: "Tajawal";
+        src: url("../fonts/Tajawal/Tajawal-Medium.ttf");
+        font-weight: 500;
+        font-style: 500;
+}
+
+@font-face {
+        font-family: "Tajawal";
+        src: url("../fonts/Tajawal/Tajawal-Bold.ttf");
+        font-weight: 700;
+        font-style: 700;
 }
 
 // colors variables
-$primary-color: #1f4fde;
+$primary-color: #151538;
 $primary-color-2: #0984e3;
-$secondary-color: #996be5;
+$secondary-color: #4027cd;
 $secondary-color-button: #ddedeb;
 $secondary-color-light: rgb(74 165 150 / 34%);
-$tertiary-color: red;
-$body-bg: #f5f8fb;
-
+$tertiary-color: #e6e1fe;
+$body-bg: #f9f8fb;
 $description-text-color: #1f4fde;
 $title-text-color: #1f4fde;
 $success-color: #51bb25;
@@ -76,22 +91,18 @@ $color-fiord: #455a64;
 $black: #000;
 $white: #fff;
 $red: #e56363;
-
 // gradient colors
-$gradient-primary: linear-gradient(26deg, $primary-color 0%, #a26cf8 100%);
-$gradient-bg: linear-gradient(180deg, #1f4fde 0%, #996be4 100%);
-
+$gradient-primary: $primary-color;
+$gradient-bg: $primary-color;
 $light-body-bg-color: #fafdff;
-
 //fonts
-$font-Medium: 'Din-m', sans-serif;
+$font-Medium: "Din-m", sans-serif;
 $font-rubik: Rubik;
 $font-roboto: Roboto;
 $font-serif: sans-serif;
 $font-themify: themify;
 $font-awesome: FontAwesome;
 $font-ICO: IcoFont;
-
 //font colors
 $title-withe-bg-color: #ffffff;
 $label-with-bg-white: #1f4fde;
@@ -100,10 +111,8 @@ $title-with-bg-white: #989899;
 $font-color: #1d4a44;
 $dark-light: $font-color;
 $light-semi-font: $semi-dark;
-
 $body-font-color: #2b2b2b;
 $body-sub-title-color: rgba($body-font-color, 0.7);
-
 $dark-body-background: #1d1e26;
 $dark-card-background: #262932;
 $dark-card-inbox: #323846;
@@ -119,7 +128,6 @@ $dark-datatable-odd: #1f232b;
 $dark-datatable-sorting: #1c212b;
 $dark-datatable-sorting-even: #22262f;
 $dark-even-hover-sorting: #191e27;
-
 //Card
 $card-padding: 40px;
 $card-margin-bottom: 30px;
@@ -134,11 +142,9 @@ $card-header-span-color: $body-sub-title-color;
 $card-body-bg-color: $transparent-color;
 $card-footer-bg-color: $white;
 $card-hover-box-shadow: 0 0 40px rgba(8, 21, 66, 0.05);
-
 //footer
 $footer_bg_color: $white;
 $footer_box_shadow: 0 0 20px rgba($semi-dark, 0.1);
-
 //form
 $form-group-margin-bottom: 20px;
 $sm-form-margin-bottom: 14px;
@@ -148,10 +154,8 @@ $form-placeholder-letter-spacing: 1px;
 $form-placeholder-font-weight: 100;
 $form-input-border-color: $light-semi-gray;
 $form-input-bg-color: $white;
-
 //Tour
 $tour-color: var($secondary-color);
-
 //sidabr main
 $sidebar-width: 255px;
 $sidebar-position: fixed;
@@ -160,7 +164,6 @@ $sidebar-shadow: 0 0 11px rgba(69, 110, 243, 0.13);
 $sidebar-overflow: auto;
 $sidebar-z-index: 9;
 $sidebar-transition: 0.5s;
-
 //sidebar profile
 $sidebar-profile-edit-icon-size: 14px;
 $sidebar-profile-name-txt-color: var($secondary-color);
@@ -171,7 +174,6 @@ $sidebar-profile-name-marging: 3px;
 $sidebar-profile-sub-title-font-size: 10px;
 $sidebar-profile-sub-title-margin: 0px;
 $sidebar-profile-img-shadow: 0 0 15px rgba(68, 102, 242, 0.3);
-
 //Sidebar main menu
 $sidebar-menu-padding: 15px;
 $sidebar-menu-list-style: none;
@@ -193,15 +195,13 @@ $sidebar-hover-txt-color: var($secondary-color);
 $sidebar-arrow-margin-top: 2px;
 $sidebar-arrow-size: 15px;
 $sidebar-arrow-color: $body-font-color;
-$sidebar-open-icon: '\f107';
-$sidebar-close-icon: '\f105';
+$sidebar-open-icon: "\f107";
+$sidebar-close-icon: "\f105";
 $sidebar-icon-font-family: $font-awesome;
 $sidebar-height: calc(100vh - 115px);
-
 $main-header-position: fixed;
 $main-header-top: 0;
 $main-header-shadow: 0 0 20px rgba($semi-dark, 0.1);
-
 $page-body-padding: 0 15px 0 15px;
 $page-body-bg-color: $light-color;
 $page-body-margin-bottom: 0px;
@@ -216,8 +216,7 @@ $page-small-title-margin-bottom: 5px;
 $page-small-title-text-transform: capitalize;
 $page-small-title-text-color: $body-sub-title-color;
 $breadcrumb-size: 16px;
-$breadcrumb-content: '/';
-
+$breadcrumb-content: "/";
 //main header left
 $header-left-bg-color: $white;
 $main-header-padding: 27px 22px;
@@ -229,9 +228,7 @@ $header-wrapper-nav-icon-color: $font-color;
 $header-wrapper-nav-icon-align: middle;
 $header-size: 136px;
 $box-layout-space: 40px;
-
 //toast-accent
-
 $palletbackgroundlight-70-0backgroundlight-70-0alpha-100: rgba(82, 82, 82, 1);
 $palletbackgroundlight-90-0backgroundlight-90-0alpha-100: rgba(38, 38, 38, 1);
 $palletbackgroundlighterrorbackgroundlighterroralpha-100: rgba(254, 241, 241, 1);
@@ -244,13 +241,13 @@ $palletinfo-30-0info-30-0alpha-100: rgba(125, 211, 252, 1);
 $palletsecondary-30-0secondary-30-0alpha-100: rgba(176, 176, 176, 1);
 $palletsuccess-30-0success-30-0alpha-100: rgba(102, 181, 132, 1);
 $palletwarning-30-0warning-30-0alpha-100: rgba(253, 186, 116, 1);
-$text-medium-md-16px-font-family: 'Roboto-Medium', Helvetica;
+$text-medium-md-16px-font-family: "Roboto-Medium", Helvetica;
 $text-medium-md-16px-font-size: 16px;
 $text-medium-md-16px-font-style: normal;
 $text-medium-md-16px-font-weight: 500;
 $text-medium-md-16px-letter-spacing: 0px;
 $text-medium-md-16px-line-height: 22px;
-$text-normal-sm-14px-font-family: 'Roboto-Regular', Helvetica;
+$text-normal-sm-14px-font-family: "Roboto-Regular", Helvetica;
 $text-normal-sm-14px-font-size: 14px;
 $text-normal-sm-14px-font-style: normal;
 $text-normal-sm-14px-font-weight: 400;

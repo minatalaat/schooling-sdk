@@ -742,3 +742,19 @@
 .align-self-center {
   align-self: center;
 }
+
+.sync-link-disabled {
+  color: #986be5 !important;
+  background-color: #e6e1fe !important;
+  letter-spacing: 0.1em;
+  text-transform: none;
+  border-radius: 5px;
+}
+
+.fw-600 {
+  font-weight: 600 !important;
+}
+
+.integrator-img {
+  max-width: 250px;
+}

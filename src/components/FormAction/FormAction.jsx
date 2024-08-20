@@ -12,7 +12,7 @@ function FormAction({
   viewHandlerParams,
   feature,
   subFeature,
-  setIsOpen,
+  setIsOpen = () => {},
   copyOptions,
   forceShow = false,
 }) {

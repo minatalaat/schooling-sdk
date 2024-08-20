@@ -2995,5 +2995,7 @@
   "LBL_PRODUCT_TOTAL_VAT": "اجمالي / ضريبة القيمة المضافة ",
   "LBL_PRODUCTS_1_3": "منتجات المقصف",
   "LBL_OPERATION_INFO": "بيانات مشغل الحافلة",
-  "LBL_ADD_STUDENT_TO_CLASS": "اضافة طلاب للصف"
+  "LBL_ADD_STUDENT_TO_CLASS": "اضافة طلاب للصف",
+  "LBL_ROWS": "خطوط"
+
 }

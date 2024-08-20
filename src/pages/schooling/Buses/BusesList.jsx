@@ -22,6 +22,7 @@ const BusesList = () => {
   const { t } = useTranslation();
   const { fetchBuses, deleteBus } = useBusesServices();
   const { canDelete } = useFeatures(feature, subFeature);
+  const [actionInProgress, setActionInProgress] = useState(false);
 
   const [show, setShow] = useState('table');
   const [loading, setLoading] = useState(true);
@@ -107,6 +108,8 @@ const BusesList = () => {
 
   return (
     <>
+        {actionInProgress && <div className="lodingpage"></div>}
+
       <MoreAction
         showMoreAction={showMoreAction}
         setShowMoreAction={setShowMoreAction}
@@ -114,6 +117,8 @@ const BusesList = () => {
         setChecked={setChecked}
         data={fetchedData.data || []}
         deleteHandler={deleteHandler}
+        setActionInProgress={setActionInProgress}
+
       />
 
       <div className="page-body">
@@ -156,7 +161,10 @@ const BusesList = () => {
                   bulkActionConfig={{
                     canDelete: true,
                   }}
+                  setActionInProgress={setActionInProgress}
+
                 />
+                
 
                 {show === 'table' && windosSize[0] > 1200 && (
                   <Table
@@ -184,6 +192,8 @@ const BusesList = () => {
                             isDeletable={true}
                             isViewable={true}
                             isEditable={true}
+                            setActionInProgress={setActionInProgress}
+
                           />
                         );
                       })}
@@ -205,6 +215,8 @@ const BusesList = () => {
                             checked={checked}
                             setChecked={setChecked}
                             deleteHandler={deleteHandler}
+                            setActionInProgress={setActionInProgress}
+                            
                           />
                         );
                       })}

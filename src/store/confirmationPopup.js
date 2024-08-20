@@ -8,6 +8,7 @@ const initialState = {
   actionLabel: null,
   showAction: true,
   onConfirmHandler: () => {},
+  onCancelHandler: () => {},
 };
 
 const confirmationPopupSlice = createSlice({
@@ -25,6 +26,7 @@ const confirmationPopupSlice = createSlice({
       state.actionLabel = action.payload.actionLabel || 'LBL_CONFIRM';
       state.showAction = action?.payload?.showAction === false ? false : true;
       state.onConfirmHandler = action.payload.onConfirmHandler || undefined;
+      state.onCancelHandler = action.payload.onCancelHandler || undefined;
     },
   },
 });

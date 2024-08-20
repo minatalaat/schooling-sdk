@@ -32,6 +32,7 @@ const StudentsList = () => {
   const [failPopup, setFailPopup] = useState(false);
   const [showAddStudent, setShowAddStudent] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [actionInProgress, setActionInProgress] = useState(false);
 
   const fields = [
     { accessor: 'studentId', Header: t('LBL_CODE'), type: 'text' },
@@ -109,6 +110,7 @@ const StudentsList = () => {
 
   return (
     <>
+     {actionInProgress && <div className="lodingpage"></div>}
       <MoreAction
         showMoreAction={showMoreAction}
         setShowMoreAction={setShowMoreAction}
@@ -116,6 +118,8 @@ const StudentsList = () => {
         setChecked={setChecked}
         data={fetchedData.data || []}
         deleteHandler={deleteHandler}
+        setActionInProgress={setActionInProgress}
+
       />
 
       {!loading ? (
@@ -159,6 +163,8 @@ const StudentsList = () => {
                   bulkActionConfig={{
                     canDelete: true,
                   }}
+                  setActionInProgress={setActionInProgress}
+
                 />
 
                 {show === 'table' && windosSize[0] > 1200 && (
@@ -186,6 +192,8 @@ const StudentsList = () => {
                             subFeature={subFeature}
                             isEditable={false}
                             deleteHandler={deleteHandler}
+                            setActionInProgress={setActionInProgress}
+
                           />
                         );
                       })}
@@ -209,6 +217,8 @@ const StudentsList = () => {
                             setChecked={setChecked}
                             isEditable={false}
                             deleteHandler={deleteHandler}
+                            setActionInProgress={setActionInProgress}
+
                           />
                         );
                       })}

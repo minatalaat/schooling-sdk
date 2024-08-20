@@ -1,0 +1,31 @@
+.cancel-subscription {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.cancel-subscription .cancel-subscription-left h5 {
+  color: #9e9e9e;
+}
+.cancel-subscription .cancel-subscription-left p {
+  color: black;
+}
+.cancel-subscription .cancel-subscription-left .expiration-date {
+  color: red;
+}
+.cancel-subscription .cancel-subscription-left-canceled {
+  padding: 8px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.cancel-subscription .cancel-subscription-left-canceled h5,
+.cancel-subscription .cancel-subscription-left-canceled p {
+  color: black;
+}
+.cancel-subscription .cancel-subscription-left-canceled .expiration-date {
+  color: red;
+}
+.cancel-subscription .cancel-subscription-right button {
+  width: 100%;
+}/*# sourceMappingURL=cancel-subscription.css.map */

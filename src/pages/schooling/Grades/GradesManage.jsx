@@ -1,13 +1,26 @@
 import { useState, useEffect, useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import ConfirmationPopup from '../../../components/modals/ConfirmationPopup';
 import PrimaryButton from '../../../components/ui/buttons/PrimaryButton';
 import CircleSkeleton from '../../../components/ui/skeletons/CircleSkeleton';
 import GradesForm from './GradesForm';
 import { useSchoolStudentServices } from '../../../services/apis/useSchoolStudentServices';
 import moment from 'moment';
+import { useDispatch } from 'react-redux';
+import { useFeatures } from '../../../hooks/useFeatures';
+import { confirmationPopupActions } from '../../../store/confirmationPopup';
+import FormAction from '../../../components/FormAction/FormAction';
+import FormFooter from '../../../components/FormFooter/FormFooter';
 
 const GradesManage = ({ addNew, enableEdit }) => {
+  const feature = 'SCHOOLING';
+  const subFeature = 'GRADES';
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [isDelete, setIsDelete] = useState(false);
+  const { canView, canEdit, canDelete, getFeaturePath } = useFeatures(feature, subFeature);
+  const mode = addNew ? 'add' : enableEdit ? 'edit' : 'view';
+
   const { fetchStudentGrades } = useSchoolStudentServices();
   const ref = useRef();
   const [showDelete, setShowDelete] = useState(false);
@@ -26,14 +39,32 @@ const GradesManage = ({ addNew, enableEdit }) => {
     if (id) importData();
   }, [id]);
 
+  const viewHandler = () => {
+    navigate(getFeaturePath(subFeature, 'view', { id }));
+  };
+
+  const editHandler = () => {
+    navigate(getFeaturePath(subFeature, 'edit', { id }));
+  };
+
+  const deleteHandler = () => {
+    dispatch(
+      confirmationPopupActions.openPopup({
+        title: 'LBL_BEWARE_ABOUT_TO_DELETE',
+        message: data?.name ? data.name : `#${data?.id}`,
+        onConfirmHandler: () => setIsDelete(true),
+      })
+    );
+  };
+
   return (
     <>
       <div className="page-body">
         <div className="container-fluid">
           <div className="row"></div>
           <div className="row">
-            <div className="col-md-12 mb-4">
-              <div className="reverse-page float-end">
+            <div className="col-md-12">
+              {/* <div className="reverse-page float-end">
                 {(addNew || enableEdit) && (
                   <PrimaryButton
                     btnOptions={{
@@ -42,8 +73,15 @@ const GradesManage = ({ addNew, enableEdit }) => {
                     disabled={false}
                   />
                 )}
-              </div>
+              </div> */}
+           
             </div>
+            <FormAction
+                feature={feature}
+                subFeature={subFeature}
+                viewHandler={canView && enableEdit ? viewHandler : null}
+                editHandler={canEdit && !enableEdit ? editHandler : null}
+              />
           </div>
           <div className="row">
             <div className="col-md-12">
@@ -71,6 +109,16 @@ const GradesManage = ({ addNew, enableEdit }) => {
                 </>
               )} */}
             </div>
+            <FormFooter mode={mode} feature={feature} subFeature={subFeature} deleteHandler={canDelete ? deleteHandler : null}>
+            {(addNew || enableEdit) && (
+                  <PrimaryButton
+                    btnOptions={{
+                      type: 'submit',
+                    }}
+                    disabled={false}
+                  />
+                )}
+          </FormFooter>
           </div>
         </div>
       </div>

@@ -1,7 +1,5 @@
 import { useFormik } from 'formik';
-import SearchModalContainer from '../../../components/modals/SearchModalContainer';
 import TextInput from '../../../components/ui/inputs/TextInput';
-import BorderSection from '../../../components/ui/inputs/BorderSection';
 import DropDown from '../../../components/ui/inputs/DropDown';
 import AttachmentInput from '../../../components/ui/inputs/AttachmentInput';
 import FileInput from '../../../components/ui/inputs/FileInput';
@@ -10,17 +8,9 @@ import NumberInput from '../../../components/ui/inputs/NumberInput';
 import FormNotes from '../../../components/ui/inputs/FormNotes';
 import { VALID_CODABAR_FORMAT, VALID_FLOAT, VALID_TEXT_WITH_SPECIAL_CHARS } from './../../../constants/regex/Regex';
 import * as Yup from 'yup';
+import Card from '../../../components/Card/Card';
 
-import {
-  saleAccountDomain,
-  purchaseAccountDomain,
-  saleTaxDomain,
-  purchaseTaxDomain,
-  defaultSaleTaxDomain,
-  defaultPurchaseTaxDomain,
-  defaultCurrencyDomain,
-  costTypeOptions,
-} from './ProductsPayloadsFields';
+import { costTypeOptions} from './ProductsPayloadsFields';
 import { useProductsServices } from '../../../services/apis/useProductsServices';
 import { useCategoriesServices } from '../../../services/apis/useCategoriesServices';
 import { useEffect, useState } from 'react';
@@ -175,25 +165,13 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
     setFetchedCategories(data);
   };
 
-  const importCurrenciesData = async () => {
-    const data = await fetchAvailableCurrencies({
-      size: 100,
-    });
-    setFetchedCurrencies(data);
-  };
-
   useEffect(() => {
     importCategoriesData();
-    // importCurrenciesData();
   }, []);
 
-  // console.log(formik.values, 'formik');
-  // useEffect(() => {
-  //   formik.setFieldValue('code', 'bateee5');
-  // }, []);
   return (
     <form onSubmit={formik.handleSubmit}>
-      <div className="card">
+      <Card>
         <div className="row step-add-product-1">
           <div className="col-md-9">
             <div className="row">
@@ -279,24 +257,15 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
             />
           </div>
         </div>
-        {(formik?.values?.purchasable || formik?.values?.sellable) && <BorderSection title="LBL_ACCOUNTING" />}
-
+        </Card>
         {formik?.values?.sellable && (
           <>
+    <Card title="LBL_ACCOUNTING" >
+          {/* <Card></Card> */}
             <div className="row step-add-product-2">
               <div className="col-md-6">
-                {/* <SearchModalContainer
-                  formik={formik}
-                  modelKey="SALE_CURRENCIES"
-                  mode={mode}
-                  disabled={false}
-                  selectIdentifier="saleCurrency.id"
-                  label="LBL_SALE_CURRENCY"
-                  defaultValueConfig={{ payloadDomain: defaultCurrencyDomain }}
-                  payloadDomain={defaultCurrencyDomain}
-                /> */}
+                
                 <DropDown
-                  // placeholder={formik.values.grade?.name}
                   options={[
                     {
                       id: 123,
@@ -318,18 +287,8 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
                 <NumberInput formik={formik} label="LBL_SALE_PRICE" accessor="salePrice" mode={mode} isRequired={formik.values.sellable} />
               </div>
               <div className="col-md-6">
-                {/* <SearchModalContainer
-                  formik={formik}
-                  modelKey="SALE_ACCOUNTS"
-                  mode={mode}
-                  selectIdentifier="saleAccount"
-                  label="LBL_SALE_ACCOUNT"
-                  isRequired={formik.values.sellable}
-                  payloadDomain={saleAccountDomain}
-                  defaultValueConfig={null}
-                /> */}
+             
                 <DropDown
-                  // placeholder={formik.values.grade?.name}
                   options={[
                     {
                       id: 110,
@@ -348,19 +307,8 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
                 />
               </div>
               <div className="col-md-6">
-                {/* <SearchModalContainer
-                  formik={formik}
-                  modelKey="SALE_TAXES"
-                  mode={mode}
-                  isRequired={formik.values.sellable}
-                  payloadDomain={saleTaxDomain}
-                  label="LBL_SALE_TAX"
-                  defaultValueConfig={{ payloadDomain: defaultSaleTaxDomain }}
-                  extraFields={['taxLineList']}
-                  selectIdentifier="saleTax"
-                /> */}
+             
                 <DropDown
-                  // placeholder={formik.values.grade?.name}
                   options={[
                     {
                       id: 3,
@@ -378,25 +326,16 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
                 />
               </div>
             </div>
+        </Card>
           </>
         )}
-        {formik.values.sellable && formik.values.purchasable && <div className="border-section"></div>}
         {formik.values.purchasable && (
           <>
+          <Card title=''>
             <div className="row step-add-product-3">
               <div className="col-md-6">
-                {/* <SearchModalContainer
-                  formik={formik}
-                  modelKey="PURCHASE_CURRENCIES"
-                  mode={mode}
-                  selectIdentifier="purchaseCurrency"
-                  disabled={false}
-                  label="LBL_PURCHASE_CURRENCY"
-                  defaultValueConfig={{ payloadDomain: defaultCurrencyDomain }}
-                  payloadDomain={defaultCurrencyDomain}
-                /> */}
+             
                 <DropDown
-                  // placeholder={formik.values.grade?.name}
                   options={[
                     {
                       id: 123,
@@ -424,16 +363,7 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
                 />
               </div>
               <div className="col-md-6">
-                {/* <SearchModalContainer
-                  formik={formik}
-                  modelKey="PURCHASE_ACCOUNTS"
-                  mode={mode}
-                  label="LBL_PURCHASE_ACCOUNT"
-                  isRequired={formik.values.purchasable}
-                  payloadDomain={purchaseAccountDomain}
-                  selectIdentifier="purchaseAccount"
-                  defaultValueConfig={null}
-                /> */}
+               
                 <DropDown
                   // placeholder={formik.values.grade?.name}
                   options={[
@@ -458,20 +388,8 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
                 />
               </div>
               <div className="col-md-6">
-                {/* <SearchModalContainer
-                  formik={formik}
-                  modelKey="PURCHASE_TAXES"
-                  mode={mode}
-                  label="LBL_PURCHASE_TAX"
-                  isRequired={formik.values.purchasable}
-                  payloadDomain={purchaseTaxDomain}
-                  defaultValueConfig={{ payloadDomain: defaultPurchaseTaxDomain }}
-                  extraFields={['taxLineList']}
-                  selectIdentifier="label"
-                  accessor="purchaseTax"
-                /> */}
+               
                 <DropDown
-                  // placeholder={formik.values.grade?.name}
                   options={[
                     {
                       id: 4,
@@ -489,10 +407,11 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
                 />
               </div>
             </div>
+            </Card>
           </>
         )}
         <>
-          <BorderSection title="LBL_COST_MANAGEMENT" />
+          <Card title="LBL_COST_MANAGEMENT" >
           <div className="row step-add-product-3">
             <div className="col-md-6">
               <DropDown
@@ -520,6 +439,7 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
               </div>
             )}
           </div>
+          </Card>
         </>
         {mode !== 'view' && (
           <FormNotes
@@ -531,7 +451,7 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
             ]}
           />
         )}
-      </div>
+      
       <AttachmentInput
         mode={mode}
         fetchedObj={data || null}

@@ -28,6 +28,7 @@ const DempPage1List = () => {
   const [windosSize, setWindowSize] = useState([window.innerWidth, window.innerHeight]);
   const [showMoreAction, setShowMoreAction] = useState(false);
   const [fetchedData, setFetchedData] = useState([]);
+  const [actionInProgress, setActionInProgress] = useState(false);
 
   const fields = [
     { accessor: 'code', Header: t('LBL_PRODUCT_CODE'), type: 'text' },
@@ -97,12 +98,15 @@ const DempPage1List = () => {
 
   return (
     <>
+    {actionInProgress && <div className="lodingpage"></div>}
       <MoreAction
         showMoreAction={showMoreAction}
         setShowMoreAction={setShowMoreAction}
         checked={checked}
         setChecked={setChecked}
         data={fetchedData.data || []}
+        setActionInProgress={setActionInProgress}
+
       />
       {loading ? (
         <div style={{ marginTop: '20rem' }}>
@@ -137,6 +141,8 @@ const DempPage1List = () => {
                   checked={checked}
                   setChecked={setChecked}
                   data={fetchedData.data || []}
+                  setActionInProgress={setActionInProgress}
+
                 />
 
                 {show === 'table' && windosSize[0] > 1200 && (
@@ -162,6 +168,8 @@ const DempPage1List = () => {
                             feature={feature}
                             subFeature={subFeature}
                             deleteHandler={deleteHandler}
+                            setActionInProgress={setActionInProgress}
+
                           />
                         );
                       })}
@@ -181,6 +189,7 @@ const DempPage1List = () => {
                             title="name"
                             subTitles={subTitles}
                             checked={checked}
+                            setActionInProgress={setActionInProgress}
                             setChecked={setChecked}
                             label1={record.sellable ? { value: 'LBL_SELLABLE' } : null}
                             label2={record.purchasable ? { value: 'LBL_PURCHASABLE' } : null}

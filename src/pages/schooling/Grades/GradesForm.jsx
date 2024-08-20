@@ -82,13 +82,13 @@ const GradesForm = ({ data, importData }) => {
               <div className="info-tite-page float-start">
                 <h4>{`${data?.data?.student?.name} ${t('LBL_GRADES')}`} </h4>
               </div>
-              <div className="reverse-page float-end">
+              {/* <div className="reverse-page float-end">
                 <BackButton text="LBL_BACK" />
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="col-md-12">
-            <Toolbar
+            {/* <Toolbar
               canSelectAll={false}
               show={show}
               setShow={setShow}
@@ -98,7 +98,7 @@ const GradesForm = ({ data, importData }) => {
               data={fetchedData?.data || []}
               refreshData={importData}
               showSearch={false}
-            />
+            /> */}
             {data?.data?.grades?.length > 0 ? (
               Object.keys(groupedBySemesterKey)?.map(semesterKey => {
                 return groupedBySemesterKey[semesterKey]?.map(grade => {

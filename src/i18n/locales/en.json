@@ -2993,5 +2993,6 @@
   "LBL_CLICK_TO_DONE_SUCCESS": "Congratulations! Your payment successfull",
   "SIGN_IN_TO_SCHOOLING": "Sign in to schooling",
   "GO_TO_QAEMA": "Return to Qaema",
-  "LBL_ADD_STUDENT_TO_CLASS": "Add Student to Class"
+  "LBL_ADD_STUDENT_TO_CLASS": "Add Student to Class",
+  "LBL_ROWS": "Rows"
 }

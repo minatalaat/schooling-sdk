@@ -7,6 +7,7 @@ import DropDown from '../../../components/ui/inputs/DropDown';
 import { useNavigate } from 'react-router-dom';
 import { useClassesServices } from '../../../services/apis/useClassesServices';
 import TextInput from '../../../components/ui/inputs/TextInput';
+import Card from '../../../components/Card/Card';
 
 const ClassesForm = ({ enableEdit, data, addNew, btnRef }) => {
   const { t } = useTranslation();
@@ -75,7 +76,7 @@ const ClassesForm = ({ enableEdit, data, addNew, btnRef }) => {
   return (
     <div className="flex col">
       <form className="login-form" onSubmit={formik.handleSubmit}>
-        <div className="card vh-100">
+      <Card>
           <div className="row justify-content-between gap-3">
             <div className="col-md-5">
               <DropDown
@@ -100,7 +101,8 @@ const ClassesForm = ({ enableEdit, data, addNew, btnRef }) => {
               />
             </div>
           </div>
-        </div>
+          </Card>
+      
         <button type="submit" ref={btnRef} hidden></button>
       </form>
     </div>

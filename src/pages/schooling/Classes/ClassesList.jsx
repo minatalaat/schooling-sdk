@@ -20,7 +20,7 @@ const ClassesList = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { fetchClasses, deleteClass } = useClassesServices();
-
+  const [actionInProgress, setActionInProgress] = useState(false);
   const [show, setShow] = useState('table');
   const [loading, setLoading] = useState(true);
   const [checked, setChecked] = useState([]);
@@ -53,7 +53,6 @@ const ClassesList = () => {
       window.removeEventListener('resize', handleWindowResize);
     };
   });
-  console.log(checked);
 
   const importData = async () => {
     setLoading(true);
@@ -112,6 +111,8 @@ const ClassesList = () => {
         setChecked={setChecked}
         data={fetchedData.data || []}
         deleteHandler={deleteHandler}
+        setActionInProgress={setActionInProgress}
+
       />
 
       <div className="page-body">
@@ -151,6 +152,8 @@ const ClassesList = () => {
                   filter={true}
                   deleteHandler={deleteHandler}
                   refreshData={importData}
+                  setActionInProgress={setActionInProgress}
+
                   bulkActionConfig={{
                     canDelete: true,
                   }}
@@ -185,6 +188,8 @@ const ClassesList = () => {
                             isViewable={false}
                             isEditable={true}
                             viewStudentList={true}
+                            setActionInProgress={setActionInProgress}
+
                           />
                         );
                       })}
@@ -210,6 +215,8 @@ const ClassesList = () => {
                             deleteHandler={deleteHandler}
                             viewStudentList={true}
                             isViewable={false}
+                            setActionInProgress={setActionInProgress}
+
                           />
                         );
                       })}

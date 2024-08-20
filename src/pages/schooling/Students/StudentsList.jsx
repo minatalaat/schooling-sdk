@@ -22,7 +22,7 @@ const StudentsList = () => {
   const subFeature = 'STUDENTS';
 
   const { t } = useTranslation();
-
+  const [actionInProgress, setActionInProgress] = useState(false);
   const [show, setShow] = useState('table');
   const [checked, setChecked] = useState([]);
   const [windosSize, setWindowSize] = useState([window.innerWidth, window.innerHeight]);
@@ -130,12 +130,14 @@ const StudentsList = () => {
 
   return (
     <>
+     {actionInProgress && <div className="lodingpage"></div>}
       <MoreAction
         showMoreAction={showMoreAction}
         setShowMoreAction={setShowMoreAction}
         checked={checked}
         setChecked={setChecked}
         data={fetchedData?.data || []}
+        setActionInProgress={setActionInProgress}
       />
 
       {!loading ? (
@@ -167,6 +169,7 @@ const StudentsList = () => {
                   bulkActionConfig={{
                     canDelete: true,
                   }}
+                  setActionInProgress={setActionInProgress}
                 />
 
                 {show === 'table' && windosSize[0] > 1200 && (
@@ -193,6 +196,7 @@ const StudentsList = () => {
                             subFeature={subFeature}
                             isEditable={false}
                             deleteHandler={deleteHandler}
+                            setActionInProgress={setActionInProgress}
                           />
                         );
                       })}
@@ -215,7 +219,7 @@ const StudentsList = () => {
                             setChecked={setChecked}
                             isEditable={false}
                             deleteHandler={deleteHandler}
-                          />
+                            setActionInProgress={setActionInProgress}                          />
                         );
                       })}
                   </CardsList>

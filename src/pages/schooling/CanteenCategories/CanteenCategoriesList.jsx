@@ -28,6 +28,7 @@ const CanteenCategoriesList = () => {
   const [windosSize, setWindowSize] = useState([window.innerWidth, window.innerHeight]);
   const [showMoreAction, setShowMoreAction] = useState(false);
   const [fetchedData, setFetchedData] = useState([]);
+  const [actionInProgress, setActionInProgress] = useState(false);
 
   const fields = [
     { accessor: 'id', Header: t('LBL_CODE'), type: 'text' },
@@ -99,12 +100,16 @@ const CanteenCategoriesList = () => {
 
   return (
     <>
+        {actionInProgress && <div className="lodingpage"></div>}
+
       <MoreAction
         showMoreAction={showMoreAction}
         setShowMoreAction={setShowMoreAction}
         checked={checked}
         setChecked={setChecked}
         data={fetchedData.data || []}
+        setActionInProgress={setActionInProgress}
+
       />
       {loading ? (
         <div style={{ marginTop: '20rem' }}>
@@ -146,6 +151,8 @@ const CanteenCategoriesList = () => {
                   bulkActionConfig={{
                     canDelete: true,
                   }}
+                  setActionInProgress={setActionInProgress}
+
                 />
 
                 {show === 'table' && windosSize[0] > 1200 && (
@@ -172,6 +179,8 @@ const CanteenCategoriesList = () => {
                             subFeature={subFeature}
                             deleteHandler={deleteHandler}
                             isDeletable={true}
+                            setActionInProgress={setActionInProgress}
+
                           />
                         );
                       })}
@@ -193,6 +202,8 @@ const CanteenCategoriesList = () => {
                             checked={checked}
                             setChecked={setChecked}
                             deleteHandler={deleteHandler}
+                            setActionInProgress={setActionInProgress}
+
                           />
                         );
                       })}

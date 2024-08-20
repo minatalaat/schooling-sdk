@@ -1,14 +1,13 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
-
-import ExamplePrevious from '../assets/images/example_previous.svg';
-import ExampleNext from '../assets/images/example_next.svg';
-import ExamplePreviousAr from '../assets/images/example_previous_ar.svg';
-import ExampleNextAr from '../assets/images/example_next_ar.svg';
 
 const Pagination = ({ total }) => {
   const location = useLocation();
   const [searchParams] = useSearchParams();
+
+  const { t } = useTranslation();
+
   let pageSize = parseInt(searchParams.get('pageSize') || 10);
   let currentPage = parseInt(searchParams.get('currentPage') || 1);
   let pageCount = Math.ceil(total / pageSize) - 1;
@@ -45,59 +44,100 @@ const Pagination = ({ total }) => {
     return currentPage + 1;
   };
 
+  const lastPage = Number(range.length);
+  const firstPage = Number(range[0] + 1);
+
   return (
     <>
-      <div className="row">
-        <div className="col-md-4 mt-4">
-          <div className="pagination-new">
-            <ul className="pagination">
-              <li className={isPrevDisabled() ? 'disabled' : ''}>
+      <nav className="pagination-container">
+        <div className="pagination-wrapper">
+          <span href="#" className="next-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+              <path
+                d="M12.5 5.10004L7.5 10.1L12.5 15.1"
+                stroke="#151538"
+                strokeWidth="1.75"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              ></path>
+            </svg>
+            <span className="next-text">
+              <Link
+                to={{
+                  pathname: location.pathname,
+                  search: `?${getLocationSearch(currentPage - 1)}`,
+                }}
+                style={{ pointerEvents: isPrevDisabled() ? 'none' : '' }}
+              >
+                {t('Invoicing_btnPrevious')}
+              </Link>
+            </span>
+          </span>
+          <div className="page-numbers">
+            {currentPage - firstPage >= 2 ? (
+              <>
                 <Link
                   to={{
                     pathname: location.pathname,
-                    search: `?${getLocationSearch(currentPage - 1)}`,
+                    search: `?${getLocationSearch(firstPage)}`,
                   }}
-                  style={{ pointerEvents: isPrevDisabled() ? 'none' : '' }}
+                  className="page-link"
                 >
-                  <img
-                    src={localStorage.getItem('code') === 'en' ? ExamplePrevious : ExamplePreviousAr}
-                    alt={localStorage.getItem('code') === 'en' ? ExamplePrevious : ExamplePreviousAr}
-                  />
+                  {firstPage}
                 </Link>
-              </li>
-              {range &&
-                range.slice(getMinRange(), getMaxRange()).map(pageNum => {
-                  return (
-                    <li className={pageNum + 1 === currentPage ? 'active' : ''} key={pageNum}>
-                      <Link
-                        to={{
-                          pathname: location.pathname,
-                          search: `?${getLocationSearch(pageNum + 1)}`,
-                        }}
-                      >
-                        {pageNum + 1}
-                      </Link>
-                    </li>
-                  );
-                })}
-              <li className={isNextDisabled() ? 'disabled' : ''}>
+                <span className="ellipsis">...</span>
+              </>
+            ) : null}
+            {range &&
+              range.slice(getMinRange(), getMaxRange()).map(pageNum => {
+                return (
+                  <>
+                    <Link
+                      to={{
+                        pathname: location.pathname,
+                        search: `?${getLocationSearch(pageNum + 1)}`,
+                      }}
+                      className={pageNum + 1 === currentPage ? 'current-page' : 'page-link'}
+                      key={pageNum}
+                    >
+                      {pageNum + 1}
+                    </Link>
+                  </>
+                );
+              })}
+            {lastPage - currentPage >= 2 ? (
+              <>
+                <span className="ellipsis">...</span>
                 <Link
                   to={{
                     pathname: location.pathname,
-                    search: `?${getLocationSearch(currentPage + 1)}`,
+                    search: `?${getLocationSearch(lastPage)}`,
                   }}
-                  style={{ pointerEvents: isNextDisabled() ? 'none' : '' }}
+                  className="page-link"
                 >
-                  <img
-                    src={localStorage.getItem('code') === 'en' ? ExampleNext : ExampleNextAr}
-                    alt={localStorage.getItem('code') === 'en' ? ExampleNext : ExampleNextAr}
-                  />
+                  {lastPage}
                 </Link>
-              </li>
-            </ul>
+              </>
+            ) : null}
           </div>
+          <a className="previous-button">
+            <span className="previous-text">
+              <Link
+                to={{
+                  pathname: location.pathname,
+                  search: `?${getLocationSearch(currentPage + 1)}`,
+                }}
+                style={{ pointerEvents: isNextDisabled() ? 'none' : '' }}
+              >
+                {t('LBL_NEXT')}
+              </Link>
+            </span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+              <path d="M8 5.10004L13 10.1L8 15.1" stroke="#151538" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"></path>
+            </svg>
+          </a>
         </div>
-      </div>
+      </nav>
     </>
   );
 };

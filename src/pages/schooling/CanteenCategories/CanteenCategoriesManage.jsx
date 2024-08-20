@@ -1,19 +1,30 @@
 import { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import ConfirmationPopup from '../../../components/modals/ConfirmationPopup';
 import BackButton from '../../../components/ui/buttons/BackButton';
 import PrimaryButton from '../../../components/ui/buttons/PrimaryButton';
 import CanteenCategoriesForm from './CanteenCategoriesForm';
 import { useCategoriesServices } from '../../../services/apis/useCategoriesServices';
 import CircleSkeleton from '../../../components/ui/skeletons/CircleSkeleton';
+import { useDispatch } from 'react-redux';
+import { useFeatures } from '../../../hooks/useFeatures';
+import { confirmationPopupActions } from '../../../store/confirmationPopup';
+import FormAction from '../../../components/FormAction/FormAction';
+import FormFooter from '../../../components/FormFooter/FormFooter';
 
 const CanteenCategoriesManage = ({ addNew, enableEdit }) => {
+  const feature = 'SCHOOLING';
+  const subFeature = 'CANTEEN_CATEGORIES';
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [isDelete, setIsDelete] = useState(false);
+  const { canView, canEdit, canDelete, getFeaturePath } = useFeatures(feature, subFeature);
+  const mode = addNew ? 'add' : enableEdit ? 'edit' : 'view';
   const { t } = useTranslation();
   const btnRef = useRef(null);
   const { fetchCategory } = useCategoriesServices();
   const [loading, setLoading] = useState(false);
-  const [showDelete, setShowDelete] = useState(false);
   const [data, setData] = useState({});
 
   const { id } = useParams();
@@ -28,21 +39,45 @@ const CanteenCategoriesManage = ({ addNew, enableEdit }) => {
     if (id) importData();
   }, [id]);
 
+  const viewHandler = () => {
+    navigate(getFeaturePath(subFeature, 'view', { id }));
+  };
+
+  const editHandler = () => {
+    navigate(getFeaturePath(subFeature, 'edit', { id }));
+  };
+
+  const deleteHandler = () => {
+    dispatch(
+      confirmationPopupActions.openPopup({
+        title: 'LBL_BEWARE_ABOUT_TO_DELETE',
+        message: data?.name ? data.name : `#${data?.id}`,
+        onConfirmHandler: () => setIsDelete(true),
+      })
+    );
+  };
+
   return (
     <>
       <div className="page-body">
         <div className="container-fluid">
-          <div className="row"></div>
+
+          <FormAction
+                feature={feature}
+                subFeature={subFeature}
+                viewHandler={canView && enableEdit ? viewHandler : null}
+                editHandler={canEdit && !enableEdit ? editHandler : null}
+              />
           <div className="row">
             <div className="col-md-12 mb-4">
               <div className="info-tite-page float-start">
                 <h4>{addNew ? t('LBL_NEW_RECORD') : data.name ? data.name : ''}</h4>
               </div>
 
-              <div className="reverse-page float-end">
+              {/* <div className="reverse-page float-end">
                 <BackButton text={addNew ? 'LBL_CANCEL' : 'LBL_BACK'} />
                 {(addNew || enableEdit) && <PrimaryButton onClick={() => btnRef.current.click()} disabled={false} />}
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="row">
@@ -65,6 +100,9 @@ const CanteenCategoriesManage = ({ addNew, enableEdit }) => {
               )}
             </div>
           </div>
+          <FormFooter mode={mode} feature={feature} subFeature={subFeature} deleteHandler={canDelete ? deleteHandler : null}>
+          {(addNew || enableEdit) && <PrimaryButton onClick={() => btnRef.current.click()} disabled={false} />}
+          </FormFooter>
         </div>
       </div>
     </>

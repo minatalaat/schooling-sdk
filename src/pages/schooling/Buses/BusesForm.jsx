@@ -11,6 +11,7 @@ import DropDown from '../../../components/ui/inputs/DropDown';
 import { useModelsServices } from '../../../services/apis/useModelsServices';
 import moment from 'moment/moment';
 import { useNavigate } from 'react-router-dom';
+import Card from '../../../components/Card/Card'
 
 const BusesForm = ({ enableEdit, data, addNew, btnRef }) => {
   const { t } = useTranslation();
@@ -142,119 +143,122 @@ const BusesForm = ({ enableEdit, data, addNew, btnRef }) => {
   return (
     <div className="flex col">
       <form className="login-form" onSubmit={formik.handleSubmit}>
-        <div className="card">
-          <div className="row justify-content-between gap-3">
-            {enableEdit || addNew ? (
-              <div className="col-md-5">
-                <DropDown
-                  placeholder={formik?.values?.busModel?.name}
-                  options={modelsOptions}
-                  formik={formik}
-                  isRequired={true}
-                  disabled={false}
-                  label="LBL_MODEL"
-                  accessor="busModel.id"
-                  initialValue="busModel.id"
-                  // translate={unitTypeSelect.mode === 'enum'}
-                  keys={{ valueKey: 'value', titleKey: 'name' }}
-                  mode={addNew ? 'add' : enableEdit ? 'edit' : 'view'}
-                />
-              </div>
-            ) : (
-              <div className="col-md-5">
-                <TextInput
-                  formik={formik}
-                  label="LBL_MODEL"
-                  accessor="busModel.name"
-                  mode={addNew ? 'add' : enableEdit ? 'edit' : 'view'}
-                  isRequired={true}
-                />
-              </div>
-            )}
+        <Card>
 
-            <div className="col-md-5">
-              {enableEdit || addNew ? (
-                <DropDown
-                  options={yearsArray}
-                  formik={formik}
-                  isRequired={true}
-                  disabled={false}
-                  label="LBL_YEAR"
-                  accessor="productionYear"
-                  // translate={unitTypeSelect.mode === 'enum'}
-                  initialValue="productionYear"
-                  keys={{ valueKey: 'value', titleKey: 'name' }}
-                  mode={addNew ? 'add' : enableEdit ? 'edit' : 'view'}
-                />
-              ) : (
-                <TextInput
-                  formik={formik}
-                  label="LBL_YEAR"
-                  accessor="productionYear"
-                  mode={addNew ? 'add' : enableEdit ? 'edit' : 'view'}
-                  isRequired={true}
-                />
-              )}
-            </div>
-          </div>
           <div className="row justify-content-between gap-3">
-            <div className="col-md-5">
-              <TextInput
-                formik={formik}
-                label="LBL_CAPACITY"
-                accessor="capacity"
-                mode={addNew ? 'add' : enableEdit ? 'edit' : 'view'}
-                isRequired={true}
-              />
-            </div>
-            <div className="col-md-5">
-              <TextInput
-                formik={formik}
-                label="LBL_PLATE_NUMBER"
-                accessor="plateNumber"
-                mode={addNew ? 'add' : enableEdit ? 'edit' : 'view'}
-                isRequired={true}
-              />
-            </div>
-            {enableEdit || addNew ? (
-              <div className="col-md-5">
-                <DropDown
-                  options={operatorStatus}
-                  formik={formik}
-                  isRequired={true}
-                  disabled={false}
-                  label="LBL_STATE"
-                  accessor="state"
-                  // translate={unitTypeSelect.mode === 'enum'}
-                  keys={{ valueKey: 'value', titleKey: 'name' }}
-                  mode={addNew ? 'add' : enableEdit ? 'edit' : 'view'}
-                />
-              </div>
-            ) : (
-              <div className="col-md-5">
-                <TextInput
-                  formik={formik}
-                  label="LBL_STATE"
-                  accessor="state"
-                  mode={addNew ? 'add' : enableEdit ? 'edit' : 'view'}
-                  isRequired={true}
-                />
-              </div>
-            )}
+          {enableEdit || addNew ? (
+    <div className="col-md-5">
+      <DropDown
+        placeholder={formik?.values?.busModel?.name}
+        options={modelsOptions}
+        formik={formik}
+        isRequired={true}
+        disabled={false}
+        label="LBL_MODEL"
+        accessor="busModel.id"
+        initialValue="busModel.id"
+        // translate={unitTypeSelect.mode === 'enum'}
+        keys={{ valueKey: 'value', titleKey: 'name' }}
+        mode={addNew ? 'add' : enableEdit ? 'edit' : 'view'}
+      />
+    </div>
+  ) : (
+    <div className="col-md-5">
+      <TextInput
+        formik={formik}
+        label="LBL_MODEL"
+        accessor="busModel.name"
+        mode={addNew ? 'add' : enableEdit ? 'edit' : 'view'}
+        isRequired={true}
+      />
+    </div>
+  )}
+
+  <div className="col-md-5">
+    {enableEdit || addNew ? (
+      <DropDown
+        options={yearsArray}
+        formik={formik}
+        isRequired={true}
+        disabled={false}
+        label="LBL_YEAR"
+        accessor="productionYear"
+        // translate={unitTypeSelect.mode === 'enum'}
+        initialValue="productionYear"
+        keys={{ valueKey: 'value', titleKey: 'name' }}
+        mode={addNew ? 'add' : enableEdit ? 'edit' : 'view'}
+      />
+    ) : (
+      <TextInput
+        formik={formik}
+        label="LBL_YEAR"
+        accessor="productionYear"
+        mode={addNew ? 'add' : enableEdit ? 'edit' : 'view'}
+        isRequired={true}
+      />
+    )}
+  </div>
+</div>
+<div className="row justify-content-between gap-3">
+  <div className="col-md-5">
+    <TextInput
+      formik={formik}
+      label="LBL_CAPACITY"
+      accessor="capacity"
+      mode={addNew ? 'add' : enableEdit ? 'edit' : 'view'}
+      isRequired={true}
+    />
+  </div>
+  <div className="col-md-5">
+    <TextInput
+      formik={formik}
+      label="LBL_PLATE_NUMBER"
+      accessor="plateNumber"
+      mode={addNew ? 'add' : enableEdit ? 'edit' : 'view'}
+      isRequired={true}
+    />
+  </div>
+  {enableEdit || addNew ? (
+    <div className="col-md-5">
+      <DropDown
+        options={operatorStatus}
+        formik={formik}
+        isRequired={true}
+        disabled={false}
+        label="LBL_STATE"
+        accessor="state"
+        // translate={unitTypeSelect.mode === 'enum'}
+        keys={{ valueKey: 'value', titleKey: 'name' }}
+        mode={addNew ? 'add' : enableEdit ? 'edit' : 'view'}
+      />
+    </div>
+  ) : (
+    <div className="col-md-5">
+      <TextInput
+        formik={formik}
+        label="LBL_STATE"
+        accessor="state"
+        mode={addNew ? 'add' : enableEdit ? 'edit' : 'view'}
+        isRequired={true}
+      />
+    </div>
+  )}
 
             {/* <div className="col-md-5">
               <TextInput
-                formik={formik}
+              formik={formik}
                 label="LBL_BUS_REGISTRATION_EXPIRY"
                 accessor="name_ar"
                 mode={addNew ? 'add' : enableEdit ? 'edit' : 'view'}
                 isRequired={true}
               />
-            </div> */}
+              </div> */}
           </div>
+              </Card>
 
           <>
-            <BorderSection title="LBL_OPERATION_INFO" />
+            {/* <BorderSection title="LBL_OPERATION_INFO" /> */}
+            <Card>
             <div className="row justify-content-between gap-3">
               <div className="col-md-8">
                 <div className="row justify-content-between gap-3">
@@ -356,8 +360,12 @@ const BusesForm = ({ enableEdit, data, addNew, btnRef }) => {
                 <FileInput formik={formik} identifier="logo" label="LBL_LOGO" mode={addNew ? 'add' : enableEdit ? 'edit' : 'view'} />
               </div>
             </div>
+            </Card>
+            
           </>
+
           {addNew && (
+            <Card>
             <div className="row justify-content-between gap-3">
               <div className="col-md-5">
                 <TextInput
@@ -378,8 +386,9 @@ const BusesForm = ({ enableEdit, data, addNew, btnRef }) => {
                 />
               </div>
             </div>
+            </Card>
           )}
-        </div>
+        
         <button type="submit" ref={btnRef} hidden></button>
       </form>
     </div>
