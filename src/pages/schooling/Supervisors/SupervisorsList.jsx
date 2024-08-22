@@ -20,6 +20,7 @@ const SupervisorsList = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { fetchSchoolSupervisors, deleteSupervisor } = useSchoolStudentServices();
+  const [actionInProgress, setActionInProgress] = useState(false);
 
   const [show, setShow] = useState('table');
   const [loading, setLoading] = useState(true);
@@ -104,12 +105,15 @@ const SupervisorsList = () => {
 
   return (
     <>
+        {actionInProgress && <div className="lodingpage"></div>}
       <MoreAction
         showMoreAction={showMoreAction}
         setShowMoreAction={setShowMoreAction}
         checked={checked}
         setChecked={setChecked}
         data={fetchedData.data || []}
+        setActionInProgress={setActionInProgress}
+
       />
 
       <div className="page-body">
@@ -147,6 +151,7 @@ const SupervisorsList = () => {
                   data={fetchedData.data || []}
                   filter={true}
                   deleteHandler={deleteHandler}
+                  setActionInProgress={setActionInProgress}
                   refreshData={importData}
                   bulkActionConfig={{
                     canDelete: true,
@@ -176,6 +181,8 @@ const SupervisorsList = () => {
                             feature={feature}
                             subFeature={subFeature}
                             deleteHandler={deleteHandler}
+                            setActionInProgress={setActionInProgress}
+
                           />
                         );
                       })}
@@ -197,6 +204,8 @@ const SupervisorsList = () => {
                             checked={checked}
                             setChecked={setChecked}
                             deleteHandler={deleteHandler}
+                            setActionInProgress={setActionInProgress}
+
                           />
                         );
                       })}

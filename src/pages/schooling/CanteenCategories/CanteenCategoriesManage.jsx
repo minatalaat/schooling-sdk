@@ -12,6 +12,7 @@ import { useFeatures } from '../../../hooks/useFeatures';
 import { confirmationPopupActions } from '../../../store/confirmationPopup';
 import FormAction from '../../../components/FormAction/FormAction';
 import FormFooter from '../../../components/FormFooter/FormFooter';
+import { alertsActions } from '../../../store/alerts';
 
 const CanteenCategoriesManage = ({ addNew, enableEdit }) => {
   const feature = 'SCHOOLING';
@@ -23,7 +24,7 @@ const CanteenCategoriesManage = ({ addNew, enableEdit }) => {
   const mode = addNew ? 'add' : enableEdit ? 'edit' : 'view';
   const { t } = useTranslation();
   const btnRef = useRef(null);
-  const { fetchCategory } = useCategoriesServices();
+  const { fetchCategory,deleteCategory } = useCategoriesServices();
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({});
 
@@ -47,12 +48,38 @@ const CanteenCategoriesManage = ({ addNew, enableEdit }) => {
     navigate(getFeaturePath(subFeature, 'edit', { id }));
   };
 
+  const alertHandler = (title, message) => {
+    if (message) dispatch(alertsActions.initiateAlert({ title, message }));
+
+    if (title !== 'Success' || !message) {
+      setIsDelete(false);
+      setLoading(false);
+    }
+  };
+
+  const deleteRecordHandler = id => {
+
+    setLoading(true);
+
+    const successHandler = () => {
+      alertHandler('Success',' message' );
+      setTimeout(() => {
+        setIsDelete(false);
+        navigate(getFeaturePath(subFeature));
+      }, 3000);
+    };
+
+    deleteCategory(id, successHandler);
+
+  };
+
   const deleteHandler = () => {
+    console.log(id)
     dispatch(
       confirmationPopupActions.openPopup({
         title: 'LBL_BEWARE_ABOUT_TO_DELETE',
-        message: data?.name ? data.name : `#${data?.id}`,
-        onConfirmHandler: () => setIsDelete(true),
+        message: data?.name ? data.name : `#${id}`,
+        onConfirmHandler: () => deleteRecordHandler(id),
       })
     );
   };

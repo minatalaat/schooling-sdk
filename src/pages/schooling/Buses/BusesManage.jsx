@@ -13,11 +13,12 @@ import { confirmationPopupActions } from '../../../store/confirmationPopup';
 import { useFeatures } from '../../../hooks/useFeatures';
 import { useDispatch } from 'react-redux';
 import FormAction from '../../../components/FormAction/FormAction';
+import { alertsActions } from '../../../store/alerts';
 
 const BusesManage = ({ addNew, enableEdit }) => {
   const { t } = useTranslation();
   const btnRef = useRef(null);
-  const { fetchBus, updateBus } = useBusesServices();
+  const { fetchBus, updateBus, deleteBus } = useBusesServices();
   const navigate = useNavigate();
   const [showDelete, setShowDelete] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -60,14 +61,51 @@ const BusesManage = ({ addNew, enableEdit }) => {
     setShowMoreActionToolbar(false);
   };
 
+  // const deleteHandler = () => {
+  //   dispatch(
+  //     confirmationPopupActions.openPopup({
+  //       title: 'LBL_BEWARE_ABOUT_TO_DELETE',
+  //       message: data?.name ? data.name : `#${data?.id}`,
+  //       onConfirmHandler: () => {
+  //         setIsDelete(true)
+  //       },
+  //     })
+  //   );
+  // };
+  
+  const alertHandler = (title, message) => {
+    if (message) dispatch(alertsActions.initiateAlert({ title, message }));
+
+    if (title !== 'Success' || !message) {
+      setIsSave(false);
+      setIsDelete(false);
+      setLoading(false);
+    }
+  };
+
+  const deleteRecordHandler = id => {
+
+    setLoading(true);
+
+    const successHandler = () => {
+      alertHandler('Success',' message' );
+      setTimeout(() => {
+        setIsSave(false);
+        setIsDelete(false);
+        navigate(getFeaturePath(subFeature));
+      }, 3000);
+    };
+
+    deleteBus(id, successHandler);
+
+  };
+
   const deleteHandler = () => {
     dispatch(
       confirmationPopupActions.openPopup({
         title: 'LBL_BEWARE_ABOUT_TO_DELETE',
         message: data?.name ? data.name : `#${data?.id}`,
-        onConfirmHandler: () => {
-          setIsDelete(true)
-        },
+        onConfirmHandler: () => deleteRecordHandler(data?.id),
       })
     );
   };

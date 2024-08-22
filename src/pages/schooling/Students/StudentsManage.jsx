@@ -12,6 +12,7 @@ import { useFeatures } from '../../../hooks/useFeatures';
 import FormAction from '../../../components/FormAction/FormAction';
 import FormFooter from '../../../components/FormFooter/FormFooter';
 import { confirmationPopupActions } from '../../../store/confirmationPopup';
+import { alertsActions } from '../../../store/alerts';
 
 const StudentsManage = ({ addNew, enableEdit }) => {
   const feature = 'SCHOOLING';
@@ -23,7 +24,7 @@ const StudentsManage = ({ addNew, enableEdit }) => {
   const mode = addNew ? 'add' : enableEdit ? 'edit' : 'view';
 
   const { t } = useTranslation();
-  const { fetchStudent } = useStudentsServices();
+  const { fetchStudent ,deleteStudent} = useStudentsServices();
   const ref = useRef();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -48,12 +49,37 @@ const StudentsManage = ({ addNew, enableEdit }) => {
     navigate(getFeaturePath(subFeature, 'edit', { id }));
   };
 
+  const alertHandler = (title, message) => {
+    if (message) dispatch(alertsActions.initiateAlert({ title, message }));
+
+    if (title !== 'Success' || !message) {
+      setIsDelete(false);
+      setLoading(false);
+    }
+  };
+
+  const deleteRecordHandler = id => {
+
+    setLoading(true);
+
+    const successHandler = () => {
+      alertHandler('Success',' message' );
+      setTimeout(() => {
+        setIsDelete(false);
+        navigate(getFeaturePath(subFeature));
+      }, 3000);
+    };
+
+    deleteStudent(id, successHandler);
+
+  };
+
   const deleteHandler = () => {
     dispatch(
       confirmationPopupActions.openPopup({
         title: 'LBL_BEWARE_ABOUT_TO_DELETE',
-        message: data?.name ? data.name : `#${data?.id}`,
-        onConfirmHandler: () => setIsDelete(true),
+        message: data?.name ? data.name : `#${id}`,
+        onConfirmHandler: () => deleteRecordHandler(id),
       })
     );
   };

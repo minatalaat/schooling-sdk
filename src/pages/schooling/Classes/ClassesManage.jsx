@@ -13,6 +13,7 @@ import { useFeatures } from '../../../hooks/useFeatures';
 import FormFooter from '../../../components/FormFooter/FormFooter';
 import { confirmationPopupActions } from '../../../store/confirmationPopup';
 import FormAction from '../../../components/FormAction/FormAction';
+import { alertsActions } from '../../../store/alerts';
 
 const ClassesManage = ({ addNew, enableEdit }) => {
   const feature = 'SCHOOLING';
@@ -26,7 +27,7 @@ const ClassesManage = ({ addNew, enableEdit }) => {
   const { t } = useTranslation();
   const btnRef = useRef(null);
   const { fetchClassStudents } = useSchoolStudentServices();
-  const { fetchClass } = useClassesServices();
+  const { fetchClass, deleteClass } = useClassesServices();
   const [showDelete, setShowDelete] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -65,12 +66,40 @@ const ClassesManage = ({ addNew, enableEdit }) => {
     navigate(getFeaturePath(subFeature, 'edit', { classId }));
   };
 
+  const alertHandler = (title, message) => {
+    if (message) dispatch(alertsActions.initiateAlert({ title, message }));
+
+    if (title !== 'Success' || !message) {
+      setIsDelete(false);
+      setLoading(false);
+    }
+  };
+
+  const deleteRecordHandler = id => {
+    setLoading(true);
+
+    const successHandler = () => {
+      alertHandler('Success', ' message');
+      setTimeout(() => {
+        setIsDelete(false);
+        navigate(getFeaturePath(subFeature));
+      }, 3000);
+    };
+
+    deleteClass(
+      {
+        records: [{ id }],
+      },
+      successHandler
+    );
+  };
+
   const deleteHandler = () => {
     dispatch(
       confirmationPopupActions.openPopup({
         title: 'LBL_BEWARE_ABOUT_TO_DELETE',
-        message: data?.name ? data.name : `#${data?.id}`,
-        onConfirmHandler: () => setIsDelete(true),
+        message: data?.name ? data.name : `#${schoolId}`,
+        onConfirmHandler: () => deleteRecordHandler(schoolId),
       })
     );
   };
@@ -90,7 +119,7 @@ const ClassesManage = ({ addNew, enableEdit }) => {
                 {(addNew || enableEdit) && <BackButton text={addNew ? 'LBL_CANCEL' : 'LBL_BACK'} />}
                 {(addNew || enableEdit) && <PrimaryButton onClick={() => btnRef.current.click()} disabled={false} />}
               </div> */}
-                   <FormAction
+              <FormAction
                 feature={feature}
                 subFeature={subFeature}
                 viewHandler={canView && enableEdit ? viewHandler : null}
@@ -125,8 +154,8 @@ const ClassesManage = ({ addNew, enableEdit }) => {
             </div>
           </div>
           <FormFooter mode={mode} feature={feature} subFeature={subFeature} deleteHandler={canDelete ? deleteHandler : null}>
-          {/* <BackButton text={addNew ? 'LBL_CANCEL' : 'LBL_BACK'} /> */}
-                {(addNew || enableEdit) && <PrimaryButton onClick={() => btnRef.current.click()} disabled={false} />}
+            {/* <BackButton text={addNew ? 'LBL_CANCEL' : 'LBL_BACK'} /> */}
+            {(addNew || enableEdit) && <PrimaryButton onClick={() => btnRef.current.click()} disabled={false} />}
           </FormFooter>
         </div>
       </div>

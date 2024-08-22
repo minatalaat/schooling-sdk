@@ -70,15 +70,42 @@ const PreOrdersManage = ({ addNew, enableEdit }) => {
     navigate(getFeaturePath(subFeature, 'edit', { id }));
   };
 
-  const deleteHandler = () => {
-    dispatch(
-      confirmationPopupActions.openPopup({
-        title: 'LBL_BEWARE_ABOUT_TO_DELETE',
-        message: data?.name ? data.name : `#${data?.id}`,
-        onConfirmHandler: () => setIsDelete(true),
-      })
-    );
-  };
+  // const alertHandler = (title, message) => {
+  //   if (message) dispatch(alertsActions.initiateAlert({ title, message }));
+
+  //   if (title !== 'Success' || !message) {
+  //     setIsSave(false);
+  //     setIsDelete(false);
+  //     setLoading(false);
+  //   }
+  // };
+
+  // const deleteRecordHandler = id => {
+
+  //   setLoading(true);
+
+  //   const successHandler = () => {
+  //     alertHandler('Success',' message' );
+  //     setTimeout(() => {
+  //       setIsSave(false);
+  //       setIsDelete(false);
+  //       navigate(getFeaturePath(subFeature));
+  //     }, 3000);
+  //   };
+
+  //   deleteBus(id, successHandler);
+
+  // };
+
+  // const deleteHandler = () => {
+  //   dispatch(
+  //     confirmationPopupActions.openPopup({
+  //       title: 'LBL_BEWARE_ABOUT_TO_DELETE',
+  //       message: data?.name ? data.name : `#${data?.id}`,
+  //       onConfirmHandler: () => deleteRecordHandler(data?.id),
+  //     })
+  //   );
+  // };
 
   return (
     <>

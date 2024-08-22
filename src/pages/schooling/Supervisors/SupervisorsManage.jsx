@@ -13,6 +13,7 @@ import { useFeatures } from '../../../hooks/useFeatures';
 import { confirmationPopupActions } from '../../../store/confirmationPopup';
 import FormAction from '../../../components/FormAction/FormAction';
 import FormFooter from '../../../components/FormFooter/FormFooter';
+import { alertsActions } from '../../../store/alerts';
 
 const SupervisorsManage = ({ addNew, enableEdit }) => {
   const feature = 'SCHOOLING';
@@ -25,7 +26,7 @@ const SupervisorsManage = ({ addNew, enableEdit }) => {
 
   const { t } = useTranslation();
   const btnRef = useRef(null);
-  const { fetchSupervisor, updateSupervisor } = useSchoolStudentServices();
+  const { fetchSupervisor, updateSupervisor, deleteSupervisor } = useSchoolStudentServices();
   const [showDelete, setShowDelete] = useState(false);
   const [loading, setLoading] = useState(false);
   const [showChangePassword, setShowChangePassword] = useState(false);
@@ -58,12 +59,40 @@ const SupervisorsManage = ({ addNew, enableEdit }) => {
     navigate(getFeaturePath(subFeature, 'edit', { id }));
   };
 
+  const alertHandler = (title, message) => {
+    if (message) dispatch(alertsActions.initiateAlert({ title, message }));
+
+    if (title !== 'Success' || !message) {
+      setIsDelete(false);
+      setLoading(false);
+    }
+  };
+
+  const deleteRecordHandler = id => {
+    setLoading(true);
+
+    const successHandler = () => {
+      alertHandler('Success', ' message');
+      setTimeout(() => {
+        setIsDelete(false);
+        navigate(getFeaturePath(subFeature));
+      }, 3000);
+    };
+
+    deleteSupervisor(
+      {
+        records: [{ id }],
+      },
+      successHandler
+    );
+  };
+
   const deleteHandler = () => {
     dispatch(
       confirmationPopupActions.openPopup({
         title: 'LBL_BEWARE_ABOUT_TO_DELETE',
         message: data?.name ? data.name : `#${data?.id}`,
-        onConfirmHandler: () => setIsDelete(true),
+        onConfirmHandler: () => deleteRecordHandler(data?.id),
       })
     );
   };

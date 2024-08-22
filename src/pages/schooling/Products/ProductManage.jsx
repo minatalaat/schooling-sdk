@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import PrimaryButton from '../../../components/ui/buttons/PrimaryButton';
@@ -25,11 +25,10 @@ const ProductManage = ({ addNew, enableEdit }) => {
 
   const { t } = useTranslation();
   const btnRef = useRef();
-  const { fetchProduct } = useProductsServices();
+  const { fetchProduct ,deleteProduct} = useProductsServices();
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({});
   const [actionInProgress, setActionInProgress] = useState(false);
-
   const { id } = useParams();
 
   const importData = async () => {
@@ -53,22 +52,23 @@ const ProductManage = ({ addNew, enableEdit }) => {
     }
   };
 
-  const finishedActionHandler = (status, message) => {
-    setActionInProgress(false);
+  // const finishedActionHandler = (status, message) => {
+  //   setActionInProgress(false);
 
-    if (status === 'Success') {
-      alertHandler('Success', message || partnerConfig.messages.saveSuccessMessage);
-      setTimeout(() => {
-        setIsSave(false);
-        setIsDelete(false);
-        navigate(getFeaturePath(partnerConfig.subFeature));
-      }, 3000);
-    } else {
-      setIsSave(false);
-      setIsDelete(false);
-      alertHandler(status || 'Error', message || 'SOMETHING_WENT_WRONG');
-    }
-  };
+  //   if (status === 'Success') {
+  //     alertHandler('Success', message || '');
+  //     setTimeout(() => {
+  //       setIsSave(false);
+  //       setIsDelete(false);
+  //       navigate(getFeaturePath(subFeature));
+  //     }, 3000);
+  //   } else {
+  //     setIsSave(false);
+  //     setIsDelete(false);
+  //     alertHandler(status || 'Error', message || 'SOMETHING_WENT_WRONG');
+  //   }
+  // };
+
 
   const viewHandler = () => {
     navigate(getFeaturePath(subFeature, 'view', { id }));
@@ -78,12 +78,29 @@ const ProductManage = ({ addNew, enableEdit }) => {
     navigate(getFeaturePath(subFeature, 'edit', { id }));
   };
 
+  const deleteRecordHandler = id => {
+
+    setLoading(true);
+
+    const successHandler = () => {
+      alertHandler('Success',' message' );
+      setTimeout(() => {
+        setIsSave(false);
+        setIsDelete(false);
+        navigate(getFeaturePath(subFeature));
+      }, 3000);
+    };
+
+    deleteProduct(id, successHandler);
+
+  };
+
   const deleteHandler = () => {
     dispatch(
       confirmationPopupActions.openPopup({
         title: 'LBL_BEWARE_ABOUT_TO_DELETE',
         message: data?.name ? data.name : `#${data?.id}`,
-        onConfirmHandler: () => setIsDelete(true),
+        onConfirmHandler: () => deleteRecordHandler(data?.id),
       })
     );
   };
@@ -123,8 +140,21 @@ const ProductManage = ({ addNew, enableEdit }) => {
               ) : (
                 (Object.keys(data).length > 0 || addNew) && (
                   <>
-                    {!addNew && <ProductsForm mode={enableEdit ? 'edit' : 'view'} btnRef={btnRef} data={data} />}
-                    {addNew && <ProductsForm mode="add" btnRef={btnRef} />}
+                    {!addNew && (
+                      <ProductsForm
+                        mode={enableEdit ? 'edit' : 'view'}
+                        btnRef={btnRef}
+                        data={data}
+                      
+                      />
+                    )}
+                    {addNew && (
+                      <ProductsForm
+                        mode="add"
+                        btnRef={btnRef}
+                        
+                      />
+                    )}
                   </>
                 )
               )}
@@ -132,7 +162,14 @@ const ProductManage = ({ addNew, enableEdit }) => {
           </div>
           <FormFooter mode={mode} feature={feature} subFeature={subFeature} deleteHandler={canDelete ? deleteHandler : null}>
             {/* <BackButton text={addNew ? 'LBL_CANCEL' : 'LBL_BACK'} /> */}
-            {(addNew || enableEdit) && <PrimaryButton onClick={() => {btnRef.current.click()  }} disabled={false} />}
+            {(addNew || enableEdit) && (
+              <PrimaryButton
+                onClick={() => {
+                  btnRef.current.click();
+                }}
+                disabled={false}
+              />
+            )}
             {/* {(addNew || enableEdit) && <PrimaryButton onClick={() => setIsSave(true)} disabled={false} />} */}
           </FormFooter>
         </div>

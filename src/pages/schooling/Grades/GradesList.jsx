@@ -17,6 +17,7 @@ import { useSchoolStudentServices } from '../../../services/apis/useSchoolStuden
 const GradesList = () => {
   const [searchParams] = useSearchParams();
   const { fetchGrades, importGrades } = useSchoolStudentServices();
+  const [actionInProgress, setActionInProgress] = useState(false);
 
   const feature = 'SCHOOLING';
   const subFeature = 'GRADES';
@@ -101,12 +102,16 @@ const GradesList = () => {
 
   return (
     <>
+        {actionInProgress && <div className="lodingpage"></div>}
+
       <MoreAction
         showMoreAction={showMoreAction}
         setShowMoreAction={setShowMoreAction}
         checked={checked}
         setChecked={setChecked}
         data={fetchedData?.data || []}
+        setActionInProgress={setActionInProgress}
+
       />
 
       <div className="page-body">
@@ -139,6 +144,8 @@ const GradesList = () => {
                   setChecked={setChecked}
                   data={fetchedData?.data || []}
                   refreshData={importData}
+                  setActionInProgress={setActionInProgress}
+
                 />
 
                 <>
@@ -166,6 +173,8 @@ const GradesList = () => {
                               subFeature={subFeature}
                               isEditable={false}
                               isDeletable={false}
+                              setActionInProgress={setActionInProgress}
+
                             />
                           );
                         })}
@@ -188,6 +197,8 @@ const GradesList = () => {
                               setChecked={setChecked}
                               isEditable={false}
                               isDeletable={false}
+                              setActionInProgress={setActionInProgress}
+
                             />
                           );
                         })}
