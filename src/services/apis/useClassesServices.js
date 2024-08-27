@@ -48,7 +48,7 @@ export const useClassesServices = () => {
 
   //Update ClassRoom
   const updateClass = async (id, body, successHandler) => {
-    await api('PUT', getClasses() + '/' + id, body, successHandler, null, null, {
+    await api('POST', getClasses() + '/' + id + "/update", body, successHandler, null, null, {
       'X-USER-TYPE': 'ADMIN',
     });
   };
@@ -63,7 +63,7 @@ export const useClassesServices = () => {
 
   //Delete class
   const deleteClass = async (body, successHandler) => {
-    await api('DELETE', getClasses() + '/0', body, successHandler, null, null, {
+    await api('POST', getClasses() + '/0' + "/delete", body, successHandler, null, null, {
       'X-USER-TYPE': 'ADMIN',
     });
   };

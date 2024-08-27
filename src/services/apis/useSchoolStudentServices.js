@@ -30,7 +30,7 @@ export const useSchoolStudentServices = () => {
 
   //Remove Students from Class
   const deleteStudentFromClass = async (schoolId, classId, body, successHandler) => {
-    const res = await api('DELETE', getSchools() + '/' + schoolId + '/classes/' + classId + '/students', body, successHandler, null, null, {
+    const res = await api('POST', getSchools() + '/' + schoolId + '/classes/' + classId + '/students' + "/delete", body, successHandler, null, null, {
       'X-USER-TYPE': 'ADMIN',
     });
     return { data: res?.data?.returnedObject?.records, total: res?.data?.returnedObject?.total_records };
@@ -61,14 +61,14 @@ export const useSchoolStudentServices = () => {
 
   //Update supervisors
   const updateSupervisor = async (id, body, successHandler) => {
-    await api('PUT', getSchools() + '/supervisors/' + id, body, successHandler, null, null, {
+    await api('POST', getSchools() + '/supervisors/' + id + "/update", body, successHandler, null, null, {
       'X-USER-TYPE': 'ADMIN',
     });
   };
 
   //Delete Supervisor
   const deleteSupervisor = async (body, successHandler) => {
-    await api('DELETE', getSchools() + '/supervisors', body, successHandler, null, null, {
+    await api('POST', getSchools() + '/supervisors' + "/delete", body, successHandler, null, null, {
       'X-USER-TYPE': 'ADMIN',
     });
   };

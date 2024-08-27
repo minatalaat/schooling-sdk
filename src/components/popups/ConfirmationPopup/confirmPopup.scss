@@ -1,0 +1,41 @@
+@import "../../../assets/css/variables.scss";
+.confirm-popup {
+  .modal-body {
+    padding: 26px 36px !important;
+    .icon-container {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+      .warning-icon {
+        justify-content: center;
+        align-items: center;
+        border-radius: 48px;
+        background-color: #f3f0ff;
+        display: flex;
+        height: 77px;
+        width: 77px;
+        max-width: 100%;
+        padding: 8px 0 !important;
+        @media (max-width: 991px) {
+          padding-right: 20px;
+        }
+        svg {
+          object-position: center;
+          width: 44px;
+          height: 44px;
+          stroke: $secondary;
+          margin: 0 !important;
+          path {
+            stroke: $secondary;
+            fill: transparent;
+          }
+        }
+      }
+    }
+    h3 {
+      font-size: 22px !important;
+    }
+  }
+}
