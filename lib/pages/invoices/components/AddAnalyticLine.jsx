@@ -35,7 +35,7 @@ function AddAnalyticLine({ show, setShow, edit, lineId, id, version, originalAmo
 
   const initVals = {
     analyticJournal: null,
-    axis: null,
+    analyticAxis: null,
     analyticAccount: null,
     distributeByQty: showDistrubuteByQty,
     qty: qty ? qty : 0.0,
@@ -44,7 +44,7 @@ function AddAnalyticLine({ show, setShow, edit, lineId, id, version, originalAmo
   };
   const valSchema = po
     ? Yup.object().shape({
-        axis: Yup.object().required(t('AXIS_VALIDATION_MESSAGE')).nullable(),
+        analyticAxis: Yup.object().required(t('AXIS_VALIDATION_MESSAGE')).nullable(),
         analyticAccount: Yup.object().nullable().required(t('ANALYTIC_ACCOUNT_VALIDATION_MESSAGE')),
         percentage: Yup.number(t('ADDITIONAL_NUMBER_VALIDATION_MESSAGE'))
           .typeError(t('ADDITIONAL_NUMBER_VALIDATION_MESSAGE'))
@@ -65,7 +65,7 @@ function AddAnalyticLine({ show, setShow, edit, lineId, id, version, originalAmo
           : null,
       })
     : Yup.object().shape({
-        axis: Yup.object().required(t('AXIS_VALIDATION_MESSAGE')).nullable(),
+        analyticAxis: Yup.object().required(t('AXIS_VALIDATION_MESSAGE')).nullable(),
         analyticAccount: Yup.object().required(t('ANALYTIC_ACCOUNT_VALIDATION_MESSAGE')).nullable(),
         percentage: Yup.number()
           .required(t('PERCENTAGE_VALIDATION_MESSAGE'))
@@ -159,137 +159,6 @@ function AddAnalyticLine({ show, setShow, edit, lineId, id, version, originalAmo
     }
   };
 
-  const AddAnalyticDistrbutionLineHandler = async () => {
-    const isValid = await validateFormForSubmit();
-    if (!isValid) return null;
-
-    if (po) {
-      if (formik.isValid) {
-        let analyticJournalObj = formik.values.analyticJournal;
-        let analyticAxisObj = formik.values.axis;
-        let analyticAccountObj = formik.values.analyticAccount;
-        let payload = {
-          lineId: Math.floor(Math.random() * 100).toString(),
-          originalPieceAmount: `${originalAmount}`,
-          percentage: formik.values.percentage,
-          typeSelect: 2,
-          analyticJournal: analyticJournalObj
-            ? {
-                code: analyticJournalObj?.code ?? '',
-                name: analyticJournalObj?.name ?? '',
-                id: analyticJournalObj?.id ?? -1,
-              }
-            : null,
-          date:
-            po === true ? moment(formik.values.date).locale('en').format('YYYY-MM-DD') : moment(today).locale('en').format('YYYY-MM-DD'),
-          analyticAxis: analyticAxisObj
-            ? {
-                id: analyticAxisObj?.id ?? -1,
-                name: analyticAxisObj?.name ?? '',
-                code: analyticAxisObj?.code ?? '',
-              }
-            : null,
-          analyticAccount: analyticAccountObj
-            ? {
-                id: analyticAccountObj?.id ?? -1,
-                code: analyticAccountObj?.code ?? '',
-                fullName: analyticAccountObj ? `${analyticAccountObj.fullName}` : '',
-              }
-            : null,
-          selected: true,
-          id: id ? id : null,
-          version: version,
-        };
-
-        if (type !== 'template') {
-          payload.amount = `${parseFloat(calcualtedAmount).toFixed(2).toString()}`;
-        }
-
-        if (edit) {
-          dispatch(
-            analyticDistributionLinesActions.editLine({
-              id: lineId,
-              analyticDistributionLine: payload,
-            })
-          );
-          setShow(false);
-        } else {
-          dispatch(
-            analyticDistributionLinesActions.addLine({
-              analyticDistributionLine: payload,
-            })
-          );
-          setShow(false);
-        }
-      } else {
-        dispatch(alertsActions.initiateAlert({ title: 'Error', message: 'PLEASE_FILL_REQUIRED_ERROR_MESSAGE' }));
-      }
-    } else {
-      if (formik.isValid) {
-        let analyticJournalObj = formik.values.analyticJournal;
-        let analyticAxisObj = formik.values.axis;
-        let analyticAccountObj = formik.values.analyticAccount;
-
-        let payload = {
-          lineId: Math.floor(Math.random() * 100).toString(),
-          originalPieceAmount: `${parseFloat(originalAmount).toFixed(2).toString()}`,
-          percentage: formik.values.percentage,
-          typeSelect: 2,
-          analyticJournal: analyticJournalObj
-            ? {
-                code: analyticJournalObj?.code ?? '',
-                name: analyticJournalObj?.name ?? '',
-                id: analyticJournalObj?.id ?? -1,
-              }
-            : null,
-          date:
-            po === true ? moment(formik.values.date).locale('en').format('YYYY-MM-DD') : moment(today).locale('en').format('YYYY-MM-DD'),
-          analyticAxis: analyticAxisObj
-            ? {
-                id: analyticAxisObj?.id ?? -1,
-                name: analyticAxisObj?.name ?? '',
-                code: analyticAxisObj?.code ?? '',
-              }
-            : null,
-          analyticAccount: analyticAccountObj
-            ? {
-                id: analyticAccountObj?.id ?? -1,
-                code: analyticAccountObj?.code ?? '',
-                fullName: analyticAccountObj ? `${analyticAccountObj.fullName}` : '',
-              }
-            : null,
-          selected: true,
-          id: id ? id : null,
-          version: version,
-        };
-
-        if (type !== 'template') {
-          payload.amount = `${parseFloat(calcualtedAmount).toFixed(2).toString()}`;
-        }
-
-        if (edit) {
-          dispatch(
-            analyticDistributionLinesActions.editLine({
-              id: lineId,
-              analyticDistributionLine: payload,
-            })
-          );
-          setShow(false);
-        } else {
-          dispatch(
-            analyticDistributionLinesActions.addLine({
-              analyticDistributionLine: payload,
-            })
-          );
-
-          setShow(false);
-        }
-      } else {
-        dispatch(alertsActions.initiateAlert({ title: 'Error', message: 'PLEASE_FILL_REQUIRED_ERROR_MESSAGE' }));
-      }
-    }
-  };
-
   useEffect(() => {
     if (edit) {
       let currentLine = analyticDistributionLines.filter(line => line.lineId === lineId)[0];
@@ -297,7 +166,7 @@ function AddAnalyticLine({ show, setShow, edit, lineId, id, version, originalAmo
       const setFetchedValues = () => {
         setAllValues(formik, {
           analyticJournal: currentLine?.analyticJournal || null,
-          axis: currentLine?.analyticAxis || null,
+          analyticAxis: currentLine?.analyticAxis || null,
           analyticAccount: currentLine?.analyticAccount || null,
           distributeByQty: showDistrubuteByQty,
           qty: currentLine && qty ? ((parseFloat(currentLine.percentage) / 100.0) * parseFloat(qty)).toFixed(2).toString() : '0.00',
@@ -328,11 +197,11 @@ function AddAnalyticLine({ show, setShow, edit, lineId, id, version, originalAmo
   }, []);
 
   useEffect(() => {
-    if (formik.values.axis) {
+    if (formik.values.analyticAxis) {
       let remainingPerctange = null;
       analyticDistributionLines?.length > 0 &&
         analyticDistributionLines
-          .filter(line => line.analyticAxis.id === formik.values.axis.id && line.lineId !== lineId)
+          .filter(line => line.analyticAxis.id === formik.values.analyticAxis.id && line.lineId !== lineId)
           .forEach(line => {
             remainingPerctange = remainingPerctange + parseFloat(line.percentage);
           });
@@ -345,7 +214,7 @@ function AddAnalyticLine({ show, setShow, edit, lineId, id, version, originalAmo
       setMaxQty(parseFloat((remainingPerctange / 100) * qty).toFixed(2));
       setMaxPer(parseFloat(remainingPerctange).toFixed(2));
     }
-  }, [formik.values.axis]);
+  }, [formik.values.analyticAxis]);
 
   const alertHandler = (title, message) => dispatch(alertsActions.initiateAlert({ title, message }));
 
@@ -364,7 +233,7 @@ function AddAnalyticLine({ show, setShow, edit, lineId, id, version, originalAmo
           typeSelect: 2,
           analyticJournal: formik.values.analyticJournal,
           date: moment(today).locale('en').format('YYYY-MM-DD'),
-          analyticAxis: formik.values.axis,
+          analyticAxis: formik.values.analyticAxis,
           analyticAccount: formik.values.analyticAccount,
           _parent: parentContext,
           _viewType: 'grid',
@@ -390,7 +259,7 @@ function AddAnalyticLine({ show, setShow, edit, lineId, id, version, originalAmo
     if ((type === 'invoice' || type === 'journal') && formik.values.percentage !== '' && parseInt(formik.values.percentage)) {
       computeAmount();
     }
-  }, [formik.values.percentage, , formik.values.analyticJournal, formik.values.analyticAccount, formik.values.axis]);
+  }, [formik.values.percentage, , formik.values.analyticJournal, formik.values.analyticAccount, formik.values.analyticAxis]);
 
   useEffect(() => {
     if (type === 'invoice' && formik.values.percentage !== '') {
@@ -408,7 +277,13 @@ function AddAnalyticLine({ show, setShow, edit, lineId, id, version, originalAmo
         alertHandler('Error', t('QUANTIRY_MORE_THAN_MAX'));
       }
     }
-  }, [formik.values.distributeByQty, formik.values.qty, formik.values.analyticJournal, formik.values.analyticAccount, formik.values.axis]);
+  }, [
+    formik.values.distributeByQty,
+    formik.values.qty,
+    formik.values.analyticJournal,
+    formik.values.analyticAccount,
+    formik.values.analyticAxis,
+  ]);
 
   return (
     <>
@@ -441,7 +316,7 @@ function AddAnalyticLine({ show, setShow, edit, lineId, id, version, originalAmo
                 }}
               />
             </div>
-            {formik.values.axis && (
+            {formik.values.analyticAxis && (
               <div className="col-md-6">
                 <SearchModalAxelor
                   formik={formik}
@@ -449,7 +324,7 @@ function AddAnalyticLine({ show, setShow, edit, lineId, id, version, originalAmo
                   mode={edit ? 'edit' : 'add'}
                   isRequired={true}
                   onSuccess={onAnalyticAccountSuccess}
-                  payloadDomain={`self.analyticAxis = ${formik.values.axis.id} and self.statusSelect = 1`}
+                  payloadDomain={`self.analyticAxis = ${formik.values.analyticAxis.id} and self.statusSelect = 1`}
                   tooltip="analyticAccount"
                   selectIdentifier="fullName"
                   defaultValueConfig={null}
@@ -509,12 +384,12 @@ function AddAnalyticLine({ show, setShow, edit, lineId, id, version, originalAmo
         <Modal.Footer>
           <div className="float-end">
             <PrimaryButton
-              theme="white"
+              theme="tertiary"
               onClick={() => {
                 setShow(false);
               }}
             />
-            <PrimaryButton theme="purple" text={edit ? 'LBL_OK' : 'LBL_ADD'} onClick={AddAnalyticDistrbutionLineHandler} />
+            <PrimaryButton theme="secondary" text={edit ? 'LBL_OK' : 'LBL_ADD'} onClick={AddAnalyticDistrbutionLineHandler} />
           </div>
         </Modal.Footer>
       </Modal>

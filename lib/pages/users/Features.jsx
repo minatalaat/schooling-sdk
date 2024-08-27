@@ -210,8 +210,8 @@ function Features({ setAssignedUserFeatures, edit, initChecked, view }) {
 
   return (
     <>
-      <div className="section-title mt-3">
-        <h4 className="float-start">{t('FEATURES')} *</h4>
+      <div className="section-title mt-3 col-md-12">
+        <h4 className="float-start">{t('FEATURES')}</h4>
       </div>
       {
         <div className="col-md-12">
@@ -284,14 +284,14 @@ function Features({ setAssignedUserFeatures, edit, initChecked, view }) {
                               )}
                               {view && checkFeatureAll(feature.featureCode) && (
                                 <FaCheckSquare
-                                  color="green"
+                                  color="#151538"
                                   size={23}
                                   style={{
                                     borderRadius: '0.5rem',
                                   }}
                                 />
                               )}
-                              {view && !checkFeatureAll(feature.featureCode) && <FaTimesCircle color="red" size={23} />}
+                              {view && !checkFeatureAll(feature.featureCode) && <FaTimesCircle color="#151538" size={23} />}
                             </td>
                             <td
                               width="450"
@@ -354,14 +354,14 @@ function Features({ setAssignedUserFeatures, edit, initChecked, view }) {
                               )}
                               {view && checkFeatureAllView(feature.featureCode) && (
                                 <FaCheckSquare
-                                  color="green"
+                                  color="#151538"
                                   size={23}
                                   style={{
                                     borderRadius: '0.5rem',
                                   }}
                                 />
                               )}
-                              {view && !checkFeatureAllView(feature.featureCode) && <FaTimesCircle color="red" size={23} />}
+                              {view && !checkFeatureAllView(feature.featureCode) && <FaTimesCircle color="#151538" size={23} />}
                             </td>
                             <td width="40">
                               {!view && (
@@ -416,14 +416,14 @@ function Features({ setAssignedUserFeatures, edit, initChecked, view }) {
                               )}
                               {view && checkFeatureAllAdd(feature.featureCode) && (
                                 <FaCheckSquare
-                                  color="green"
+                                  color="#151538"
                                   size={23}
                                   style={{
                                     borderRadius: '0.5rem',
                                   }}
                                 />
                               )}
-                              {view && !checkFeatureAllAdd(feature.featureCode) && <FaTimesCircle color="red" size={23} />}
+                              {view && !checkFeatureAllAdd(feature.featureCode) && <FaTimesCircle color="#151538" size={23} />}
                             </td>
                             <td width="40">
                               {!view && (
@@ -478,14 +478,14 @@ function Features({ setAssignedUserFeatures, edit, initChecked, view }) {
                               )}
                               {view && checkFeatureAllEdit(feature.featureCode) && (
                                 <FaCheckSquare
-                                  color="green"
+                                  color="#151538"
                                   size={23}
                                   style={{
                                     borderRadius: '0.5rem',
                                   }}
                                 />
                               )}
-                              {view && !checkFeatureAllEdit(feature.featureCode) && <FaTimesCircle color="red" size={23} />}
+                              {view && !checkFeatureAllEdit(feature.featureCode) && <FaTimesCircle color="#151538" size={23} />}
                             </td>
                             <td width="40">
                               {!view && (
@@ -535,14 +535,14 @@ function Features({ setAssignedUserFeatures, edit, initChecked, view }) {
                               )}
                               {view && checkFeatureAllDelete(feature.featureCode) && (
                                 <FaCheckSquare
-                                  color="green"
+                                  color="#151538"
                                   size={23}
                                   style={{
                                     borderRadius: '0.5rem',
                                   }}
                                 />
                               )}
-                              {view && !checkFeatureAllDelete(feature.featureCode) && <FaTimesCircle color="red" size={23} />}
+                              {view && !checkFeatureAllDelete(feature.featureCode) && <FaTimesCircle color="#151538" size={23} />}
                             </td>
                             <td
                               width="40"
@@ -602,7 +602,7 @@ function Features({ setAssignedUserFeatures, edit, initChecked, view }) {
                                     )}
                                     {view && checkSubFeatureAll(subFeature.subFeatureCode, subFeature.actions) && (
                                       <FaCheckSquare
-                                        color="green"
+                                        color="#151538"
                                         size={23}
                                         style={{
                                           borderRadius: '0.5rem',
@@ -610,7 +610,7 @@ function Features({ setAssignedUserFeatures, edit, initChecked, view }) {
                                       />
                                     )}
                                     {view && !checkSubFeatureAll(subFeature.subFeatureCode, subFeature.actions) && (
-                                      <FaTimesCircle color="red" size={23} />
+                                      <FaTimesCircle color="#151538" size={23} />
                                     )}
                                   </td>
                                   <td width="450" className="subfeature-padding">
@@ -648,7 +648,7 @@ function Features({ setAssignedUserFeatures, edit, initChecked, view }) {
                                           )}
                                           {view && checked.findIndex(item => item === `${subFeature.subFeatureCode}:${action}`) > -1 && (
                                             <FaCheckSquare
-                                              color="green"
+                                              color="#151538"
                                               size={23}
                                               style={{
                                                 borderRadius: '0.5rem',
@@ -656,7 +656,7 @@ function Features({ setAssignedUserFeatures, edit, initChecked, view }) {
                                             />
                                           )}
                                           {view && !(checked.findIndex(item => item === `${subFeature.subFeatureCode}:${action}`) > -1) && (
-                                            <FaTimesCircle color="red" size={23} />
+                                            <FaTimesCircle color="#151538" size={23} />
                                           )}
                                         </td>
                                       );
@@ -723,14 +723,14 @@ function Features({ setAssignedUserFeatures, edit, initChecked, view }) {
                                 )}
                                 {view && checkFeatureAll(feature.featureCode) && (
                                   <FaCheckSquare
-                                    color="green"
+                                    color="#151538"
                                     size={23}
                                     style={{
                                       borderRadius: '0.5rem',
                                     }}
                                   />
                                 )}
-                                {view && !checkFeatureAll(feature.featureCode) && <FaTimesCircle color="red" size={23} />}
+                                {view && !checkFeatureAll(feature.featureCode) && <FaTimesCircle color="#151538" size={23} />}
                               </td>
                               <td
                                 width="450"
@@ -792,14 +792,14 @@ function Features({ setAssignedUserFeatures, edit, initChecked, view }) {
                                 )}
                                 {view && checkFeatureAllView(feature.featureCode) && (
                                   <FaCheckSquare
-                                    color="green"
+                                    color="#151538"
                                     size={23}
                                     style={{
                                       borderRadius: '0.5rem',
                                     }}
                                   />
                                 )}
-                                {view && !checkFeatureAllView(feature.featureCode) && <FaTimesCircle color="red" size={23} />}
+                                {view && !checkFeatureAllView(feature.featureCode) && <FaTimesCircle color="#151538" size={23} />}
                               </td>
                               <td width="40">
                                 {!view && (
@@ -854,14 +854,14 @@ function Features({ setAssignedUserFeatures, edit, initChecked, view }) {
                                 )}
                                 {view && checkFeatureAllAdd(feature.featureCode) && (
                                   <FaCheckSquare
-                                    color="green"
+                                    color="#151538"
                                     size={23}
                                     style={{
                                       borderRadius: '0.5rem',
                                     }}
                                   />
                                 )}
-                                {view && !checkFeatureAllAdd(feature.featureCode) && <FaTimesCircle color="red" size={23} />}
+                                {view && !checkFeatureAllAdd(feature.featureCode) && <FaTimesCircle color="#151538" size={23} />}
                               </td>
                               <td width="40">
                                 {!view && (
@@ -916,14 +916,14 @@ function Features({ setAssignedUserFeatures, edit, initChecked, view }) {
                                 )}
                                 {view && checkFeatureAllEdit(feature.featureCode) && (
                                   <FaCheckSquare
-                                    color="green"
+                                    color="#151538"
                                     size={23}
                                     style={{
                                       borderRadius: '0.5rem',
                                     }}
                                   />
                                 )}
-                                {view && !checkFeatureAllEdit(feature.featureCode) && <FaTimesCircle color="red" size={23} />}
+                                {view && !checkFeatureAllEdit(feature.featureCode) && <FaTimesCircle color="#151538" size={23} />}
                               </td>
                               <td width="40">
                                 {!view && (
@@ -973,14 +973,14 @@ function Features({ setAssignedUserFeatures, edit, initChecked, view }) {
                                 )}
                                 {view && checkFeatureAllDelete(feature.featureCode) && (
                                   <FaCheckSquare
-                                    color="green"
+                                    color="#151538"
                                     size={23}
                                     style={{
                                       borderRadius: '0.5rem',
                                     }}
                                   />
                                 )}
-                                {view && !checkFeatureAllDelete(feature.featureCode) && <FaTimesCircle color="red" size={23} />}
+                                {view && !checkFeatureAllDelete(feature.featureCode) && <FaTimesCircle color="#151538" size={23} />}
                               </td>
                               <td
                                 width="40"
@@ -1041,7 +1041,7 @@ function Features({ setAssignedUserFeatures, edit, initChecked, view }) {
                                         )}
                                         {view && checkSubFeatureAll(subFeature.subFeatureCode, subFeature.actions) && (
                                           <FaCheckSquare
-                                            color="green"
+                                            color="#151538"
                                             size={23}
                                             style={{
                                               borderRadius: '0.5rem',
@@ -1049,7 +1049,7 @@ function Features({ setAssignedUserFeatures, edit, initChecked, view }) {
                                           />
                                         )}
                                         {view && !checkSubFeatureAll(subFeature.subFeatureCode, subFeature.actions) && (
-                                          <FaTimesCircle color="red" size={23} />
+                                          <FaTimesCircle color="#151538" size={23} />
                                         )}
                                       </td>
                                       <td width="450" className="subfeature-padding">
@@ -1090,7 +1090,7 @@ function Features({ setAssignedUserFeatures, edit, initChecked, view }) {
                                               {view &&
                                                 checked.findIndex(item => item === `${subFeature.subFeatureCode}:${action}`) > -1 && (
                                                   <FaCheckSquare
-                                                    color="green"
+                                                    color="#151538"
                                                     size={23}
                                                     style={{
                                                       borderRadius: '0.5rem',
@@ -1099,7 +1099,7 @@ function Features({ setAssignedUserFeatures, edit, initChecked, view }) {
                                                 )}
                                               {view &&
                                                 !(checked.findIndex(item => item === `${subFeature.subFeatureCode}:${action}`) > -1) && (
-                                                  <FaTimesCircle color="red" size={23} />
+                                                  <FaTimesCircle color="#151538" size={23} />
                                                 )}
                                             </td>
                                           );

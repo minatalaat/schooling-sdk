@@ -1,10 +1,10 @@
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import ConfirmationPopup from '../../components/modals/ConfirmationPopup';
-import BackButton from '../../components/ui/buttons/BackButton';
-import PrimaryButton from '../../components/ui/buttons/PrimaryButton';
-import { recordsData } from '../../constants/dummyData/dummyData';
+// import ConfirmationPopup from '../../components/modals/ConfirmationPopup';
+// import BackButton from '../../components/ui/buttons/BackButton';
+import PrimaryButton from '../../../components/ui/buttons/PrimaryButton';
+// import { recordsData } from '../../constants/dummyData/dummyData';
 import CanteenCategoriesForm from './CartForm';
 import { useDispatch } from 'react-redux';
 import { useFeatures } from '../../../hooks/useFeatures';
@@ -26,8 +26,8 @@ const CartManage = ({ addNew, enableEdit }) => {
   const [showDelete, setShowDelete] = useState(false);
 
   const { id } = useParams();
-
-  const data = useMemo(() => recordsData.data.find(rec => +rec.id === +id) || [], [id]);
+let data ;
+  // const data = useMemo(() => recordsData.data.find(rec => +rec.id === +id) || [], [id]);
   
   const viewHandler = () => {
     navigate(getFeaturePath(subFeature, 'view', { id }));
@@ -72,9 +72,9 @@ const CartManage = ({ addNew, enableEdit }) => {
           </div>
           <div className="row">
             <div className="col-md-12">
-              {showDelete && (
+              {/* {showDelete && (
                 <ConfirmationPopup item={data.name} onClickHandler={() => setShowDelete(false)} setConfirmationPopup={setShowDelete} />
-              )}
+              )} */}
 
               {(Object.keys(data).length > 0 || addNew) && (
                 <>

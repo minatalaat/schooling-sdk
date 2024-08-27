@@ -1,37 +1,43 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { SchoolingProvider } from '../context/SchoolingProvider';
+import ProductsMain from '../pages/schooling/Products/ProductsMain';
+import BusesMain from '../pages/schooling/Buses/BusesMain';
+import { featuresEnum } from '../constants/featuresEnum/featuresEnum';
+import CanteenCategoriesMain from '../pages/schooling/CanteenCategories/CanteenCategoriesMain';
+import StudentsMain from '../pages/schooling/Students/StudentsMain';
+import ClassesMain from '../pages/schooling/Classes/ClassesMain';
+import PreOrdersMain from '../pages/schooling/PreOrders/PreOrdersMain';
+import CartMain from '../pages/schooling/Cart/CartMain';
+import SupervisorsMain from '../pages/schooling/Supervisors/SupervisorsMain';
+import GradesMain from '../pages/schooling/Grades/GradesMain';
 
-import InActivity from '../components/main/InActivity/InActivity';
-import Navigation from '../components/main/Navigation/Navigation';
-import AppConfig from '../pages/AppConfig';
-import MyProfile from '../pages/MyProfile';
-import HelpCenter from '../pages/HelpCenter';
-import Landing from '../pages/Landing';
-import Transactions from '../pages/Transactions';
-import ErrorPage from '../pages/ErrorPage';
-import NotFound from '../pages/NotFound';
+export  function SchoolingMainRoutes({ key, baseRoute }) {
 
-export default function MainRoutes() {
-  const { displayedRoutes } = useSelector(state => state.auth);
+  useEffect(() => {
+    // Handle route change or trigger a re-render
+  }, [key]);
 
   return (
     <>
-      <InActivity />
-      <Navigation />
-      <Routes>
-        {displayedRoutes}
-        <Route path="/app-config" element={<AppConfig />} />
-        <Route path="/my-profile" element={<MyProfile />} />
-        <Route path="/help-center" element={<HelpCenter />} />
-        <Route path="/home" element={<Landing />} />
-        <Route path="/transactions/*" element={<Transactions />} />
-        <Route path="/error" element={<ErrorPage />} />
-        <Route path="/" element={<Navigate to="/home" />} />
-        <Route path="/change-password" element={<Navigate to="/home" />} />
-        <Route path="/login" element={<Navigate to="/home" />} />
-        <Route path="/success" element={<Navigate to="/home" />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+     <Router>
+      <SchoolingProvider baseRoute={baseRoute ?? ''}>
+        <Routes>
+          
+          <Route path={`${featuresEnum['CANTEEN_PRODUCTS'].PATH}/*`} element={<ProductsMain />} />
+          <Route path={`${featuresEnum['BUSES'].PATH}/*`} element={<BusesMain />} />
+          <Route path={`${featuresEnum['CANTEEN_CATEGORIES'].PATH}/*`} element={<CanteenCategoriesMain />} />
+          <Route path={`${featuresEnum['STUDENTS'].PATH}/*`} element={<StudentsMain />} />
+          <Route path={`${featuresEnum['CLASSES'].PATH}/*`} element={<ClassesMain />} />
+          <Route path={`${featuresEnum['PRE_ORDERS'].PATH}/*`} element={<PreOrdersMain />} />
+          <Route path={`${featuresEnum['CART'].PATH}/*`} element={<CartMain />} />
+          <Route path={`${featuresEnum['SUPERVISORS'].PATH}/*`} element={<SupervisorsMain />} />
+          <Route path={`${featuresEnum['GRADES'].PATH}/*`} element={<GradesMain />} />
+        
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </SchoolingProvider>
+    </Router>
     </>
   );
 }

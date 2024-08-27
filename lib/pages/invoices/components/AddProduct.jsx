@@ -544,8 +544,8 @@ function AddProduct({
         </Modal.Body>
         <Modal.Footer>
           <div className="float-end">
-            <PrimaryButton theme="white" onClick={() => setShow(false)} />
-            <PrimaryButton theme="purple" text={edit ? 'LBL_OK' : 'LBL_ADD'} onClick={onAddProductHandler} />
+            <PrimaryButton theme="tertiary" onClick={() => setShow(false)} />
+            <PrimaryButton theme="secondary" text={edit ? 'LBL_OK' : 'LBL_ADD'} onClick={onAddProductHandler} />
           </div>
         </Modal.Footer>
       </Modal>

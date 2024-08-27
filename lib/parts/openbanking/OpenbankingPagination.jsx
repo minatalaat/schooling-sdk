@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 
-import ExamplePrevious from '../assets/images/example_previous.svg';
-import ExampleNext from '../assets/images/example_next.svg';
-import ExamplePreviousAr from '../assets/images/example_previous_ar.svg';
-import ExampleNextAr from '../assets/images/example_next_ar.svg';
+import ExamplePrevious from '../../assets/images/example_previous.svg';
+import ExampleNext from '../../assets/images/example_next.svg';
+import ExamplePreviousAr from '../../assets/images/example_previous_ar.svg';
+import ExampleNextAr from '../../assets/images/example_next_ar.svg';
 
 const OpenbankingPagination = ({ total }) => {
   const location = useLocation();
