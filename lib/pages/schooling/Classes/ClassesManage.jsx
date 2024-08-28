@@ -1,8 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import ConfirmationPopup from '../../../components/modals/ConfirmationPopup';
-import BackButton from '../../../components/ui/buttons/BackButton';
 import PrimaryButton from '../../../components/ui/buttons/PrimaryButton';
 import CircleSkeleton from '../../../components/ui/skeletons/CircleSkeleton';
 import { useSchoolStudentServices } from '../../../services/apis/useSchoolStudentServices';
@@ -14,6 +12,7 @@ import FormFooter from '../../../components/FormFooter/FormFooter';
 import { confirmationPopupActions } from '../../../store/confirmationPopup';
 import FormAction from '../../../components/FormAction/FormAction';
 import { alertsActions } from '../../../store/alerts';
+import CanteenCategoriesForm from '../CanteenCategories/CanteenCategoriesForm';
 
 const ClassesManage = ({ addNew, enableEdit }) => {
   const feature = 'SCHOOLING';
@@ -49,11 +48,16 @@ const ClassesManage = ({ addNew, enableEdit }) => {
   };
 
   useEffect(() => {
-    if (schoolId) importData();
+    if (schoolId) {
+
+      importData();
+    }
   }, [schoolId]);
 
   useEffect(() => {
-    if (classId) importClassData();
+    if (classId) {
+      importClassData();
+    }
   }, [classId]);
   const location = useLocation();
   const editPage = location.pathname.includes('edit');
@@ -98,8 +102,8 @@ const ClassesManage = ({ addNew, enableEdit }) => {
     dispatch(
       confirmationPopupActions.openPopup({
         title: 'LBL_BEWARE_ABOUT_TO_DELETE',
-        message: data?.name ? data.name : `#${schoolId}`,
-        onConfirmHandler: () => deleteRecordHandler(schoolId),
+        message: data?.name ? data.name : `#${classId}`,
+        onConfirmHandler: () => deleteRecordHandler(classId),
       })
     );
   };
@@ -129,9 +133,9 @@ const ClassesManage = ({ addNew, enableEdit }) => {
           </div>
           <div className="row">
             <div className="col-md-12">
-              {showDelete && (
+              {/* {showDelete && (
                 <ConfirmationPopup item={data?.name} onClickHandler={() => setShowDelete(false)} setConfirmationPopup={setShowDelete} />
-              )}
+              )} */}
 
               {loading ? (
                 <div style={{ marginTop: '20rem' }}>
@@ -145,12 +149,12 @@ const ClassesManage = ({ addNew, enableEdit }) => {
                   </>
                 )
               )}
-              {/* {(Object.keys(data).length > 0 || addNew) && (
+              {(Object.keys(data).length > 0 || addNew) && (
                 <>
                   {!addNew && <CanteenCategoriesForm enableEdit={enableEdit} data={data} btnRef={btnRef} />}
                   {addNew && <CanteenCategoriesForm addNew={addNew} btnRef={btnRef} />}
                 </>
-              )} */}
+              )}
             </div>
           </div>
           <FormFooter mode={mode} feature={feature} subFeature={subFeature} deleteHandler={canDelete ? deleteHandler : null}>

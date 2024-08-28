@@ -96,7 +96,7 @@ const BusesManage = ({ addNew, enableEdit }) => {
       }, 3000);
     };
 
-    deleteBus(id, successHandler);
+    deleteBus({records: [{id: id}]}, successHandler);
 
   };
 

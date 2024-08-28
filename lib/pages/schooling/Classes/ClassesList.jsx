@@ -84,6 +84,8 @@ const ClassesList = () => {
     const successHandler = () => {
       setLoading(false);
       importData();
+      setLoading(false);
+      setActionInProgress(false)
     };
 
     if (checked?.length > 0) {
@@ -93,6 +95,8 @@ const ClassesList = () => {
         },
         successHandler
       );
+      setLoading(false);
+      setActionInProgress(false)
     } else {
       deleteClass(
         {
@@ -100,6 +104,8 @@ const ClassesList = () => {
         },
         successHandler
       );
+      setLoading(false);
+      setActionInProgress(false)
     }
     // deleteClass(id, succesHandler);
   };
@@ -185,8 +191,8 @@ const ClassesList = () => {
                             subFeature={subFeature}
                             deleteHandler={deleteHandler}
                             isDeletable={true}
-                            isViewable={false}
-                            isEditable={true}
+                            isViewable={true}
+                            isEditable={false}
                             viewStudentList={true}
                             setActionInProgress={setActionInProgress}
                           />
@@ -213,7 +219,8 @@ const ClassesList = () => {
                             setChecked={setChecked}
                             deleteHandler={deleteHandler}
                             viewStudentList={true}
-                            isViewable={false}
+                            isViewable={true}
+                            isEditable={false}
                             setActionInProgress={setActionInProgress}
                           />
                         );

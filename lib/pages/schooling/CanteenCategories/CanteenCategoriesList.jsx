@@ -82,6 +82,7 @@ const CanteenCategoriesList = () => {
     const successHandler = () => {
       setLoading(false);
       importData();
+      setActionInProgress(false)
     };
 
     if (checked?.length > 0) {
@@ -91,6 +92,8 @@ const CanteenCategoriesList = () => {
         },
         successHandler
       );
+      setLoading(false);
+      setActionInProgress(false)
     } else {
       deleteCategory(
         {
@@ -98,7 +101,11 @@ const CanteenCategoriesList = () => {
         },
         successHandler
       );
+      setLoading(false);
     }
+    
+    setLoading(false);
+    setActionInProgress(false)
   };
 
   return (

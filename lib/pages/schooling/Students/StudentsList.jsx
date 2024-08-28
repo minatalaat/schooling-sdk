@@ -87,6 +87,7 @@ const StudentsList = () => {
     const successHandler = () => {
       setLoading(false);
       importData();
+      setActionInProgress(false)
     };
 
     if (checked?.length > 0) {
@@ -96,6 +97,7 @@ const StudentsList = () => {
         },
         successHandler
       );
+      setActionInProgress(false)
     } else {
       deleteStudent(
         {
@@ -103,6 +105,7 @@ const StudentsList = () => {
         },
         successHandler
       );
+      setActionInProgress(false)
     }
   };
 
@@ -194,7 +197,6 @@ const StudentsList = () => {
                             setChecked={setChecked}
                             feature={feature}
                             subFeature={subFeature}
-                            isEditable={false}
                             deleteHandler={deleteHandler}
                             setActionInProgress={setActionInProgress}
                           />

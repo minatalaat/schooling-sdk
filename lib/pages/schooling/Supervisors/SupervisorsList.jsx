@@ -86,6 +86,8 @@ const SupervisorsList = () => {
     const successHandler = () => {
       setLoading(false);
       importData();
+      setLoading(false);
+      setActionInProgress(false)
     };
 
     if (checked?.length > 0) {
@@ -95,6 +97,8 @@ const SupervisorsList = () => {
         },
         successHandler
       );
+      setLoading(false);
+      setActionInProgress(false)
     } else {
       deleteSupervisor(
         {
@@ -102,6 +106,8 @@ const SupervisorsList = () => {
         },
         successHandler
       );
+      setLoading(false);
+      setActionInProgress(false)
     }
     // deleteClass(id, succesHandler);
   };

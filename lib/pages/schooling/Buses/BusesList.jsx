@@ -8,7 +8,6 @@ import Card from '../../../components/CardsList/Card';
 import Toolbar from '../../../components/Toolbar/Toolbar';
 import MoreAction from '../../../components/ui/MoreAction/MoreAction';
 import AddButton from '../../../components/ui/buttons/AddButton';
-import { featuresEnum } from '../../../constants/featuresEnum/featuresEnum';
 import { useBusesServices } from '../../../services/apis/useBusesServices';
 import CircleSkeleton from '../../../components/ui/skeletons/CircleSkeleton';
 import { useFeatures } from '../../../hooks/useFeatures';
@@ -88,6 +87,7 @@ const BusesList = () => {
     const successHandler = () => {
       setLoading(false);
       importData();
+      setActionInProgress(false)
     };
 
     if (checked?.length > 0) {
@@ -97,6 +97,8 @@ const BusesList = () => {
         },
         successHandler
       );
+      setLoading(false);
+      setActionInProgress(false)
     } else {
       deleteBus(
         {
@@ -104,9 +106,15 @@ const BusesList = () => {
         },
         successHandler
       );
+      setLoading(false);
+      setActionInProgress(false)
+
     }
 
     // deleteBus(id, successHandler);
+    setLoading(false);
+    setActionInProgress(false)
+
   };
 
   return (

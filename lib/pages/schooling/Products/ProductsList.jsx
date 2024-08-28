@@ -92,11 +92,14 @@ const DempPage1List = () => {
     setLoading(true);
 
     const successHandler = () => {
-      setLoading(false);
       importData();
+      setLoading(false);
+      setActionInProgress(false)
     };
-
+    
     deleteProduct(id, successHandler);
+    setLoading(false);
+    setActionInProgress(false)
   };
 
   return (

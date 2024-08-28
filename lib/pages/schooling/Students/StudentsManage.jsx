@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import ConfirmationPopup from '../../../components/modals/ConfirmationPopup';
-import BackButton from '../../../components/ui/buttons/BackButton';
+
 import PrimaryButton from '../../../components/ui/buttons/PrimaryButton';
 import StudentsForm from './StudentsForm';
 import { useStudentsServices } from '../../../services/apis/useStudentsServices';
@@ -24,7 +23,7 @@ const StudentsManage = ({ addNew, enableEdit }) => {
   const mode = addNew ? 'add' : enableEdit ? 'edit' : 'view';
 
   const { t } = useTranslation();
-  const { fetchStudent ,deleteStudent} = useStudentsServices();
+  const { fetchStudent, deleteStudent } = useStudentsServices();
   const ref = useRef();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -59,19 +58,17 @@ const StudentsManage = ({ addNew, enableEdit }) => {
   };
 
   const deleteRecordHandler = id => {
-
     setLoading(true);
 
     const successHandler = () => {
-      alertHandler('Success',' message' );
+      alertHandler('Success', ' message');
       setTimeout(() => {
         setIsDelete(false);
         navigate(getFeaturePath(subFeature));
       }, 3000);
     };
 
-    deleteStudent(id, successHandler);
-
+    deleteStudent({ records: [{ id: id }] }, successHandler);
   };
 
   const deleteHandler = () => {
@@ -106,12 +103,12 @@ const StudentsManage = ({ addNew, enableEdit }) => {
                   />
                 )}
               </div> */}
-              <FormAction
+              {!addNew&&<FormAction
                 feature={feature}
                 subFeature={subFeature}
                 viewHandler={canView && enableEdit ? viewHandler : null}
                 editHandler={canEdit && !enableEdit ? editHandler : null}
-              />
+              />}
             </div>
           </div>
           <div className="row">
@@ -142,15 +139,17 @@ const StudentsManage = ({ addNew, enableEdit }) => {
             </div>
           </div>
           <FormFooter mode={mode} feature={feature} subFeature={subFeature} deleteHandler={canDelete ? deleteHandler : null}>
-          {(addNew || enableEdit) && (
-                  <PrimaryButton
-                  onClick={() => {ref.current.click()  }}
-                    btnOptions={{
-                      type: 'submit',
-                    }}
-                    disabled={false}
-                  />
-                )}
+            {(addNew || enableEdit) && (
+              <PrimaryButton
+                onClick={() => {
+                  ref.current.click();
+                }}
+                btnOptions={{
+                  type: 'submit',
+                }}
+                disabled={false}
+              />
+            )}
           </FormFooter>
         </div>
       </div>

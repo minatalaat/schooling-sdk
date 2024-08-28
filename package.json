@@ -1,7 +1,7 @@
 {
-  "name": "schooling-web-app",
+  "name": "school-sdk",
   "private": true,
-  "version": "1.0.32",
+  "version": "1.0.45",
   "version-preprod": "1.0.5",
   "type": "module",
   "main": "dist/main.js",

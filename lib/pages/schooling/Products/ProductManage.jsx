@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect,  } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import PrimaryButton from '../../../components/ui/buttons/PrimaryButton';
@@ -24,7 +24,7 @@ const ProductManage = ({ addNew, enableEdit }) => {
 
   const { t } = useTranslation();
   const btnRef = useRef();
-  const { fetchProduct ,deleteProduct} = useProductsServices();
+  const { fetchProduct, deleteProduct } = useProductsServices();
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({});
   const [actionInProgress, setActionInProgress] = useState(false);
@@ -52,6 +52,7 @@ const ProductManage = ({ addNew, enableEdit }) => {
   };
 
   const viewHandler = () => {
+
     navigate(getFeaturePath(subFeature, 'view', { id }));
   };
 
@@ -60,11 +61,10 @@ const ProductManage = ({ addNew, enableEdit }) => {
   };
 
   const deleteRecordHandler = id => {
-
     setLoading(true);
 
     const successHandler = () => {
-      alertHandler('Success',' message' );
+      alertHandler('Success', ' message');
       setTimeout(() => {
         setIsSave(false);
         setIsDelete(false);
@@ -73,7 +73,6 @@ const ProductManage = ({ addNew, enableEdit }) => {
     };
 
     deleteProduct(id, successHandler);
-
   };
 
   const deleteHandler = () => {
@@ -97,17 +96,16 @@ const ProductManage = ({ addNew, enableEdit }) => {
                 <h4>{addNew ? t('LBL_ADD_PRODUCT') : enableEdit ? t('LBL_EDIT_PRODUCT') : t('LBL_VIEW_PRODUCT')}</h4>
               </div>
 
-              <FormAction
+              {!addNew&&<FormAction
                 feature={feature}
                 subFeature={subFeature}
                 viewHandler={canView && enableEdit ? viewHandler : null}
                 editHandler={canEdit && !enableEdit ? editHandler : null}
-              />
+              />}
             </div>
           </div>
           <div className="row">
             <div className="col-md-12">
-              
               {loading ? (
                 <div style={{ marginTop: '20rem' }}>
                   <CircleSkeleton height="200" isNoData={true} />
@@ -115,21 +113,8 @@ const ProductManage = ({ addNew, enableEdit }) => {
               ) : (
                 (Object.keys(data).length > 0 || addNew) && (
                   <>
-                    {!addNew && (
-                      <ProductsForm
-                        mode={enableEdit ? 'edit' : 'view'}
-                        btnRef={btnRef}
-                        data={data}
-                      
-                      />
-                    )}
-                    {addNew && (
-                      <ProductsForm
-                        mode="add"
-                        btnRef={btnRef}
-                        
-                      />
-                    )}
+                    {!addNew && <ProductsForm mode={enableEdit ? 'edit' : 'view'} btnRef={btnRef} data={data} />}
+                    {addNew && <ProductsForm mode="add" btnRef={btnRef} />}
                   </>
                 )
               )}
