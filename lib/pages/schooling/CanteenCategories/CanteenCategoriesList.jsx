@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
@@ -12,12 +12,15 @@ import AddButton from '../../../components/ui/buttons/AddButton';
 import { featuresEnum } from '../../../constants/featuresEnum/featuresEnum';
 import { useCategoriesServices } from '../../../services/apis/useCategoriesServices';
 import CircleSkeleton from '../../../components/ui/skeletons/CircleSkeleton';
+import { FEATURES } from '../../../constants/Features/features';
+import SchoolingContext from '../../../context/SchoolingContext';
 // import ImportData from '../../components/Toolbar/ImportData';
 
 const CanteenCategoriesList = () => {
   const feature = 'SCHOOLING';
   const subFeature = 'CANTEEN_CATEGORIES';
   const [searchParams] = useSearchParams();
+  const { baseRoute } = useContext(SchoolingContext);
 
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -100,7 +103,7 @@ const CanteenCategoriesList = () => {
 
   return (
     <>
-        {actionInProgress && <div className="lodingpage"></div>}
+      {actionInProgress && <div className="lodingpage"></div>}
 
       <MoreAction
         showMoreAction={showMoreAction}
@@ -109,7 +112,6 @@ const CanteenCategoriesList = () => {
         setChecked={setChecked}
         data={fetchedData.data || []}
         setActionInProgress={setActionInProgress}
-
       />
       {loading ? (
         <div style={{ marginTop: '20rem' }}>
@@ -130,7 +132,7 @@ const CanteenCategoriesList = () => {
                     text="LBL_ADD_CATEGORRY"
                     id="buttonid"
                     onClick={() => {
-                      navigate(featuresEnum[subFeature].PATH + '/add');
+                      navigate(baseRoute + FEATURES[subFeature].BASE_PATH + '/add');
                     }}
                   />
                 </div>
@@ -152,7 +154,6 @@ const CanteenCategoriesList = () => {
                     canDelete: true,
                   }}
                   setActionInProgress={setActionInProgress}
-
                 />
 
                 {show === 'table' && windosSize[0] > 1200 && (
@@ -180,7 +181,6 @@ const CanteenCategoriesList = () => {
                             deleteHandler={deleteHandler}
                             isDeletable={true}
                             setActionInProgress={setActionInProgress}
-
                           />
                         );
                       })}
@@ -203,7 +203,6 @@ const CanteenCategoriesList = () => {
                             setChecked={setChecked}
                             deleteHandler={deleteHandler}
                             setActionInProgress={setActionInProgress}
-
                           />
                         );
                       })}

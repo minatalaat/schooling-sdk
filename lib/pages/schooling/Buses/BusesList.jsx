@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import Table from '../../../components/ListingTable/Table';
@@ -12,11 +12,14 @@ import { featuresEnum } from '../../../constants/featuresEnum/featuresEnum';
 import { useBusesServices } from '../../../services/apis/useBusesServices';
 import CircleSkeleton from '../../../components/ui/skeletons/CircleSkeleton';
 import { useFeatures } from '../../../hooks/useFeatures';
+import { FEATURES } from '../../../constants/Features/features';
+import SchoolingContext from '../../../context/SchoolingContext';
 
 const BusesList = () => {
   const feature = 'SCHOOLING';
   const subFeature = 'BUSES';
   const [searchParams] = useSearchParams();
+  const { baseRoute } = useContext(SchoolingContext);
 
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -108,7 +111,7 @@ const BusesList = () => {
 
   return (
     <>
-        {actionInProgress && <div className="lodingpage"></div>}
+      {actionInProgress && <div className="lodingpage"></div>}
 
       <MoreAction
         showMoreAction={showMoreAction}
@@ -118,7 +121,6 @@ const BusesList = () => {
         data={fetchedData.data || []}
         deleteHandler={deleteHandler}
         setActionInProgress={setActionInProgress}
-
       />
 
       <div className="page-body">
@@ -140,7 +142,7 @@ const BusesList = () => {
                     text="LBL_ADD_BUSES_BTN"
                     id="buttonid"
                     onClick={() => {
-                      navigate(featuresEnum[subFeature].PATH + '/add');
+                      navigate(baseRoute + FEATURES[subFeature].BASE_PATH + '/add');
                     }}
                   />
                 </div>
@@ -162,9 +164,7 @@ const BusesList = () => {
                     canDelete: true,
                   }}
                   setActionInProgress={setActionInProgress}
-
                 />
-                
 
                 {show === 'table' && windosSize[0] > 1200 && (
                   <Table
@@ -193,7 +193,6 @@ const BusesList = () => {
                             isViewable={true}
                             isEditable={true}
                             setActionInProgress={setActionInProgress}
-
                           />
                         );
                       })}
@@ -216,7 +215,6 @@ const BusesList = () => {
                             setChecked={setChecked}
                             deleteHandler={deleteHandler}
                             setActionInProgress={setActionInProgress}
-                            
                           />
                         );
                       })}

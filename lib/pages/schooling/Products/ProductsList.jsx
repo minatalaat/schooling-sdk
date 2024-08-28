@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import Table from '../../../components/ListingTable/Table';
@@ -9,10 +9,13 @@ import Toolbar from '../../../components/Toolbar/Toolbar';
 import MoreAction from '../../../components/ui/MoreAction/MoreAction';
 import AddButton from '../../../components/ui/buttons/AddButton';
 import { useProductsServices } from '../../../services/apis/useProductsServices';
-import { featuresEnum } from '../../../constants/featuresEnum/featuresEnum';
 import CircleSkeleton from '../../../components/ui/skeletons/CircleSkeleton';
+import { FEATURES } from '../../../constants/Features/features';
+import SchoolingContext from '../../../context/SchoolingContext';
 
 const DempPage1List = () => {
+  const { baseRoute } = useContext(SchoolingContext);
+
   const feature = 'SCHOOLING';
   const subFeature = 'CANTEEN_PRODUCTS';
   const [loading, setLoading] = useState(true);
@@ -98,7 +101,7 @@ const DempPage1List = () => {
 
   return (
     <>
-    {actionInProgress && <div className="lodingpage"></div>}
+      {actionInProgress && <div className="lodingpage"></div>}
       <MoreAction
         showMoreAction={showMoreAction}
         setShowMoreAction={setShowMoreAction}
@@ -106,7 +109,6 @@ const DempPage1List = () => {
         setChecked={setChecked}
         data={fetchedData.data || []}
         setActionInProgress={setActionInProgress}
-
       />
       {loading ? (
         <div style={{ marginTop: '20rem' }}>
@@ -126,7 +128,7 @@ const DempPage1List = () => {
                   <AddButton
                     text="LBL_ADD_PRODUCT"
                     onClick={() => {
-                      navigate(featuresEnum[subFeature].PATH + '/add');
+                      navigate(baseRoute + FEATURES[subFeature].BASE_PATH + '/add');
                     }}
                   />
                 </div>
@@ -142,7 +144,6 @@ const DempPage1List = () => {
                   setChecked={setChecked}
                   data={fetchedData.data || []}
                   setActionInProgress={setActionInProgress}
-
                 />
 
                 {show === 'table' && windosSize[0] > 1200 && (
@@ -169,7 +170,6 @@ const DempPage1List = () => {
                             subFeature={subFeature}
                             deleteHandler={deleteHandler}
                             setActionInProgress={setActionInProgress}
-
                           />
                         );
                       })}

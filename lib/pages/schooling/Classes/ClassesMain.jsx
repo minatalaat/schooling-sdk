@@ -4,22 +4,19 @@ import StudentsList from './StudentsList';
 import ClassesList from './ClassesList';
 import ClassesManage from './ClassesManage';
 import StudentsAttendance from './StudentAttendance';
-import { useFeatures } from '../../../hooks/useFeatures';
+import { FEATURES } from '../../../constants/Features/features';
 
 const ClassesMain = () => {
-  const feature = 'SCHOOLING';
   const subFeature = 'CLASSES';
-
-  const { featuresEnum } = useFeatures(feature, subFeature);
 
   return (
     <Routes>
       <Route path="/" element={<ClassesList />} />
-      <Route path={featuresEnum[subFeature].EDIT_ONLY} element={<ClassesManage enableEdit={true} />} />
-      <Route path={featuresEnum[subFeature].VIEW_ONLY} element={<ClassesManage enableEdit={false} />} />
-      <Route path={featuresEnum[subFeature].ADD_ONLY} element={<ClassesManage addNew />} />
-      <Route path={featuresEnum[subFeature].LIST_ONLY} element={<StudentsList addNew />} />
-      <Route path={featuresEnum[subFeature].ATTENDANCE_ONLY} element={<StudentsAttendance addNew />} />
+      <Route path={FEATURES[subFeature].SUB_PATHS.EDIT} element={<ClassesManage enableEdit={true} />} />
+      <Route path={FEATURES[subFeature].SUB_PATHS.VIEW} element={<ClassesManage enableEdit={false} />} />
+      <Route path={FEATURES[subFeature].SUB_PATHS.ADD} element={<ClassesManage addNew />} />
+      <Route path={FEATURES[subFeature].SUB_PATHS.LIST} element={<StudentsList addNew />} />
+      <Route path={FEATURES[subFeature].SUB_PATHS.ATTENDANCE} element={<StudentsAttendance addNew />} />
 
       <Route path="*" element={<Navigate replace to="/home" />} />
     </Routes>

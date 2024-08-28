@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
@@ -10,12 +10,14 @@ import Toolbar from '../../../components/Toolbar/Toolbar.jsx';
 import MoreAction from '../../../components/ui/MoreAction/MoreAction.jsx';
 import { usePreOrderServices } from '../../../services/apis/usePreOrderServices.js';
 import AddButton from '../../../components/ui/buttons/AddButton.jsx';
-import { featuresEnum } from '../../../constants/featuresEnum/featuresEnum.js';
 import CircleSkeleton from '../../../components/ui/skeletons/CircleSkeleton.jsx';
+import { FEATURES } from '../../../constants/Features/features.js';
+import SchoolingContext from '../../../context/SchoolingContext.jsx';
 
 const PreOrdersList = () => {
   const feature = 'SCHOOLING';
   const subFeature = 'PRE_ORDERS';
+  const { baseRoute } = useContext(SchoolingContext);
 
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -116,7 +118,7 @@ const PreOrdersList = () => {
                     text="LBL_CREATE_ORDER"
                     id="buttonid"
                     onClick={() => {
-                      navigate(featuresEnum[subFeature].PATH + '/add');
+                      navigate(baseRoute + FEATURES[subFeature].BASE_PATH + '/add');
                     }}
                   />
                 </div>

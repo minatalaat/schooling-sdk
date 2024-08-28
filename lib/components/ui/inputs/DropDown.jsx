@@ -133,15 +133,15 @@ const DropDown = ({
   const { t } = useTranslation();
 
   const viewValue = useMemo(() => {
-    if (!options) return '';
+    if (!Array.isArray(options) || !options.length) return '';
 
     if (keys.valueKey && keys.titleKey) {
       let selectedOption;
 
       if (type === 'STRING') {
-        selectedOption = options.find(option => option[keys.valueKey] === formik.values[accessor]);
+        selectedOption = options?.find(option => option[keys.valueKey] === formik.values[accessor]);
       } else {
-        selectedOption = options.find(option => Number(option[keys.valueKey]) === Number(formik.values[accessor]));
+        selectedOption = options?.find(option => Number(option[keys.valueKey]) === Number(formik.values[accessor]));
       }
 
       if (!selectedOption) return '';
@@ -154,10 +154,10 @@ const DropDown = ({
     }
 
     return options[formik.values[accessor]];
-  }, [formik.values[accessor], !options]);
+  }, [formik.values[accessor], options]);
 
   const InitialOption = useMemo(() => {
-    const initialOption = options?.length > 0 ? options.find(option => +option[keys?.valueKey || ''] === 0) : null;
+    const initialOption = options?.length > 0 ? options?.find(option => +option[keys?.valueKey || ''] === 0) : null;
 
     if (initialOption) return null;
 

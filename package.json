@@ -1,8 +1,8 @@
 {
   "name": "schooling-web-app",
   "private": true,
-  "version": "1.0.4",
-  "version-preprod": "1.0.3",
+  "version": "1.0.32",
+  "version-preprod": "1.0.5",
   "type": "module",
   "main": "dist/main.js",
   "proxy": "https://sit.api.neotek.sa",

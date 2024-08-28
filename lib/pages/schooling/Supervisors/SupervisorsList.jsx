@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import Table from '../../../components/ListingTable/Table';
@@ -11,11 +11,14 @@ import AddButton from '../../../components/ui/buttons/AddButton';
 import { featuresEnum } from '../../../constants/featuresEnum/featuresEnum';
 import CircleSkeleton from '../../../components/ui/skeletons/CircleSkeleton';
 import { useSchoolStudentServices } from '../../../services/apis/useSchoolStudentServices';
+import { FEATURES } from '../../../constants/Features/features';
+import SchoolingContext from '../../../context/SchoolingContext';
 
 const SupervisorsList = () => {
   const feature = 'SCHOOLING';
   const subFeature = 'SUPERVISORS';
   const [searchParams] = useSearchParams();
+  const { baseRoute } = useContext(SchoolingContext);
 
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -105,7 +108,7 @@ const SupervisorsList = () => {
 
   return (
     <>
-        {actionInProgress && <div className="lodingpage"></div>}
+      {actionInProgress && <div className="lodingpage"></div>}
       <MoreAction
         showMoreAction={showMoreAction}
         setShowMoreAction={setShowMoreAction}
@@ -113,7 +116,6 @@ const SupervisorsList = () => {
         setChecked={setChecked}
         data={fetchedData.data || []}
         setActionInProgress={setActionInProgress}
-
       />
 
       <div className="page-body">
@@ -134,7 +136,7 @@ const SupervisorsList = () => {
                     text="LBL_ADD_SUPERVISOR_BTN"
                     id="buttonid"
                     onClick={() => {
-                      navigate(featuresEnum[subFeature].PATH + '/add');
+                      navigate(baseRoute + FEATURES[subFeature].BASE_PATH + '/add');
                     }}
                   />
                 </div>
@@ -182,7 +184,6 @@ const SupervisorsList = () => {
                             subFeature={subFeature}
                             deleteHandler={deleteHandler}
                             setActionInProgress={setActionInProgress}
-
                           />
                         );
                       })}
@@ -205,7 +206,6 @@ const SupervisorsList = () => {
                             setChecked={setChecked}
                             deleteHandler={deleteHandler}
                             setActionInProgress={setActionInProgress}
-
                           />
                         );
                       })}

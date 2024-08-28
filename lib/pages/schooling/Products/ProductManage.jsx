@@ -1,9 +1,8 @@
-import { useState, useRef, useEffect, useMemo } from 'react';
+import { useState, useRef, useEffect,  } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import PrimaryButton from '../../../components/ui/buttons/PrimaryButton';
 import { useProductsServices } from '../../../services/apis/useProductsServices';
-import BackButton from '../../../components/ui/buttons/BackButton';
 import ProductsForm from './ProductForm';
 import CircleSkeleton from '../../../components/ui/skeletons/CircleSkeleton';
 import FormAction from '../../../components/FormAction/FormAction';
@@ -52,24 +51,6 @@ const ProductManage = ({ addNew, enableEdit }) => {
     }
   };
 
-  // const finishedActionHandler = (status, message) => {
-  //   setActionInProgress(false);
-
-  //   if (status === 'Success') {
-  //     alertHandler('Success', message || '');
-  //     setTimeout(() => {
-  //       setIsSave(false);
-  //       setIsDelete(false);
-  //       navigate(getFeaturePath(subFeature));
-  //     }, 3000);
-  //   } else {
-  //     setIsSave(false);
-  //     setIsDelete(false);
-  //     alertHandler(status || 'Error', message || 'SOMETHING_WENT_WRONG');
-  //   }
-  // };
-
-
   const viewHandler = () => {
     navigate(getFeaturePath(subFeature, 'view', { id }));
   };
@@ -116,10 +97,6 @@ const ProductManage = ({ addNew, enableEdit }) => {
                 <h4>{addNew ? t('LBL_ADD_PRODUCT') : enableEdit ? t('LBL_EDIT_PRODUCT') : t('LBL_VIEW_PRODUCT')}</h4>
               </div>
 
-              {/* <div className="reverse-page float-end">
-                <BackButton text={addNew ? 'LBL_CANCEL' : 'LBL_BACK'} />
-                {(addNew || enableEdit) && <PrimaryButton onClick={() => btnRef.current.click()} disabled={false} />}
-              </div> */}
               <FormAction
                 feature={feature}
                 subFeature={subFeature}
@@ -130,9 +107,7 @@ const ProductManage = ({ addNew, enableEdit }) => {
           </div>
           <div className="row">
             <div className="col-md-12">
-              {/* {!addNew && <ProductsForm mode={enableEdit ? 'edit' : 'view'} btnRef={btnRef} data={data} />}
-              {addNew && <ProductsForm mode="add" btnRef={btnRef} />} */}
-
+              
               {loading ? (
                 <div style={{ marginTop: '20rem' }}>
                   <CircleSkeleton height="200" isNoData={true} />
@@ -170,7 +145,6 @@ const ProductManage = ({ addNew, enableEdit }) => {
                 disabled={false}
               />
             )}
-            {/* {(addNew || enableEdit) && <PrimaryButton onClick={() => setIsSave(true)} disabled={false} />} */}
           </FormFooter>
         </div>
       </div>

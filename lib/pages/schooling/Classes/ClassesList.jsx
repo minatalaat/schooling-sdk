@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import Table from '../../../components/ListingTable/Table';
@@ -8,14 +8,16 @@ import Card from '../../../components/CardsList/Card';
 import Toolbar from '../../../components/Toolbar/Toolbar';
 import MoreAction from '../../../components/ui/MoreAction/MoreAction';
 import AddButton from '../../../components/ui/buttons/AddButton';
-import { featuresEnum } from '../../../constants/featuresEnum/featuresEnum';
 import CircleSkeleton from '../../../components/ui/skeletons/CircleSkeleton';
 import { useClassesServices } from '../../../services/apis/useClassesServices';
+import { FEATURES } from '../../../constants/Features/features';
+import SchoolingContext from '../../../context/SchoolingContext';
 
 const ClassesList = () => {
   const feature = 'SCHOOLING';
   const subFeature = 'CLASSES';
   const [searchParams] = useSearchParams();
+  const { baseRoute } = useContext(SchoolingContext);
 
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -112,7 +114,6 @@ const ClassesList = () => {
         data={fetchedData.data || []}
         deleteHandler={deleteHandler}
         setActionInProgress={setActionInProgress}
-
       />
 
       <div className="page-body">
@@ -134,7 +135,7 @@ const ClassesList = () => {
                     text="LBL_ADD_CLASS_BTN"
                     id="buttonid"
                     onClick={() => {
-                      navigate(featuresEnum[subFeature].PATH + '/add');
+                      navigate(baseRoute + FEATURES[subFeature].BASE_PATH + '/add');
                     }}
                   />
                 </div>
@@ -153,7 +154,6 @@ const ClassesList = () => {
                   deleteHandler={deleteHandler}
                   refreshData={importData}
                   setActionInProgress={setActionInProgress}
-
                   bulkActionConfig={{
                     canDelete: true,
                   }}
@@ -189,7 +189,6 @@ const ClassesList = () => {
                             isEditable={true}
                             viewStudentList={true}
                             setActionInProgress={setActionInProgress}
-
                           />
                         );
                       })}
@@ -216,7 +215,6 @@ const ClassesList = () => {
                             viewStudentList={true}
                             isViewable={false}
                             setActionInProgress={setActionInProgress}
-
                           />
                         );
                       })}
