@@ -14,7 +14,7 @@ import addIcon from '../../../../assets/images/Add_square_duotone.svg';
 import { modelsEnum } from '../../../../constants/modelsEnum/modelsEnum';
 import { useAxiosFunction } from '../../../../hooks/useAxios';
 import { getSearchPayload } from '../../../../services/getSearchPayload';
-import { getSearchUrl } from '../../../../services/getUrl';
+import { useGetUrl } from '../../../../services/useGetUrl';
 import { setFieldValue } from '../../../../utils/formHelpers';
 
 export default function SearchModalAxelor({
@@ -49,6 +49,7 @@ export default function SearchModalAxelor({
 }) {
   const { t } = useTranslation();
   const { api } = useAxiosFunction();
+  const { getSearchUrl } = useGetUrl();
 
   const [isLoading, setIsLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);

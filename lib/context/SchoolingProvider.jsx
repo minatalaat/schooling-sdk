@@ -1,6 +1,6 @@
 import NavigationContext from './SchoolingContext';
 
-export const SchoolingProvider = ({ baseRoute, children }) => {
-  const value = { baseRoute };
+export const SchoolingProvider = ({ baseRoute, env, children }) => {
+  const value = { baseRoute, env };
   return <NavigationContext.Provider value={value}>{children}</NavigationContext.Provider>;
 };

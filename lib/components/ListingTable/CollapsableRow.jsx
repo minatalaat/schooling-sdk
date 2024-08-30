@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import ConfirmationPopup from './../ConfirmationPopup';
 
 import { useAxiosFunction } from './../../hooks/useAxios';
-import { getRemoveAllUrl } from './../../services/getUrl';
+import { useGetUrl } from './../../services/useGetUrl';
 import { useFeatures } from './../../hooks/useFeatures';
 import { alertsActions } from '../../store/alerts';
 import { formatFloatNumber } from '../../utils/helpers';
@@ -45,6 +45,7 @@ const CollapsableRow = ({
   const { t } = useTranslation();
   const { api } = useAxiosFunction();
   const { canEdit, canDelete, canView, getFeaturePath } = useFeatures(feature, subFeature);
+  const { getRemoveAllUrl } = useGetUrl();
   const dispatch = useDispatch();
 
   const alertHandler = (title, message) => dispatch(alertsActions.initiateAlert({ title, message }));

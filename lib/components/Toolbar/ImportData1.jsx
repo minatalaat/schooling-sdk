@@ -7,7 +7,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import { SpinnerCircular } from 'spinners-react';
 
 import { useAxiosFunction } from '../../hooks/useAxios';
-import { getSearchUrl, getActionUrl, getUploadUrl, getModelUrl, getMetaFileUrl } from '../../services/getUrl';
+import { useGetUrl } from '../../services/useGetUrl';
 // import { MODELS } from '../../assets/constants/models';
 import { checkFlashOrError } from '../../utils/helpers';
 import { getItem } from '../../utils/localStorage';
@@ -16,6 +16,7 @@ import { MODELS } from '../../constants/models';
 export default function ImportData({ importConfigName, onAlert, refreshData }) {
   const { t } = useTranslation();
   const { axiosFetch, uploadDocument, downloadFile } = useAxiosFunction();
+  const { getSearchUrl, getActionUrl, getUploadUrl, getModelUrl, getMetaFileUrl } = useGetUrl();
   const uploadInputRef = useRef();
   moment.locale('en');
 

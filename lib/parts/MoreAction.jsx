@@ -4,7 +4,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 
 import ConfirmationPopup from '../components/ConfirmationPopup';
 import { useAxiosFunction } from '../hooks/useAxios';
-import { getRemoveAllUrl } from '../services/getUrl';
+import { useGetUrl } from '../services/useGetUrl';
 import { modelsEnum } from '../constants/modelsEnum/modelsEnum';
 import { useModelActionsServices } from '../services/apis/useModelActionsServices';
 import { useFeatures } from '../hooks/useFeatures';
@@ -37,6 +37,7 @@ function MoreAction({
 }) {
   const { t } = useTranslation();
   const { api } = useAxiosFunction();
+  const { getRemoveAllUrl } = useGetUrl();
   const [searchParams, setSearchParams] = useSearchParams();
   const [showBulkDeletePopup, setShowBulkDeletePopup] = useState(false);
   const { canAdd } = useFeatures(feature, subFeature);
@@ -231,7 +232,11 @@ function MoreAction({
                       {t('LBL_PLEASE_SELECT')}
                     </option>
                     {pageSizeOptions.map(option => {
-                      return <option value={option.value}>{option.name}</option>;
+                      return (
+                        <option key={option.value} value={option.value}>
+                          {option.name}
+                        </option>
+                      );
                     })}
                   </select>
                 </>

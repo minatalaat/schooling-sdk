@@ -10,7 +10,6 @@ import MoreAction from '../../../components/ui/MoreAction/MoreAction';
 import AddButton from '../../../components/ui/buttons/AddButton';
 import { useBusesServices } from '../../../services/apis/useBusesServices';
 import CircleSkeleton from '../../../components/ui/skeletons/CircleSkeleton';
-import { useFeatures } from '../../../hooks/useFeatures';
 import { FEATURES } from '../../../constants/Features/features';
 import SchoolingContext from '../../../context/SchoolingContext';
 
@@ -23,7 +22,6 @@ const BusesList = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { fetchBuses, deleteBus } = useBusesServices();
-  const { canDelete } = useFeatures(feature, subFeature);
   const [actionInProgress, setActionInProgress] = useState(false);
 
   const [show, setShow] = useState('table');
@@ -87,7 +85,7 @@ const BusesList = () => {
     const successHandler = () => {
       setLoading(false);
       importData();
-      setActionInProgress(false)
+      setActionInProgress(false);
     };
 
     if (checked?.length > 0) {
@@ -98,7 +96,7 @@ const BusesList = () => {
         successHandler
       );
       setLoading(false);
-      setActionInProgress(false)
+      setActionInProgress(false);
     } else {
       deleteBus(
         {
@@ -107,14 +105,12 @@ const BusesList = () => {
         successHandler
       );
       setLoading(false);
-      setActionInProgress(false)
-
+      setActionInProgress(false);
     }
 
     // deleteBus(id, successHandler);
     setLoading(false);
-    setActionInProgress(false)
-
+    setActionInProgress(false);
   };
 
   return (

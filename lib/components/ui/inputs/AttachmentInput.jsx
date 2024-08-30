@@ -4,7 +4,7 @@ import { useDropzone } from 'react-dropzone';
 import { useTranslation } from 'react-i18next';
 import { v4 as uuidv4 } from 'uuid';
 import { useAxiosFunction } from '../../../hooks/useAxios';
-import { getDownloadAttachmentUrl, getSearchUrl, getUploadAttachmentUrl, getModelUrl, getRemoveAllUrl } from '../../../services/getUrl';
+import { useGetUrl } from '../../../services/useGetUrl';
 import { MODELS } from '../../../constants/models';
 import {
   baseStyle,
@@ -37,6 +37,8 @@ const AttachmentInput = ({
   const navigate = useNavigate();
   const { getFeaturePath } = useFeatures();
   const { api, uploadAttachment, downloadAttachment } = useAxiosFunction();
+  const { getDownloadAttachmentUrl, getSearchUrl, getUploadAttachmentUrl, getModelUrl, getRemoveAllUrl } = useGetUrl();
+
   const maxSize = 2097152;
   const [parentID, setParentID] = useState(null);
   const [deleteRecords, setDeleteRecords] = useState([]);
