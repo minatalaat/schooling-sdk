@@ -23,7 +23,7 @@ export function SchoolRoutes({ lang, baseRoute, env }) {
   return (
     <>
       <Router>
-        <SchoolingProvider baseRoute={baseRoute ?? ''} env={env ?? 'production'}>
+        <SchoolingProvider baseRoute={baseRoute ?? ''} env={env ?? 'prod'}>
           <Routes>
             <Route path={`${baseRoute}${FEATURES['CANTEEN_PRODUCTS'].BASE_PATH}/*`} element={<ProductsMain baseRoute={baseRoute} />} />
             <Route path={`${baseRoute}${FEATURES['BUSES'].BASE_PATH}/*`} element={<BusesMain />} />
