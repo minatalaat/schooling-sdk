@@ -5,7 +5,9 @@
   "version-preprod": "1.0.5",
   "type": "module",
   "main": "dist/main.js",
-  "proxy": "https://sit.api.neotek.sa",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "env-cmd -e main,preprod vite",
     "prod": "env-cmd -e main,prod vite",
