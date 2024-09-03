@@ -12,7 +12,7 @@ export default function BackButton({ text = 'LBL_BACK', disabled = false, backPa
   };
 
   return (
-    <button className="btn cancel-btn" onClick={handleClick} disabled={disabled} {...btnOptions}>
+    <button className="new-btn new-btn-secondary" onClick={handleClick} disabled={disabled} {...btnOptions}>
       {t(text)}
     </button>
   );
