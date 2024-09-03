@@ -2,24 +2,21 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import ConfirmationPopup from '../../../components/modals/ConfirmationPopup';
-import BackButton from '../../../components/ui/buttons/BackButton';
 import PrimaryButton from '../../../components/ui/buttons/PrimaryButton';
 import StudentsForm from './PreOrdersForm';
 import { usePreOrderServices } from '../../../services/apis/usePreOrderServices';
 import CircleSkeleton from '../../../components/ui/skeletons/CircleSkeleton';
 import { useFeatures } from '../../../hooks/useFeatures';
-import { useDispatch } from 'react-redux';
 import FormAction from '../../../components/FormAction/FormAction';
-import { confirmationPopupActions } from '../../../store/confirmationPopup';
 import FormFooter from '../../../components/FormFooter/FormFooter';
 
 const PreOrdersManage = ({ addNew, enableEdit }) => {
   const feature = 'SCHOOLING';
   const subFeature = 'PRE_ORDERS';
-  const dispatch = useDispatch();
+
   const navigate = useNavigate();
-  const [isDelete, setIsDelete] = useState(false);
-  const { canView, canEdit, canDelete, getFeaturePath } = useFeatures(feature, subFeature);
+
+  const { canView, canEdit,  getFeaturePath } = useFeatures(feature, subFeature);
   const mode = addNew ? 'add' : enableEdit ? 'edit' : 'view';
   const { t } = useTranslation();
   const { fetchPreOrder, collectPreorder } = usePreOrderServices();
@@ -70,43 +67,6 @@ const PreOrdersManage = ({ addNew, enableEdit }) => {
     navigate(getFeaturePath(subFeature, 'edit', { id }));
   };
 
-  // const alertHandler = (title, message) => {
-  //   if (message) dispatch(alertsActions.initiateAlert({ title, message }));
-
-  //   if (title !== 'Success' || !message) {
-  //     setIsSave(false);
-  //     setIsDelete(false);
-  //     setLoading(false);
-  //   }
-  // };
-
-  // const deleteRecordHandler = id => {
-
-  //   setLoading(true);
-
-  //   const successHandler = () => {
-  //     alertHandler('Success',' message' );
-  //     setTimeout(() => {
-  //       setIsSave(false);
-  //       setIsDelete(false);
-  //       navigate(getFeaturePath(subFeature));
-  //     }, 3000);
-  //   };
-
-  //   deleteBus(id, successHandler);
-
-  // };
-
-  // const deleteHandler = () => {
-  //   dispatch(
-  //     confirmationPopupActions.openPopup({
-  //       title: 'LBL_BEWARE_ABOUT_TO_DELETE',
-  //       message: data?.name ? data.name : `#${data?.id}`,
-  //       onConfirmHandler: () => deleteRecordHandler(data?.id),
-  //     })
-  //   );
-  // };
-
   return (
     <>
       <div className="page-body">
@@ -122,13 +82,6 @@ const PreOrdersManage = ({ addNew, enableEdit }) => {
                 <div className="info-tite-page float-start">
                   <h4>{addNew ? t('LBL_NEW_RECORD') : data.name ? data.name : ''}</h4>
                 </div>
-
-                {/* <div className="reverse-page float-end">
-                  <BackButton text={addNew ? 'LBL_CANCEL' : 'LBL_BACK'} />
-                  {data?.cartStatus != 'SUCCESS' && (
-                    <PrimaryButton onClick={() => setShowDelete(true)} disabled={false} text="LBL_ORDER_PICKUP" />
-                  )}
-                </div> */}
                 <FormAction
                   feature={feature}
                   subFeature={subFeature}
