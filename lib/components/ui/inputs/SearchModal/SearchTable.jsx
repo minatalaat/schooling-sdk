@@ -9,7 +9,7 @@ import ModalPagination from './ModalPagination';
 
 import { getSearchPayload } from '../../../../services/getSearchPayload';
 import { useAxiosFunction } from '../../../../hooks/useAxios';
-import { getSearchUrl } from '../../../../services/getUrl';
+import { useGetUrl } from '../../../../services/useGetUrl';
 import useMetaFields from '../../../../hooks/metaFields/useMetaFields';
 
 const SearchTable = ({
@@ -39,6 +39,7 @@ const SearchTable = ({
   const metaFieldsList = metaFields.list || [];
 
   const { api } = useAxiosFunction();
+  const { getSearchUrl } = useGetUrl();
 
   const [values, setValues] = useState([]);
   const [needsSearchCall, setNeedsSearchCall] = useState(false);

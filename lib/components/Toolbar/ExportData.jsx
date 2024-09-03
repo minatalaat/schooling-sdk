@@ -7,12 +7,13 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import { SpinnerCircular } from 'spinners-react';
 
 import { useAxiosFunction } from '../../hooks/useAxios';
-import { getSearchUrl, getActionUrl, getImportTemplateUrl } from '../../services/getUrl';
+import { useGetUrl } from '../../services/useGetUrl';
 import { MODELS } from '../../constants/models';
 
 export default function ExportData({ dataModel, onAlert, isImport, searchPayload }) {
   const { t } = useTranslation();
   const { api, downloadFile, downloadAttachment } = useAxiosFunction();
+  const { getSearchUrl, getActionUrl, getImportTemplateUrl } = useGetUrl();
   moment.locale('en');
 
   const [isLoading, setIsLoading] = useState(false);

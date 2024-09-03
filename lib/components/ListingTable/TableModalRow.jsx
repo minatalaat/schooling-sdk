@@ -5,7 +5,7 @@ import moment from 'moment';
 import ConfirmationPopup from './../ConfirmationPopup';
 
 import { useAxiosFunction } from './../../hooks/useAxios';
-import { getRemoveAllUrl } from './../../services/getUrl';
+import { useGetUrl } from './../../services/useGetUrl';
 import { useFeatures } from './../../hooks/useFeatures';
 import { formatFloatNumber } from '../../utils/helpers';
 import { DeleteIcon, EditIcon, ViewIcon } from '../ui/actions/Actions';
@@ -42,6 +42,7 @@ const TableModalRow = ({
   const { t } = useTranslation();
   const { api } = useAxiosFunction();
   const { canEdit, canDelete, canView } = useFeatures(feature, subFeature);
+  const { getRemoveAllUrl } = useGetUrl();
 
   const alertHandler = (type, message) => {
     window.scrollTo(0, 0);

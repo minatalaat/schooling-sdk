@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useFeatures } from '../../hooks/useFeatures';
 import ConfirmationPopup from '../ConfirmationPopup';
 import { useAxiosFunction } from '../../hooks/useAxios';
-import { getRemoveAllUrl } from '../../services/getUrl';
+import { useGetUrl } from '../../services/useGetUrl';
 import { useHold } from '../../hooks/useHold';
 import { DeleteIcon, EditIcon, ViewIcon } from '../ui/actions/Actions';
 
@@ -26,7 +26,6 @@ const Card = ({
   setActionInProgress,
   checked = [],
   setChecked = () => {},
-  navigateToEditState,
   navigationParams = { id: record[keyIdentifier] },
   deleteHandler,
   label1,
@@ -40,6 +39,7 @@ const Card = ({
   const { api } = useAxiosFunction();
   const { t } = useTranslation();
   const { canEdit, canView, canDelete, getFeaturePath } = useFeatures(feature, subFeature);
+  const { getRemoveAllUrl } = useGetUrl();
 
   const [showDelete, setShowDelete] = useState(false);
 

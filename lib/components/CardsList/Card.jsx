@@ -365,7 +365,7 @@
 //               subTitles.map(subTitle => {
 //                 if (!subTitle) return null;
 //                 if (subTitle.label && subTitle.label.length > 0 && record[subTitle.key] && record[subTitle.key].toString().length > 0)
-                  
+
 //                   return (
 //                     <div className="data-list" key={subTitle.key}>
 //                       <h4>{t(subTitle.label) + ': '}</h4>
@@ -484,7 +484,7 @@ import ConfirmationPopup from '../ConfirmationPopup';
 
 import { useFeatures } from '../../hooks/useFeatures';
 import { useAxiosFunction } from '../../hooks/useAxios';
-import { getRemoveAllUrl } from '../../services/getUrl';
+import { useGetUrl } from '../../services/useGetUrl';
 // import { useHold } from '../../hooks/useHold';
 import { alertsActions } from '../../store/alerts';
 import { formatFloatNumber } from '../../utils/helpers';
@@ -522,6 +522,7 @@ const Card = ({
   const { api } = useAxiosFunction();
   const { t } = useTranslation();
   const { canAdd, canEdit, canView, canDelete, getFeaturePath } = useFeatures(feature, subFeature);
+  const { getRemoveAllUrl } = useGetUrl();
   const dispatch = useDispatch();
   const bind = useLongPress(() => {
     setIsOpen(true);
@@ -597,7 +598,6 @@ const Card = ({
 
     if (typeof deleteHandler !== 'function') {
       removeAllHandler();
-      
     } else {
       deleteHandler(record[keyIdentifier]);
     }

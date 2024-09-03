@@ -13,7 +13,7 @@ import GradesMain from '../pages/schooling/Grades/GradesMain';
 import { i18nInit } from '../i18n/i18n';
 import { FEATURES } from '../constants/Features/features';
 
-export function SchoolRoutes({ lang, baseRoute }) {
+export function SchoolRoutes({ lang, baseRoute, env }) {
   useEffect(() => {
     // Handle route change or trigger a re-render
   }, [lang]);
@@ -23,9 +23,9 @@ export function SchoolRoutes({ lang, baseRoute }) {
   return (
     <>
       <Router>
-        <SchoolingProvider baseRoute={baseRoute ?? ''}>
+        <SchoolingProvider baseRoute={baseRoute ?? ''} env={env ?? 'prod'}>
           <Routes>
-            <Route path={`${baseRoute}${FEATURES['CANTEEN_PRODUCTS'].BASE_PATH}/*`} element={<ProductsMain  baseRoute={baseRoute}/>} />
+            <Route path={`${baseRoute}${FEATURES['CANTEEN_PRODUCTS'].BASE_PATH}/*`} element={<ProductsMain baseRoute={baseRoute} />} />
             <Route path={`${baseRoute}${FEATURES['BUSES'].BASE_PATH}/*`} element={<BusesMain />} />
             <Route path={`${baseRoute}${FEATURES['CANTEEN_CATEGORIES'].BASE_PATH}/*`} element={<CanteenCategoriesMain />} />
             <Route path={`${baseRoute}${FEATURES['STUDENTS'].BASE_PATH}/*`} element={<StudentsMain />} />

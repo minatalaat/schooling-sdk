@@ -130,11 +130,11 @@ const PreOrdersManage = ({ addNew, enableEdit }) => {
                   )}
                 </div> */}
                 <FormAction
-                feature={feature}
-                subFeature={subFeature}
-                viewHandler={canView && enableEdit ? viewHandler : null}
-                editHandler={canEdit && !enableEdit ? editHandler : null}
-              />
+                  feature={feature}
+                  subFeature={subFeature}
+                  viewHandler={canView && enableEdit ? viewHandler : null}
+                  editHandler={canEdit && !enableEdit ? editHandler : null}
+                />
               </div>
             </div>
             <div className="row">
@@ -149,11 +149,11 @@ const PreOrdersManage = ({ addNew, enableEdit }) => {
                 )}
               </div>
             </div>
-            <FormFooter mode={mode} feature={feature} subFeature={subFeature} deleteHandler={canDelete ? deleteHandler : null}>
-          {data?.cartStatus != 'SUCCESS' && (
-                    <PrimaryButton onClick={() => setShowDelete(true)} disabled={false} text="LBL_ORDER_PICKUP" />
-                  )}
-          </FormFooter>
+            <FormFooter mode={mode} feature={feature} subFeature={subFeature} deleteHandler={() => {}}>
+              {data?.cartStatus != 'SUCCESS' && (
+                <PrimaryButton onClick={() => setShowDelete(true)} disabled={false} text="LBL_ORDER_PICKUP" />
+              )}
+            </FormFooter>
           </div>
         )}
       </div>

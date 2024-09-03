@@ -9,7 +9,7 @@ import ExportData from '../components/Toolbar/ExportData';
 import ImportData from '../components/Toolbar/ImportData';
 
 import { useAxiosFunction } from '../hooks/useAxios';
-import { getRemoveAllUrl } from '../services/getUrl';
+import { useGetUrl } from '../services/useGetUrl';
 import { modelsEnum } from '../constants/modelsEnum/modelsEnum';
 
 import { RiCheckboxMultipleFill } from 'react-icons/ri';
@@ -55,6 +55,7 @@ const Toolbar = ({
 
   const { t } = useTranslation();
   const { api } = useAxiosFunction();
+  const { getRemoveAllUrl } = useGetUrl();
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
 
