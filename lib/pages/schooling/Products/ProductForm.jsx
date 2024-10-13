@@ -10,26 +10,27 @@ import { VALID_CODABAR_FORMAT, VALID_FLOAT, VALID_TEXT_WITH_SPECIAL_CHARS } from
 import * as Yup from 'yup';
 import Card from '../../../components/Card/Card';
 
-import { costTypeOptions} from './ProductsPayloadsFields';
+import { costTypeOptions } from './ProductsPayloadsFields';
 import { useProductsServices } from '../../../services/apis/useProductsServices';
 import { useCategoriesServices } from '../../../services/apis/useCategoriesServices';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import BarcodeInput from '../../../components/ui/inputs/BarcodeInput';
 
 const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, subFeature, fetchedProduct, btnRef }) => {
-  const { updateProduct, addProduct, fetchAvailableCurrencies } = useProductsServices();
+  const { updateProduct, addProduct } = useProductsServices();
   const { fetchCategories } = useCategoriesServices();
   const navigate = useNavigate();
   const [fetchedCategories, setFetchedCategories] = useState([]);
-  const [fetchedCurrencies, setFetchedCurrencies] = useState([]);
   const { t } = useTranslation();
   const productTypeSelect = null;
 
   const initValues = {
     name: data?.name,
     code: data?.code,
-    productTypeSelect: data?.product_type_select?.name_ar,
+    //change to object
+    productTypeSelect: { name: data?.productTypeSelect?.name || undefined },
     unit: data?.unit || 'each/وحدة',
     sellable: data?.sellable || false,
     purchasable: data?.purchasable || false,
@@ -41,18 +42,20 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
     purchasePrice: data?.purchase_price || '',
     saleCurrency: data?.saleCurrency?.id || { id: undefined },
     purchaseCurrency: data?.purchaseCurrency?.id || { id: undefined },
-    picture: data?.image,
+    image: data?.image,
     serialNumber: '',
     costTypeSelect: data?.cost_type,
     costPrice: data?.cost_price,
-    category_id: data?.category?.id || { id: undefined },
+    category: data?.category?.id || { id: undefined },
     calories: '',
   };
 
   const valSchema = Yup.object().shape({
     code: Yup.string().matches(VALID_TEXT_WITH_SPECIAL_CHARS, t('VALID_INPUT_WITH_SPECIAL_CHARS')).trim().required(t('REQUIRED')),
     name: Yup.string().matches(VALID_TEXT_WITH_SPECIAL_CHARS, t('VALID_INPUT_WITH_SPECIAL_CHARS')).trim().required(t('REQUIRED')),
-    productTypeSelect: Yup.string().required(t('REQUIRED')),
+    // productTypeSelect: Yup.object().shape({
+    //   name: Yup.string().required(t('REQUIRED'))
+    // }),
     purchaseAccount: Yup.object()
       .nullable()
       .when('purchasable', {
@@ -98,7 +101,7 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
     costTypeSelect: Yup.string().required(t('REQUIRED')),
     costPrice: Yup.number().when('costTypeSelect', { is: '1', then: Yup.number().required(t('REQUIRED')) }),
     calories: Yup.string().required(t('REQUIRED')),
-    category_id: Yup.object().shape({
+    category: Yup.object().shape({
       id: Yup.number().required(`* ${t('REQUIRED')}`),
     }),
     saleCurrency: Yup.object()
@@ -168,6 +171,29 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
   useEffect(() => {
     importCategoriesData();
   }, []);
+  const productTypeSelectObtions = [
+    {
+      id: 1,
+      label: 'Product',
+      name_ar: 'منتج',
+     
+    },
+    {
+      id: 2,
+      label: 'Service',
+      name_ar: 'خدمة',
+    
+    },
+  ];
+
+
+
+  const extractImageId = (imageUrl) => {
+    const parts = imageUrl.split('/');
+    return parts[parts.length - 3];
+};
+
+const imageId =extractImageId(data?.image)
 
   return (
     <form onSubmit={formik.handleSubmit}>
@@ -185,26 +211,20 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
             <div className="row">
               <div className="col-md-6">
                 <DropDown
-                  options={[
-                    {
-                      id: 1,
-                      label: 'Product',
-                      name_ar: 'منتج',
-                    },
-                    {
-                      id: 2,
-                      label: 'Service',
-                      name_ar: 'خدمة',
-                    },
-                  ]}
+                  options={productTypeSelectObtions}
                   formik={formik}
                   isRequired={true}
                   label="LBL_PRODUCT_TYPE"
-                  accessor="productTypeSelect"
+                  accessor="productTypeSelect.id"
                   translate={productTypeSelect?.mode === 'enum'}
-                  keys={{ valueKey: 'value', titleKey: 'label' }}
+                  keys={{ valueKey: 'label', titleKey: 'label' }}
                   mode={mode}
-                  // onChange={onProductTypeChange}
+                  onChange={e => {
+                    const selectedValue = productTypeSelectObtions.find(option =>{
+                      return  option.label === e.target.value
+                    });
+                    formik.setFieldValue('productTypeSelect', { name: selectedValue?.label || '' });
+                  }}
                   type={productTypeSelect?.data?.type}
                 />
               </div>
@@ -229,7 +249,7 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
                   formik={formik}
                   isRequired={true}
                   label="LBL_PRODUCT_CATEGORY_NAME"
-                  accessor="category_id.id"
+                  accessor="category.id"
                   translate={productTypeSelect?.mode === 'enum'}
                   keys={{ valueKey: 'id', titleKey: 'name' }}
                   mode={mode}
@@ -248,23 +268,24 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
           <div className="col-md-3">
             <FileInput
               formik={formik}
-              identifier="picture"
+              identifier="image"
               label="LBL_PRODUCT_PICTURE"
               alertHandler={alertHandler}
               mode={mode}
               parentId={data?.id}
-              fileId={data?.picture?.id}
+              fileId={data?.image?.id}
+            
+              imageId={imageId}
             />
           </div>
         </div>
-        </Card>
-        {formik?.values?.sellable && (
-          <>
-    <Card title="LBL_ACCOUNTING" >
-          {/* <Card></Card> */}
+      </Card>
+      {formik?.values?.sellable && (
+        <>
+          <Card title="LBL_ACCOUNTING">
+            {/* <Card></Card> */}
             <div className="row step-add-product-2">
               <div className="col-md-6">
-                
                 <DropDown
                   options={[
                     {
@@ -287,7 +308,6 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
                 <NumberInput formik={formik} label="LBL_SALE_PRICE" accessor="salePrice" mode={mode} isRequired={formik.values.sellable} />
               </div>
               <div className="col-md-6">
-             
                 <DropDown
                   options={[
                     {
@@ -307,7 +327,6 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
                 />
               </div>
               <div className="col-md-6">
-             
                 <DropDown
                   options={[
                     {
@@ -326,15 +345,14 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
                 />
               </div>
             </div>
-        </Card>
-          </>
-        )}
-        {formik.values.purchasable && (
-          <>
-          <Card title=''>
+          </Card>
+        </>
+      )}
+      {formik.values.purchasable && (
+        <>
+          <Card title="">
             <div className="row step-add-product-3">
               <div className="col-md-6">
-             
                 <DropDown
                   options={[
                     {
@@ -363,7 +381,6 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
                 />
               </div>
               <div className="col-md-6">
-               
                 <DropDown
                   // placeholder={formik.values.grade?.name}
                   options={[
@@ -388,7 +405,6 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
                 />
               </div>
               <div className="col-md-6">
-               
                 <DropDown
                   options={[
                     {
@@ -407,11 +423,11 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
                 />
               </div>
             </div>
-            </Card>
-          </>
-        )}
-        <>
-          <Card title="LBL_COST_MANAGEMENT" >
+          </Card>
+        </>
+      )}
+      <>
+        <Card title="LBL_COST_MANAGEMENT">
           <div className="row step-add-product-3">
             <div className="col-md-6">
               <DropDown
@@ -439,28 +455,29 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
               </div>
             )}
           </div>
-          </Card>
-        </>
-        {mode !== 'view' && (
-          <FormNotes
-            notes={[
-              {
-                title: 'LBL_REQUIRED_NOTIFY',
-                type: 3,
-              },
-            ]}
-          />
-        )}
-      
-      <AttachmentInput
-        mode={mode}
-        fetchedObj={data || null}
-        parentSaveDone={parentSaveDone}
-        feature={subFeature}
-        alertHandler={alertHandler}
-        successMessage="LBL_PRODUCT_SAVED"
-        navigationParams={{ id: data?.id }}
-      />
+        </Card>
+      </>
+      {mode !== 'view' && (
+        <FormNotes
+          notes={[
+            {
+              title: 'LBL_REQUIRED_NOTIFY',
+              type: 3,
+            },
+          ]}
+        />
+      )}
+      <Card>
+        <AttachmentInput
+          mode={mode}
+          fetchedObj={data || null}
+          parentSaveDone={parentSaveDone}
+          feature={subFeature}
+          alertHandler={alertHandler}
+          successMessage="LBL_PRODUCT_SAVED"
+          navigationParams={{ id: data?.id }}
+        />
+      </Card>
 
       <button type="submit" ref={btnRef} hidden></button>
     </form>

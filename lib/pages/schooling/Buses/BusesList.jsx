@@ -30,7 +30,7 @@ const BusesList = () => {
   const [windosSize, setWindowSize] = useState([window.innerWidth, window.innerHeight]);
   const [showMoreAction, setShowMoreAction] = useState(false);
   const [fetchedData, setFetchedData] = useState({ data: [{ id: 1 }] });
-  // console.log(fetchedData)
+
   const fields = [
     { accessor: 'id', Header: t('LBL_ID'), type: 'text' },
     { accessor: 'busModel.name', Header: t('LBL_MODE'), type: 'text' },

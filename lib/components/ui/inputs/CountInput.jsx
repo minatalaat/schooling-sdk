@@ -13,7 +13,6 @@ const CountInput = ({ setCount, index, count }) => {
     setCount(prev => [...newCountList]);
   };
 
-  console.log(count);
   return (
     <div className="row align-items-center justify-content-center ">
       <button

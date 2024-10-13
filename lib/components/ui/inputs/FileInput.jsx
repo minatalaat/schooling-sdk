@@ -1,135 +1,3 @@
-// import { useState, useEffect } from 'react';
-// import { useTranslation } from 'react-i18next';
-
-// import closeIcon from '../../../assets/images/close.svg';
-
-// import EmptyPictureField from '../skeletons/EmptyPictureField';
-// import { useAxiosFunction } from '../../../hooks/useAxios';
-// import { setFieldValue } from '../../../utils/formHelpers';
-// import { removePictureVisible, removePictureInvisible } from '../../../utils/styles';
-
-// export default function FileInput({ formik, identifier, alertHandler, parentId, fileId, tableModel, label, mode = 'view' }) {
-//   const { downloadDocument } = useAxiosFunction();
-//   const { t } = useTranslation();
-
-//   const [showRemoveLogo, setShowRemoveLogo] = useState(false);
-//   const [thumb, setThumb] = useState(null);
-//   const [imgLoading, setImgLoading] = useState(true);
-//   const [showLogo, setShowLogo] = useState(false);
-
-//   let reader = new FileReader();
-
-//   reader.onloadstart = () => {
-//     setImgLoading(true);
-//   };
-
-//   reader.onloadend = () => {
-//     setThumb(reader.result);
-//     setShowLogo(true);
-//     setImgLoading(false);
-//   };
-
-//   reader.onerror = () => {
-//     setImgLoading(false);
-//   };
-
-//   const getLogo = () => {
-//     if (!parentId || !fileId || !tableModel) return setImgLoading(false);
-//     downloadDocument(
-//       parentId,
-//       fileId,
-//       tableModel,
-//       data => {
-//         if (!data) return setImgLoading(false);
-//         setFieldValue(formik, identifier, data);
-//       },
-//       () => {
-//         setImgLoading(false);
-//         alertHandler('Error', t('SOMETHING_WENT_WRONG'));
-//       }
-//     );
-//   };
-
-//   // console.log(formik.values[identifier]);
-//   // useEffect(() => {
-//   //   if (formik.values[identifier]) return reader?.readAsDataURL(formik.values[identifier]);
-//   // }, [formik.values[identifier]]);
-
-//   //Check for type before calling? readAsDataURL
-//   useEffect(() => {
-//     if (formik.values[identifier] && (formik.values[identifier] instanceof Blob || formik.values[identifier] instanceof File)) {
-//       reader?.readAsDataURL(formik.values[identifier]);
-//     }
-//   }, [formik.values[identifier]]);
-
-//   useEffect(() => {
-//     if (mode !== 'add') getLogo();
-//     else setImgLoading(false);
-//   }, []);
-
-//   return (
-//     <div className="vew-tabcontent">
-//       <label className="form-label" htmlFor="full-name">
-//         {label && t(label)}
-//       </label>
-//       {mode !== 'view' && (
-//         <div
-//           className="con-input-file"
-//           onMouseOver={() => {
-//             setShowRemoveLogo(true);
-//           }}
-//           onMouseLeave={() => {
-//             setShowRemoveLogo(false);
-//           }}
-//         >
-//           {thumb && (
-//             <button
-//               className="remove-image"
-//               style={showRemoveLogo ? removePictureVisible : removePictureInvisible}
-//               onClick={() => {
-//                 setFieldValue(formik, identifier, null);
-//                 setThumb(null);
-//                 setShowLogo(false);
-//               }}
-//             >
-//               <img src={closeIcon} alt="close-icon" />
-//             </button>
-//           )}
-//           <div className="img-1">
-//             {!showLogo && !imgLoading && <EmptyPictureField />}
-
-//             {!imgLoading && showLogo && <img src={thumb} alt="Company Logo" className="img-thumbnail mt-2" />}
-//             {imgLoading && <div>{t('LOADING')}</div>}
-//           </div>
-//           <input
-//             id={identifier}
-//             name={identifier}
-//             type="file"
-//             title=""
-//             onChange={event => {
-//               if (event.currentTarget.files[0]) {
-//                 setFieldValue(formik, identifier, event.currentTarget.files[0]);
-//                 setShowLogo(true);
-//                 event.currentTarget.value = '';
-//               }
-//             }}
-//             className="input"
-//             style={{ cursor: 'pointer' }}
-//           />
-//         </div>
-//       )}
-//       {mode === 'view' && (
-//         <div className="con-input-file">
-//           <div className="img-1">
-//             {!showLogo && !imgLoading && <EmptyPictureField />}
-//             {!imgLoading && showLogo && <img src={thumb} alt="Company Logo" className="img-thumbnail mt-2" />}
-//             {imgLoading && <div>{t('LOADING')}</div>}
-//           </div>
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
 import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -139,10 +7,9 @@ import editIcon from '../../../assets/images/pencil-square.svg';
 import CloudUploadIcon from '../../../assets/svgs/CloudUploadIcon';
 import { useAxiosFunction } from '../../../hooks/useAxios';
 import { setFieldValue } from '../../../utils/formHelpers';
-// import { useAxiosFunction } from '../../../../hooks/useAxios';
-// import { setFieldValue } from '../../../../utils/formHelpers';
-// import { removePictureVisible, removePictureInvisible } from '../../../../utils/styles';
+import { removePictureVisible, removePictureInvisible } from '../../../utils/styles';
 import { userDefaultImgs } from '../../../pages/users/constants';
+import { useSelector } from 'react-redux';
 
 export default function FileInput({
   formik,
@@ -154,10 +21,11 @@ export default function FileInput({
   mode = 'view',
   imagePlaceholder = <CloudUploadIcon />, // Default to CloudUploadIcon if imagePlaceholder is not provided
   isUserProfile = false,
+  imageId,
 }) {
   const { downloadDocument, downloadDocumentWithFileId } = useAxiosFunction();
   const { t } = useTranslation();
-
+  const tenantId = useSelector(state => state.userFeatures.companyInfo?.companyInfoProvision?.tenantId);
   const editfileInputRef = useRef();
   const imagePlaceholderRef = useRef(imagePlaceholder);
   const fileInputRef = useRef();
@@ -170,18 +38,25 @@ export default function FileInput({
 
   let reader = new FileReader();
 
-  reader.onloadstart = () => {
-    setImgLoading(true);
-  };
+  const runFileReader = file => {
+    reader.readAsDataURL(file);
 
-  reader.onloadend = () => {
-    setThumb(reader?.result);
-    setShowLogo(true);
-    setImgLoading(false);
-  };
+    reader.onloadstart = () => {
+      setImgLoading(true);
+    };
 
-  reader.onerror = () => {
-    setImgLoading(false);
+    reader.onloadend = () => {
+      setThumb(reader.result);
+      const base64String = reader.result.split(',')[1];
+      setFieldValue(formik, identifier, base64String).then(() => {});
+
+      setShowLogo(true);
+      setImgLoading(false);
+    };
+
+    reader.onerror = () => {
+      setImgLoading(false);
+    };
   };
 
   const getLogo = () => {
@@ -295,19 +170,18 @@ export default function FileInput({
       });
     }
   };
-  
 
   useEffect(() => {
     if (isUserProfile) {
       if (mode !== 'add') {
-        if (!formik.values.img) {
+        if (!formik.values.image) {
           changeImagePlaceholder();
           setIsDefaultImage(true);
         } else {
-          if (typeof formik.values.img === 'object' && formik.values.img?.id) {
+          if (typeof formik.values.image === 'object' && formik.values.image?.id) {
             getLogo();
           } else {
-            reader?.readAsDataURL(formik.values.img);
+            reader.readAsDataURL(formik.values.image);
           }
         }
       } else {
@@ -323,7 +197,7 @@ export default function FileInput({
           if (typeof formik.values.img === 'string') {
             setFieldValue(formik, 'picture', formik.values.img);
           } else {
-            reader?.readAsDataURL(formik.values.img);
+            reader.readAsDataURL(formik.values.img);
           }
         }
       }
@@ -343,13 +217,46 @@ export default function FileInput({
   }, [formik.values.picture]);
 
   useEffect(() => {
-    // if (formik.values[identifier] && !isUserProfile) return reader?.readAsDataURL(formik.values[identifier]);
+    if (formik.values[identifier] && formik.values[identifier] instanceof Blob && !isUserProfile) {
+      runFileReader(formik.values[identifier]);
+    }
   }, [formik.values[identifier]]);
 
   useEffect(() => {
     if (mode !== 'add') getLogo();
     else setImgLoading(false);
   }, []);
+
+  useEffect(() => {
+
+    if (mode !== 'add' && imageId) {
+          const fetchImage = async () => {
+      if (imageId) {
+      
+         const imageUrl = `https://uat.qaema.com/qaema/ws/rest/com.axelor.meta.db.MetaFile/${imageId}/content/download?tenantId=${tenantId}`;
+
+        try {
+          const response = await fetch(formik?.values?.image);
+          if (!response.ok) throw new Error('Network response was not ok');
+          const blob = await response.blob();
+          const imageObjectURL = URL.createObjectURL(blob);
+          setThumb(imageObjectURL);
+          setShowLogo(true);
+          setImgLoading(false);
+        
+        } catch (error) {
+          console.error('Error fetching the image:', error);
+          setImgLoading(false);
+          alertHandler('Error', t('SOMETHING_WENT_WRONG'));
+        }
+      } else {
+        setImgLoading(false);
+      }
+    };
+
+    fetchImage();
+  }
+  }, [fileId, alertHandler, t]);
 
   return (
     <>
@@ -369,7 +276,7 @@ export default function FileInput({
                 {((isUserProfile && !isDefaultImage) || !isUserProfile) && (
                   <button
                     className="remove-image"
-                    // style={showRemoveLogo ? removePictureVisible : removePictureInvisible}
+                    style={showRemoveLogo ? removePictureVisible : removePictureInvisible}
                     onClick={handleRemoveClick}
                   >
                     <img src={trashIcon} alt="trash-icon" />
@@ -379,7 +286,7 @@ export default function FileInput({
                   <>
                     <button
                       className="edit-image"
-                      // style={showRemoveLogo ? removePictureVisible : removePictureInvisible}
+                      style={showRemoveLogo ? removePictureVisible : removePictureInvisible}
                       onClick={handleEditClick}
                     >
                       <img src={editIcon} alt="edit-icon" />

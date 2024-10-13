@@ -68,7 +68,6 @@ const StudentsAttendance = () => {
       classId,
       () => setLoading(false)
     );
-    // console.log(data);
     setFetchedData(data);
   };
 

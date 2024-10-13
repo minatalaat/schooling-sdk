@@ -16,6 +16,7 @@ const CanteenCategoriesForm = ({ enableEdit, data, addNew, btnRef }) => {
   const initialValues = {
     name: data?.name || '',
     name_ar: data?.name_ar || '',
+    image: data?.image||'',
   };
 
   const validationSchema = Yup.object().shape({
@@ -51,6 +52,13 @@ const CanteenCategoriesForm = ({ enableEdit, data, addNew, btnRef }) => {
   useEffect(() => {
     tabsProps.setShowTabsContent(true);
   }, []);
+  
+  const extractImageId = (imageUrl) => {
+    const parts = imageUrl.split('/');
+    return parts[parts.length - 3];
+};
+
+const imageId =extractImageId(data?.image)
 
   return (
     <div className="flex col">
@@ -58,7 +66,25 @@ const CanteenCategoriesForm = ({ enableEdit, data, addNew, btnRef }) => {
         <div className="card">
           <div className="row justify-content-between gap-3">
             <div className="col-md-12">
-              <FileInput formik={formik} identifier="logo" label="LBL_LOGO" mode={addNew ? 'add' : enableEdit ? 'edit' : 'view'} />
+              <FileInput
+               formik={formik}
+               identifier="image"
+                label="LBL_LOGO"
+                 mode={addNew ? 'add' : enableEdit ? 'edit' : 'view'} 
+                 fileId={data?.image?.id}
+                 parentId={data?.id}
+
+                 
+                 
+                 
+                 
+                 
+                
+               
+               
+                 imageId={imageId}
+                 />
+         
             </div>
             <div className="col-md-5">
               <TextInput

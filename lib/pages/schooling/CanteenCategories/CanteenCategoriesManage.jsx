@@ -74,7 +74,6 @@ const CanteenCategoriesManage = ({ addNew, enableEdit }) => {
   };
 
   const deleteHandler = () => {
-    console.log(id)
     dispatch(
       confirmationPopupActions.openPopup({
         title: 'LBL_BEWARE_ABOUT_TO_DELETE',
