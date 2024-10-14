@@ -12,7 +12,7 @@ import CardsList from '../../../components/CardsList/CardsList';
 import { usePreOrderServices } from '../../../services/apis/usePreOrderServices';
 import { useStudentsServices } from '../../../services/apis/useStudentsServices';
 import SuccessPopup from '../../../components/modals/SuccessPopup';
-import { addProductByBarCodeInput, orderSummery, preordersList } from '../../../utils/styles';
+import { orderSummery, preordersList } from '../../../utils/styles';
 import QrcodeReader from '../../../components/modals/QrcodeReader';
 import BarcodeReaderPopup from '../../../components/modals/BarcodeReader';
 import { alertsActions } from '../../../store/alerts';

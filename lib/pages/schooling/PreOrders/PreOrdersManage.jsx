@@ -47,7 +47,6 @@ const PreOrdersManage = ({ addNew, enableEdit }) => {
     setLoading(true);
 
     const successHandler = data => {
-      // console.log(data);
       setShowDelete(false);
       setStatus(data?.data?.returnedObject?.cartStatusDisplay);
       setLoading(false);

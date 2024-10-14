@@ -48,17 +48,11 @@ const CanteenCategoriesForm = ({ enableEdit, data, addNew, btnRef }) => {
     validateOnMount: addNew ? true : false,
     onSubmit: submit,
   });
-  // console.log(formik);
+
   useEffect(() => {
     tabsProps.setShowTabsContent(true);
   }, []);
-  
-  const extractImageId = (imageUrl) => {
-    const parts = imageUrl.split('/');
-    return parts[parts.length - 3];
-};
 
-const imageId =extractImageId(data?.image)
 
   return (
     <div className="flex col">
@@ -73,16 +67,6 @@ const imageId =extractImageId(data?.image)
                  mode={addNew ? 'add' : enableEdit ? 'edit' : 'view'} 
                  fileId={data?.image?.id}
                  parentId={data?.id}
-
-                 
-                 
-                 
-                 
-                 
-                
-               
-               
-                 imageId={imageId}
                  />
          
             </div>

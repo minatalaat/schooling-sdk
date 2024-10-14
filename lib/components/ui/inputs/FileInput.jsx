@@ -9,7 +9,6 @@ import { useAxiosFunction } from '../../../hooks/useAxios';
 import { setFieldValue } from '../../../utils/formHelpers';
 import { removePictureVisible, removePictureInvisible } from '../../../utils/styles';
 import { userDefaultImgs } from '../../../pages/users/constants';
-import { useSelector } from 'react-redux';
 
 export default function FileInput({
   formik,
@@ -21,11 +20,10 @@ export default function FileInput({
   mode = 'view',
   imagePlaceholder = <CloudUploadIcon />, // Default to CloudUploadIcon if imagePlaceholder is not provided
   isUserProfile = false,
-  imageId,
+  
 }) {
   const { downloadDocument, downloadDocumentWithFileId } = useAxiosFunction();
   const { t } = useTranslation();
-  const tenantId = useSelector(state => state.userFeatures.companyInfo?.companyInfoProvision?.tenantId);
   const editfileInputRef = useRef();
   const imagePlaceholderRef = useRef(imagePlaceholder);
   const fileInputRef = useRef();
@@ -229,12 +227,9 @@ export default function FileInput({
 
   useEffect(() => {
 
-    if (mode !== 'add' && imageId) {
+    if (mode !== 'add' ) {
           const fetchImage = async () => {
-      if (imageId) {
       
-         const imageUrl = `https://uat.qaema.com/qaema/ws/rest/com.axelor.meta.db.MetaFile/${imageId}/content/download?tenantId=${tenantId}`;
-
         try {
           const response = await fetch(formik?.values?.image);
           if (!response.ok) throw new Error('Network response was not ok');
@@ -243,15 +238,13 @@ export default function FileInput({
           setThumb(imageObjectURL);
           setShowLogo(true);
           setImgLoading(false);
-        
+ 
         } catch (error) {
           console.error('Error fetching the image:', error);
           setImgLoading(false);
           alertHandler('Error', t('SOMETHING_WENT_WRONG'));
         }
-      } else {
-        setImgLoading(false);
-      }
+    
     };
 
     fetchImage();

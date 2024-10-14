@@ -13,10 +13,9 @@ import Card from '../../../components/Card/Card';
 import { costTypeOptions } from './ProductsPayloadsFields';
 import { useProductsServices } from '../../../services/apis/useProductsServices';
 import { useCategoriesServices } from '../../../services/apis/useCategoriesServices';
-import { useCallback, useEffect, useState } from 'react';
+import {  useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import BarcodeInput from '../../../components/ui/inputs/BarcodeInput';
 
 const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, subFeature, fetchedProduct, btnRef }) => {
   const { updateProduct, addProduct } = useProductsServices();
@@ -30,24 +29,24 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
     name: data?.name,
     code: data?.code,
     //change to object
-    productTypeSelect: { name: data?.productTypeSelect?.name || undefined },
+    productTypeSelect:data?.productTypeSelect?.name || { name: data?.productTypeSelect?.name || undefined },
     unit: data?.unit || 'each/وحدة',
     sellable: data?.sellable || false,
     purchasable: data?.purchasable || false,
-    purchaseAccount: data?.saleAccount?.id || { id: undefined },
-    saleAccount: data?.saleAccount?.id || { id: undefined },
-    purchaseVAT: data?.purchaseVAT?.id || { id: undefined },
-    saleVAT: data?.saleVAT?.id || { id: undefined },
-    salePrice: data?.sale_price,
-    purchasePrice: data?.purchase_price || '',
-    saleCurrency: data?.saleCurrency?.id || { id: undefined },
-    purchaseCurrency: data?.purchaseCurrency?.id || { id: undefined },
+    purchaseAccount: data?.saleAccount || { id: undefined },
+    saleAccount: data?.saleAccount|| { id: undefined },
+    purchaseVAT: data?.purchaseVAT || { id: undefined },
+    saleVAT: data?.saleVAT || { id: undefined },
+    salePrice: data?.salePrice,
+    purchasePrice: data?.purchasePrice || '',
+    saleCurrency: data?.saleCurrency|| { id: undefined },
+    purchaseCurrency:  data?.purchaseCurrency || { id: undefined },
     image: data?.image,
     serialNumber: '',
-    costTypeSelect: data?.cost_type,
-    costPrice: data?.cost_price,
+    costTypeSelect: data?.costType,
+    costPrice: data?.costPrice,
     category: data?.category?.id || { id: undefined },
-    calories: '',
+    calories: data?.calories,
   };
 
   const valSchema = Yup.object().shape({
@@ -188,12 +187,6 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
 
 
 
-  const extractImageId = (imageUrl) => {
-    const parts = imageUrl.split('/');
-    return parts[parts.length - 3];
-};
-
-const imageId =extractImageId(data?.image)
 
   return (
     <form onSubmit={formik.handleSubmit}>
@@ -274,8 +267,7 @@ const imageId =extractImageId(data?.image)
               mode={mode}
               parentId={data?.id}
               fileId={data?.image?.id}
-            
-              imageId={imageId}
+
             />
           </div>
         </div>

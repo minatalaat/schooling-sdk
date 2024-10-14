@@ -99,7 +99,6 @@
 //           <ErrorMessage formik={formik} mode={mode} identifier={accessor} isFirstLoginStyle={isFirstLoginStyle} />
 //         </>
 //       ) : (
-//         <input type="text" className="form-control" id="Label" placeholder="" value={viewValue} disabled />
 //       )}
 //     </>
 //   );
@@ -155,6 +154,30 @@ const DropDown = ({
 
     return options[formik.values[accessor]];
   }, [formik.values[accessor], options]);
+
+  const handleViewValue = accessor => {
+    let value = accessor;
+    value = accessor.split('.')[0]; // Get the parent key
+    
+
+    // If accessor is an object with a 'name' property
+    if (typeof formik?.values[value] === 'object' && formik?.values[value].hasOwnProperty('name')) {
+      return formik?.values[value].name
+    }
+    // const keys = value.split('.');
+
+    // let result = formik?.values;
+
+    // for (const key of keys) {
+    //   if (result && key in result) {
+    //     result = result[key];
+    //   } else {
+    //     return undefined;
+    //   }
+    // }
+    
+    return formik?.values[value]; 
+  };
 
   const InitialOption = useMemo(() => {
     const initialOption = options?.length > 0 ? options?.find(option => +option[keys?.valueKey || ''] === 0) : null;
@@ -220,9 +243,9 @@ const DropDown = ({
         </>
       ) : (
         <>
-          <DisabledInput inputValue={viewValue} labelValue={t(label)} isInteractiveTable={isInteractiveTable} />
+        
+          <DisabledInput inputValue={handleViewValue(accessor)} labelValue={t(label)} isInteractiveTable={isInteractiveTable} />
         </>
-        // <input type="text" className="form-control" id="Label" placeholder="" value={viewValue} disabled />
       )}
     </>
   );

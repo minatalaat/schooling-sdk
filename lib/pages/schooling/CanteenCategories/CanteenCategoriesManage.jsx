@@ -1,8 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import ConfirmationPopup from '../../../components/modals/ConfirmationPopup';
-import BackButton from '../../../components/ui/buttons/BackButton';
 import PrimaryButton from '../../../components/ui/buttons/PrimaryButton';
 import CanteenCategoriesForm from './CanteenCategoriesForm';
 import { useCategoriesServices } from '../../../services/apis/useCategoriesServices';
