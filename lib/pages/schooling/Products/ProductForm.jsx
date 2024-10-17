@@ -13,48 +13,52 @@ import Card from '../../../components/Card/Card';
 import { costTypeOptions } from './ProductsPayloadsFields';
 import { useProductsServices } from '../../../services/apis/useProductsServices';
 import { useCategoriesServices } from '../../../services/apis/useCategoriesServices';
-import {  useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { alertsActions } from '../../../store/alerts';
 
-const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, subFeature, fetchedProduct, btnRef }) => {
+const ProductsForm = ({ mode, data, isService, parentSaveDone, subFeature, fetchedProduct, btnRef }) => {
   const { updateProduct, addProduct } = useProductsServices();
   const { fetchCategories } = useCategoriesServices();
   const navigate = useNavigate();
   const [fetchedCategories, setFetchedCategories] = useState([]);
   const { t } = useTranslation();
   const productTypeSelect = null;
+  const dispatch = useDispatch();
+  const alertHandler = (title, message) => dispatch(alertsActions.initiateAlert({ title, message }));
 
   const initValues = {
     name: data?.name,
     code: data?.code,
     //change to object
-    productTypeSelect:data?.productTypeSelect?.name || { name: data?.productTypeSelect?.name || undefined },
+    productTypeSelect: data?.productTypeSelect,
     unit: data?.unit || 'each/وحدة',
     sellable: data?.sellable || false,
     purchasable: data?.purchasable || false,
-    purchaseAccount: data?.saleAccount || { id: undefined },
-    saleAccount: data?.saleAccount|| { id: undefined },
+    purchaseAccount: data?.purchaseAccount || { id: undefined },
+    saleAccount: data?.saleAccount || { id: undefined },
     purchaseVAT: data?.purchaseVAT || { id: undefined },
     saleVAT: data?.saleVAT || { id: undefined },
     salePrice: data?.salePrice,
     purchasePrice: data?.purchasePrice || '',
-    saleCurrency: data?.saleCurrency|| { id: undefined },
-    purchaseCurrency:  data?.purchaseCurrency || { id: undefined },
-    image: data?.image,
+    saleCurrency: data?.saleCurrency || { id: undefined },
+    purchaseCurrency: data?.purchaseCurrency || { id: undefined },
+    image: data?.image || '',
     serialNumber: '',
     costTypeSelect: data?.costType,
     costPrice: data?.costPrice,
-    category: data?.category?.id || { id: undefined },
+    category: data?.category || { id: undefined },
     calories: data?.calories,
   };
 
   const valSchema = Yup.object().shape({
     code: Yup.string().matches(VALID_TEXT_WITH_SPECIAL_CHARS, t('VALID_INPUT_WITH_SPECIAL_CHARS')).trim().required(t('REQUIRED')),
     name: Yup.string().matches(VALID_TEXT_WITH_SPECIAL_CHARS, t('VALID_INPUT_WITH_SPECIAL_CHARS')).trim().required(t('REQUIRED')),
-    // productTypeSelect: Yup.object().shape({
-    //   name: Yup.string().required(t('REQUIRED'))
-    // }),
+    productTypeSelect: Yup.object().shape({
+      name: Yup.string().required(t('REQUIRED')),
+    }),
     purchaseAccount: Yup.object()
       .nullable()
       .when('purchasable', {
@@ -137,18 +141,44 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
     return submitValues;
   };
 
+  const successOrFailAddHandler = res => {
+    const status = res?.data?.code;
+
+    if (status == 0 && res?.data?.returnedObject) {
+      alertHandler('Success', t('PRODUCT_ADDED'));
+      navigate(-1);
+    } else if (status == 400) {
+      alertHandler('Error', t('CODE_NOT_ALLOW'));
+    }
+    else{
+      alertHandler('Error', t('LBL_FAIL_POPUP'));
+      navigate(-1);
+    }
+  };
+
+  const successOrFailUpdateHandler = res => {
+    const status = res?.data?.code;
+    console.log(res,'response')
+
+    if (status == 0 && res?.data?.returnedObject) {
+      alertHandler('Success', t('PRODUCT_ADDED'));
+      navigate(-1);
+    } else if (status == 400) {
+      alertHandler('Error', t('CODE_NOT_ALLOW'));
+    }
+    else{
+      alertHandler('Error', t('LBL_FAIL_POPUP'));
+    }
+  };
+
   const submit = values => {
-    delete values.unit; //for test
+    delete values.unit;
     const submitValues = prepareSubmitValues(values);
 
     if (data?.id) {
-      updateProduct(4, submitValues, () => {
-        navigate(-1);
-      });
+      updateProduct(4, submitValues, successOrFailUpdateHandler);
     } else {
-      addProduct(submitValues, () => {
-        navigate(-1);
-      });
+      addProduct(submitValues, successOrFailAddHandler);
     }
   };
 
@@ -175,18 +205,13 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
       id: 1,
       label: 'Product',
       name_ar: 'منتج',
-     
     },
     {
       id: 2,
       label: 'Service',
       name_ar: 'خدمة',
-    
     },
   ];
-
-
-
 
   return (
     <form onSubmit={formik.handleSubmit}>
@@ -204,6 +229,7 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
             <div className="row">
               <div className="col-md-6">
                 <DropDown
+                  isProductPage={true}
                   options={productTypeSelectObtions}
                   formik={formik}
                   isRequired={true}
@@ -213,8 +239,8 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
                   keys={{ valueKey: 'label', titleKey: 'label' }}
                   mode={mode}
                   onChange={e => {
-                    const selectedValue = productTypeSelectObtions.find(option =>{
-                      return  option.label === e.target.value
+                    const selectedValue = productTypeSelectObtions.find(option => {
+                      return option.label === e.target.value;
                     });
                     formik.setFieldValue('productTypeSelect', { name: selectedValue?.label || '' });
                   }}
@@ -238,6 +264,7 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
             <div className="row">
               <div className="col-md-6">
                 <DropDown
+                  isProductPage={true}
                   options={fetchedCategories?.data}
                   formik={formik}
                   isRequired={true}
@@ -267,7 +294,6 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
               mode={mode}
               parentId={data?.id}
               fileId={data?.image?.id}
-
             />
           </div>
         </div>
@@ -279,6 +305,7 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
             <div className="row step-add-product-2">
               <div className="col-md-6">
                 <DropDown
+                  isProductPage={true}
                   options={[
                     {
                       id: 123,
@@ -301,6 +328,7 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
               </div>
               <div className="col-md-6">
                 <DropDown
+                  isProductPage={true}
                   options={[
                     {
                       id: 110,
@@ -320,6 +348,7 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
               </div>
               <div className="col-md-6">
                 <DropDown
+                  isProductPage={true}
                   options={[
                     {
                       id: 3,
@@ -346,6 +375,7 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
             <div className="row step-add-product-3">
               <div className="col-md-6">
                 <DropDown
+                  isProductPage={true}
                   options={[
                     {
                       id: 123,
@@ -374,6 +404,7 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
               </div>
               <div className="col-md-6">
                 <DropDown
+                  isProductPage={true}
                   // placeholder={formik.values.grade?.name}
                   options={[
                     {
@@ -398,6 +429,7 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
               </div>
               <div className="col-md-6">
                 <DropDown
+                  isProductPage={true}
                   options={[
                     {
                       id: 4,
@@ -423,6 +455,7 @@ const ProductsForm = ({ mode, data, alertHandler, isService, parentSaveDone, sub
           <div className="row step-add-product-3">
             <div className="col-md-6">
               <DropDown
+                isProductPage={true}
                 options={costTypeOptions}
                 formik={formik}
                 isRequired={mode !== 'view'}

@@ -30,35 +30,44 @@ const CartForm = () => {
 
   const [studentData, setStudentData] = useState(null);
   const [checked, setChecked] = useState([]);
-  const [itemsCountList, setIemsCountList] = useState([]);
+
   const [fetchedPreordersData, setFetchedPreordersData] = useState([]);
   const [products, setProducts] = useState([]);
   const [successPopup, setSuccessPopup] = useState(false);
   const [qrcodeReaderPopup, setQrcodeReaderPopup] = useState(false);
   const [barcodeReaderPopup, setBarcodeReaderPopup] = useState(false);
-
   const mappedData =
     products?.length > 0 &&
-    products?.map((data, index) => {
+    products?.map(product => {
       return {
-        ...data,
-        quntityInput: <CountInput setCount={setIemsCountList} count={itemsCountList} index={index} />,
+        ...product,
+        quntityInput: <CountInput products={products} setProducts={setProducts} count={product.countItems} code={product.code} />,
       };
     });
+ 
+
   const fields = [
     { accessor: 'name', Header: t('LBL_PRODUCT_NAME'), type: 'text' },
     { accessor: 'quntityInput', Header: t('LBL_PRODUCT_QUANTITY'), type: 'text' },
-    { accessor: 'sale_price', Header: t('LBL_PRICE'), type: 'text' },
-    { accessor: 'vat_price', Header: t('LBL_PRODUCT_TOTAL_VAT'), type: 'text' },
+    { accessor: 'salePrice', Header: t('LBL_PRICE'), type: 'text' },
+    { accessor: 'vatPrice', Header: t('LBL_PRODUCT_TOTAL_VAT'), type: 'text' },
   ];
 
   const importProductData = async barCode => {
     const data = await fetchProduct(barCode);
+    const addedProduct = data?.data?.returnedObject;
 
-    if (data?.data?.returnedObject) {
-      setProducts(prevState => [...prevState, data?.data?.returnedObject]);
+    if (addedProduct) {
+      const existingItem = products.find(item => item.code === addedProduct.code);
+
+      if (existingItem) {
+        const updatedItems = products.map(item => (item.code === addedProduct.code ? { ...item, countItems: item.countItems + 1 } : item));
+        setProducts(updatedItems);
+      } else {
+        setProducts(prevState => [...prevState, { ...addedProduct, countItems: 1 }]);
+      }
+
       formik.resetForm();
-      setIemsCountList([...itemsCountList, 1]);
     } else {
       dispatch(alertsActions.initiateAlert({ title: 'Error', message: `${t('LBL_ERROR_GETTING_PRODUCT')}` }));
     }
@@ -72,11 +81,6 @@ const CartForm = () => {
     }
   };
 
-  // const validationSchema = Yup.object().shape({
-  //   code: Yup.string()
-  //     .required(`* ${t('REQUIRED')}`)
-  //     .trim(),
-  // });
   const formik = useFormik({
     initialValues: {
       ...studentData,
@@ -122,47 +126,33 @@ const CartForm = () => {
     };
   });
 
-  const deleteHandler = id => {
-    // let oldProducts = products;
-    // const filterdeProducts = oldProducts?.filter(data => data?.id != id);
-    // setProducts(filterdeProducts);
-
-    const indexToDelete = products.findIndex(product => product.id === id);
-
-    // Filter out the product to be deleted
-    const filteredProducts = products.filter(product => product.id !== id);
-    setProducts(filteredProducts);
-
-    // Filter out the corresponding count from itemsCountList
-    const filteredItemsCountList = itemsCountList.filter((_, index) => index !== indexToDelete);
-    setIemsCountList(filteredItemsCountList);
+  const deleteProduct = code => {
+    const updatedItems = products.filter(item => item.code !== code);
+    setProducts(updatedItems);
   };
 
   const checkoutHandler = () => {
-    const items = products?.map((data, index) => {
+    const items = products?.map(item => {
       return {
-        itemId: data?.id,
-        quantity: itemsCountList[index],
-        unitPrice: 10.5,
+        itemId: item?.id,
+        quantity: item.countItems,
+        unitPrice: item?.salePrice,
       };
     });
     cartCheckout({
-      userIdentifier: studentData?.id || 102,
+      userIdentifier: studentData?.id, // Replace with the actual student ID
       cartItems: items,
+      transactionIdentifier: '123456789',// Replace with the actual transaction ID
     });
     setProducts([]);
-    setIemsCountList([]);
     formik.resetForm();
     setSuccessPopup(true);
   };
 
   const cancelHandler = () => {
     setProducts([]);
-    setIemsCountList([]);
     formik.resetForm();
   };
-
-  const itemsCount = itemsCountList?.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 
   const handelQrCodeRequest = code => {
     importStudent(code);
@@ -172,18 +162,46 @@ const CartForm = () => {
     importProductData(code);
   };
 
+  const calculateTotalItems = () => {
+    if (products?.length > 0) {
+    return (
+      products?.length > 0 &&
+      products?.reduce((acc, product) => {
+        const productTotal = product.countItems ?? 0;
+        return acc + productTotal ?? 0;
+      }, 0)
+    );
+  } else {
+    return 0;
+  }
+  };
+
   const calculateTotal = () => {
-    return products.reduce((acc, product, index) => {
-      const productTotal = product.sale_price * itemsCountList[index];
-      return acc + productTotal;
-    }, 0);
+    if (products?.length > 0) {
+      return (
+        products?.length > 0 &&
+        products?.reduce((acc, product) => {
+          const productTotal = product.salePrice * product.countItems;
+          return (acc + productTotal)?.toFixed(2) ?? 0;
+        }, 0)
+      );
+    } else {
+      return 0;
+    }
   };
 
   const calculateTotalVat = () => {
-    return products.reduce((acc, product, index) => {
-      const productTotal = product.vat_price * itemsCountList[index];
-      return acc + productTotal;
-    }, 0);
+    if (products?.length > 0) {
+      return (
+        products?.length > 0 &&
+        products?.reduce((acc, product) => {
+          const productTotal = product.vatPrice * product.countItems;
+          return (acc + productTotal)?.toFixed(2) ?? 0;
+        }, 0)
+      );
+    } else {
+      return 0;
+    }
   };
 
   return (
@@ -233,7 +251,7 @@ const CartForm = () => {
                     mappedData.map(record => {
                       return (
                         <TableRow
-                          key={record.id}
+                          key={record.code}
                           record={record}
                           fields={fields}
                           checked={checked}
@@ -243,7 +261,7 @@ const CartForm = () => {
                           isEditable={false}
                           isViewable={false}
                           hasBulkActions={false}
-                          deleteHandler={deleteHandler}
+                          deleteHandler={deleteProduct}
                         />
                       );
                     })}
@@ -317,10 +335,7 @@ const CartForm = () => {
 
         {/* order pricing */}
         <Card>
-          <div
-            className=" row  order-summery"
-            style={orderSummery}
-          >
+          <div className=" row  order-summery" style={orderSummery}>
             <div className="col-md-2">
               <PrimaryButton text="check out" theme="confirmationPopup" onClick={checkoutHandler} className=" w-100" />
             </div>
@@ -328,13 +343,15 @@ const CartForm = () => {
               <PrimaryButton theme="red" text="LBL_CANCEL" className="w-100" onClick={cancelHandler} />
             </div>
             <div className="col-md-2">
-              <h5 className="text-center fw-bold"> items No : {itemsCount ?? 0}</h5>
+              <h5 className="text-center fw-bold"> items No : {calculateTotalItems()}</h5>
             </div>
             <div className="col-md-2">
-              <h5 className="text-center fw-bold">Total : {calculateTotal().toFixed(2) ?? 0} </h5>
+              <h5 className="text-center fw-bold">Total : {calculateTotal()} </h5>
+              {/* .toFixed(2)
+              .toFixed(2) */}
             </div>
             <div className="col-md-2">
-              <h5 className="text-center fw-bold">Total / vat : {calculateTotalVat().toFixed(2) ?? 0}</h5>
+              <h5 className="text-center fw-bold">Total / vat : {calculateTotalVat()}</h5>
             </div>
           </div>
         </Card>

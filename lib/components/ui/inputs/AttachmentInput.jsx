@@ -51,7 +51,7 @@ const AttachmentInput = ({
   const filesFields = ['isLock', 'fileName', 'metaFile.sizeText', 'updatedOn', 'relatedId', 'relatedModel', 'isDirectory', 'metaFile.id'];
 
   useEffect(() => {
-    if (mode === 'add') {
+    if (mode !== 'add') {
       getFiles();
     }
   }, []);

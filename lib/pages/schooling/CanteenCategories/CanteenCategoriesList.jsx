@@ -14,6 +14,8 @@ import { useCategoriesServices } from '../../../services/apis/useCategoriesServi
 import CircleSkeleton from '../../../components/ui/skeletons/CircleSkeleton';
 import { FEATURES } from '../../../constants/Features/features';
 import SchoolingContext from '../../../context/SchoolingContext';
+import { useDispatch } from 'react-redux';
+import { alertsActions } from '../../../store/alerts';
 // import ImportData from '../../components/Toolbar/ImportData';
 
 const CanteenCategoriesList = () => {
@@ -21,7 +23,9 @@ const CanteenCategoriesList = () => {
   const subFeature = 'CANTEEN_CATEGORIES';
   const [searchParams] = useSearchParams();
   const { baseRoute } = useContext(SchoolingContext);
-
+  const dispatch=useDispatch();
+      const alertHandler = (title, message) => dispatch(alertsActions.initiateAlert({ title, message }));
+      
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { fetchCategories, deleteCategory } = useCategoriesServices();
@@ -83,6 +87,7 @@ const CanteenCategoriesList = () => {
       setLoading(false);
       importData();
       setActionInProgress(false)
+      alertHandler('Success', t('DELETED_SUCCESSFULLY'));
     };
 
     if (checked?.length > 0) {

@@ -12,6 +12,8 @@ import { useProductsServices } from '../../../services/apis/useProductsServices'
 import CircleSkeleton from '../../../components/ui/skeletons/CircleSkeleton';
 import { FEATURES } from '../../../constants/Features/features';
 import SchoolingContext from '../../../context/SchoolingContext';
+import { useDispatch } from 'react-redux';
+import { alertsActions } from '../../../store/alerts';
 
 const DempPage1List = () => {
   const { baseRoute } = useContext(SchoolingContext);
@@ -25,13 +27,14 @@ const DempPage1List = () => {
 
   const { t } = useTranslation();
   const { fetchProducts, deleteProduct } = useProductsServices();
-
   const [show, setShow] = useState('table');
   const [checked, setChecked] = useState([]);
   const [windosSize, setWindowSize] = useState([window.innerWidth, window.innerHeight]);
   const [showMoreAction, setShowMoreAction] = useState(false);
   const [fetchedData, setFetchedData] = useState([]);
   const [actionInProgress, setActionInProgress] = useState(false);
+  const dispatch=useDispatch();
+      const alertHandler = (title, message) => dispatch(alertsActions.initiateAlert({ title, message }));
 
   const fields = [
     { accessor: 'code', Header: t('LBL_PRODUCT_CODE'), type: 'text' },
@@ -39,19 +42,19 @@ const DempPage1List = () => {
     { accessor: 'product_type', Header: t('LBL_PRODUCT_TYPE'), type: 'text', translate: true },
 
     { accessor: 'unit', Header: t('LBL_UNIT'), type: 'text' },
-    { accessor: 'sale_price', Header: t('LBL_SALE_PRICE'), type: 'text' },
+    { accessor: 'salePrice', Header: t('LBL_SALE_PRICE'), type: 'text' },
     {
-      accessor: 'purchase_price',
+      accessor: 'purchasePrice',
       Header: t('LBL_PURCHASE_PRICE'),
       type: 'text',
     },
   ];
 
   const subTitles = [
-    { label: 'LBL_SALE_PRICE', key: 'sale_price' },
-    { label: 'LBL_PURCHASE_PRICE', key: 'purchase_price' },
+    { label: 'LBL_SALE_PRICE', key: 'salePrice' },
+    { label: 'LBL_PURCHASE_PRICE', key: 'purchasePrice' },
     {
-      key: 'sale_price',
+      key: 'salePrice',
       label: t('LBL_SALE_PRICE'),
     },
   ];
@@ -95,6 +98,7 @@ const DempPage1List = () => {
       importData();
       setLoading(false);
       setActionInProgress(false)
+      alertHandler('Success', t('DELETED_SUCCESSFULLY'));
     };
     
     deleteProduct(id, successHandler);

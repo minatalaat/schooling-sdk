@@ -174,6 +174,7 @@ const TableRow = ({
           }
 
           const value = getNestedValue(record, field.accessor);
+
           return <td key={field.accessor}>{field.translate ? t(value) : value}</td>;
           // return <td key={field.accessor}>{field.translate ? t(record[field.accessor]) : record[field.accessor]}</td>;
         })}

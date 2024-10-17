@@ -1,17 +1,29 @@
-import React from 'react';
+import { useEffect } from "react";
 
-const CountInput = ({ setCount, index, count }) => {
-  const handleDecrement = index => {
-    let newCountList = count;
-    newCountList[index] = newCountList[index] <= 1 ? 1 : Number(newCountList[index] - 1);
-    setCount(prev => [...newCountList]);
+const CountInput = ({  count,products,code,setProducts }) => {
+
+  const handleDecrement = code => {
+    const updatedItems = products.map(item => {
+      if (item.code === code) {
+        const newQuantity = item.countItems - 1;
+        return { ...item, countItems: newQuantity > 0 ? newQuantity : 0 };
+      }
+
+      return item;
+    });
+    setProducts(updatedItems);
   };
 
-  const handleIncrement = index => {
-    let newCountList = count;
-    newCountList[index] = Number(newCountList[index] + 1);
-    setCount(prev => [...newCountList]);
+  const handleIncrement = code => {
+    const updatedItems = products.map(item =>
+      item.code === code ? { ...item, countItems: item.countItems + 1 } : item
+    );
+    setProducts(updatedItems);
   };
+
+  useEffect(() => {
+
+  }, [count]);
 
   return (
     <div className="row align-items-center justify-content-center ">
@@ -23,11 +35,11 @@ const CountInput = ({ setCount, index, count }) => {
           height: '25px',
           color: '#0038FF',
         }}
-        onClick={() => handleDecrement(index)}
+        onClick={() => handleDecrement(code)}
       >
         -
       </button>
-      <p className="col-4 d-flex align-items-center justify-content-center mt-3"> {count[`${index}`]}</p>
+      <p className="col-4 d-flex align-items-center justify-content-center mt-3"> {count}</p>
       <button
         className="col-4 btn rounded-circle d-flex align-items-center justify-content-center p-0 m-0"
         style={{
@@ -36,7 +48,7 @@ const CountInput = ({ setCount, index, count }) => {
           height: '25px',
           color: '#0038FF',
         }}
-        onClick={() => handleIncrement(index)}
+        onClick={() => handleIncrement(code)}
       >
         +
       </button>

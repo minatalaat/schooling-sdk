@@ -7,11 +7,15 @@ import { useTabs } from '../../../hooks/useTabs';
 import FileInput from '../../../components/ui/inputs/FileInput';
 import { useCategoriesServices } from '../../../services/apis/useCategoriesServices';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { alertsActions } from '../../../store/alerts';
 
 const CanteenCategoriesForm = ({ enableEdit, data, addNew, btnRef }) => {
   const { t } = useTranslation();
   const tabsProps = useTabs();
   const { addCategory, updateCategory } = useCategoriesServices();
+  const dispatch=useDispatch();
+  const alertHandler = (title, message) => dispatch(alertsActions.initiateAlert({ title, message }));
   const navigate = useNavigate();
   const initialValues = {
     name: data?.name || '',
@@ -32,11 +36,15 @@ const CanteenCategoriesForm = ({ enableEdit, data, addNew, btnRef }) => {
     if (formik.isValid) {
       if (addNew) {
         addCategory(values, () => {
+      
+          alertHandler('Success', t('CATEGORY_ADDED'));
+          
           navigate(-1);
         });
       } else {
         updateCategory(data?.id, { ...values, id: data?.id }, () => {
           navigate(-1);
+          alertHandler('Success', t('CATEGORY_UPDATED'));
         });
       }
     }

@@ -20,7 +20,6 @@ export default function FileInput({
   mode = 'view',
   imagePlaceholder = <CloudUploadIcon />, // Default to CloudUploadIcon if imagePlaceholder is not provided
   isUserProfile = false,
-  
 }) {
   const { downloadDocument, downloadDocumentWithFileId } = useAxiosFunction();
   const { t } = useTranslation();
@@ -221,15 +220,11 @@ export default function FileInput({
   }, [formik.values[identifier]]);
 
   useEffect(() => {
-    if (mode !== 'add') getLogo();
-    else setImgLoading(false);
-  }, []);
+    if (mode !== 'add') {
+      getLogo();
+      setImgLoading(true);
 
-  useEffect(() => {
-
-    if (mode !== 'add' ) {
-          const fetchImage = async () => {
-      
+      const fetchImage = async () => {
         try {
           const response = await fetch(formik?.values?.image);
           if (!response.ok) throw new Error('Network response was not ok');
@@ -238,17 +233,15 @@ export default function FileInput({
           setThumb(imageObjectURL);
           setShowLogo(true);
           setImgLoading(false);
- 
         } catch (error) {
           console.error('Error fetching the image:', error);
           setImgLoading(false);
           alertHandler('Error', t('SOMETHING_WENT_WRONG'));
         }
-    
-    };
+      };
 
-    fetchImage();
-  }
+      fetchImage();
+    }
   }, [fileId, alertHandler, t]);
 
   return (

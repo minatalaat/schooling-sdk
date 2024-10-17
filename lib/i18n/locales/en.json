@@ -2331,6 +2331,12 @@
   "CREATE_AXIS_SUCCESS": "Business Unit created successfully, Redirecting...",
   "CREATE_COST_CENTER_SUCCESS": "Cost Center created successfully, Redirecting...",
   "CREATE_USER_GROUP_SUCCESS": "Role created successfully, Redirecting...",
+  "CATEGORY_ADDED": "Category created successfully, Redirecting...",
+  "PRODUCT_ADDED": "Product created successfully, Redirecting...",
+  "CATEGORY_UPDATED": "Category updated successfully, Redirecting...",
+  "PRODUCT_UPDATED": "Product updated successfully, Redirecting...",
+  "CODE_NOT_ALLOW": "this code is already used for other product, please try another one",
+
   "CREATE_USER_SUCCESS": "User created successfully, Redirecting...",
   "CUSTOMER_DELETE_MESSAGE": "Customer deleted successfully, Redirecting...",
   "CUSTOMER_SAVED_MESSAGE": "Customer Saved Successfully, Redirecting...",
