@@ -176,33 +176,33 @@ const CartForm = () => {
   }
   };
 
-  const calculateTotal = () => {
-    if (products?.length > 0) {
-      return (
-        products?.length > 0 &&
-        products?.reduce((acc, product) => {
-          const productTotal = product.salePrice * product.countItems;
-          return (acc + productTotal)?.toFixed(2) ?? 0;
-        }, 0)
-      );
-    } else {
+  const calculateTotalPrice = () => {
+    if (!products || products.length === 0) {
       return 0;
     }
+  
+    const total = products.reduce((acc, product) => {
+      const productTotal = product.salePrice * product.countItems;
+      return acc + productTotal;
+    }, 0);
+  
+    return total.toFixed(2);
   };
+  
 
   const calculateTotalVat = () => {
-    if (products?.length > 0) {
-      return (
-        products?.length > 0 &&
-        products?.reduce((acc, product) => {
-          const productTotal = product.vatPrice * product.countItems;
-          return (acc + productTotal)?.toFixed(2) ?? 0;
-        }, 0)
-      );
-    } else {
+    if (!products || products.length === 0) {
       return 0;
     }
+  
+    const totalVat = products.reduce((acc, product) => {
+      const productTotal = product.vatPrice * product.countItems;
+      return acc + productTotal;
+    }, 0);
+  
+    return totalVat.toFixed(2);
   };
+  
 
   return (
     <div className="page-body position-relative">
@@ -346,7 +346,7 @@ const CartForm = () => {
               <h5 className="text-center fw-bold"> items No : {calculateTotalItems()}</h5>
             </div>
             <div className="col-md-2">
-              <h5 className="text-center fw-bold">Total : {calculateTotal()} </h5>
+              <h5 className="text-center fw-bold">Total : {calculateTotalPrice()} </h5>
               {/* .toFixed(2)
               .toFixed(2) */}
             </div>
