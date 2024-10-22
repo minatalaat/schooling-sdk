@@ -12,7 +12,7 @@ const ProductsMain = () => {
       <Route path="/" element={<ProductsList />} />
       <Route path={FEATURES[subFeature].SUB_PATHS.EDIT} element={<ProductManage enableEdit={true} />} />
       <Route path={FEATURES[subFeature].SUB_PATHS.VIEW} element={<ProductManage enableEdit={false} />} />
-      <Route path={FEATURES[subFeature].SUB_PATHS.ADD} element={<ProductManage addNew />} />
+      <Route path={FEATURES[subFeature].SUB_PATHS.ADD} element={<ProductManage addNew={true} />} />
       <Route path="*" element={<Navigate replace to="/home" />} />
     </Routes>
   );

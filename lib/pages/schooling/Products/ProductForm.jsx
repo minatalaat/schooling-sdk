@@ -136,8 +136,11 @@ const ProductsForm = ({ mode, data, isService, parentSaveDone, subFeature, fetch
       ['purchaseAccount', 'purchaseVAT', 'purchasePrice', 'purchaseCurrency'].forEach(field => delete submitValues[field]);
     }
 
+    console.log('values');
+    console.log(values);
     submitValues.productTypeSelect = { name: values.productTypeSelect };
     submitValues.category = { id: values.category.id };
+    console.log(submitValues);
     // Other transformations if needed...
 
     return submitValues;
@@ -175,7 +178,7 @@ const ProductsForm = ({ mode, data, isService, parentSaveDone, subFeature, fetch
     delete values.unit;
     const submitValues = prepareSubmitValues(values);
 
-    if (data?.id) {
+    if (mode !== 'add') {
       updateProduct(4, submitValues, successOrFailUpdateHandler);
     } else {
       addProduct(submitValues, successOrFailAddHandler);
