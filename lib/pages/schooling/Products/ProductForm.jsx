@@ -136,6 +136,8 @@ const ProductsForm = ({ mode, data, isService, parentSaveDone, subFeature, fetch
       ['purchaseAccount', 'purchaseVAT', 'purchasePrice', 'purchaseCurrency'].forEach(field => delete submitValues[field]);
     }
 
+    submitValues.productTypeSelect = { name: values.productTypeSelect };
+    submitValues.category = { id: values.category.id };
     // Other transformations if needed...
 
     return submitValues;
@@ -149,8 +151,7 @@ const ProductsForm = ({ mode, data, isService, parentSaveDone, subFeature, fetch
       navigate(-1);
     } else if (status == 400) {
       alertHandler('Error', t('CODE_NOT_ALLOW'));
-    }
-    else{
+    } else {
       alertHandler('Error', t('LBL_FAIL_POPUP'));
       navigate(-1);
     }
@@ -158,15 +159,14 @@ const ProductsForm = ({ mode, data, isService, parentSaveDone, subFeature, fetch
 
   const successOrFailUpdateHandler = res => {
     const status = res?.data?.code;
-    console.log(res,'response')
+    console.log(res, 'response');
 
     if (status == 0 && res?.data?.returnedObject) {
       alertHandler('Success', t('PRODUCT_ADDED'));
       navigate(-1);
     } else if (status == 400) {
       alertHandler('Error', t('CODE_NOT_ALLOW'));
-    }
-    else{
+    } else {
       alertHandler('Error', t('LBL_FAIL_POPUP'));
     }
   };
